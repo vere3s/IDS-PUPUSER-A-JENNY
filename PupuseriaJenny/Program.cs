@@ -17,7 +17,7 @@ namespace PupuseriaJenny
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InventarioForm());
+            Application.Run(new Ventas());
         }
     }
 }
