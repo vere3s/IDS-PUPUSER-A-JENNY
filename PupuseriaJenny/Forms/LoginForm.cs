@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PupuseriaJenny.CLS;
-using RestauranteGestion.Core.DataAccess;
+using PupuseriaJenny.Services;
 
 namespace PupuseriaJenny.Forms
 {
     public partial class LoginForm : Form
     {
         private bool _autorizado;
+        private UsuarioService usuarioService;
+
         public LoginForm()
         {
             InitializeComponent();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider();
+            this.errorProvider.ContainerControl = this;
+            usuarioService = new UsuarioService(); // Instanciamos el servicio
         }
 
         public bool Autorizado { get => _autorizado; set => _autorizado = value; }
@@ -27,59 +26,37 @@ namespace PupuseriaJenny.Forms
             string usuario = txtUsuario.Text.Trim();
             string contraseña = txtContraseña.Text.Trim();
 
-            try
+            // Limpiar cualquier error previo
+            errorProvider.Clear();
+
+            // Validar el usuario con el servicio
+            if (usuarioService.ValidarUsuario(usuario, contraseña, out string mensajeError))
             {
-                DataTable dt = AutenticarUsuario(usuario, contraseña);
-
-                if (dt.Rows.Count == 1)
-
+                try
                 {
-                    ConfigurarSesion(dt.Rows[0]);
-                    Autorizado = true;
+                    // Usamos el servicio para autenticar al usuario
+                    DataTable dt = usuarioService.AutenticarUsuario(usuario, contraseña);
 
-                    Close();
+                    if (dt.Rows.Count == 1)
+                    {
+                        ConfigurarSesion(dt.Rows[0]);
+                        Autorizado = true;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Error al intentar iniciar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error al intentar iniciar sesión: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private DataTable AutenticarUsuario(string usuario, string contraseña)
-        {
-            string query = @"
-                SELECT 
-                    u.IDUsuario, u.Usuario, 
-                    e.IDEmpleado, e.Nombre, e.Cargo, e.Telefono, e.Email
-                FROM 
-                    usuarios u
-                INNER JOIN 
-                    empleados e ON u.IDEmpleado = e.IDEmpleado
-                WHERE 
-                    u.Usuario = @Usuario AND 
-                    u.Contraseña = @Contraseña;";
-
-            var oOperacion = new DBOperacion();
-            var parameters = new Dictionary<string, object>
-    {
-        { "@Usuario", usuario },
-        { "@Contraseña", contraseña }
-    };
-
-            try
-            {
-                // Llamar al método Consultar y obtener el DataTable
-                return oOperacion.Consultar(query, parameters);
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones: mostrar un mensaje de error o loguear el error
-                MessageBox.Show($"Error al consultar la base de datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new DataTable(); // Retornar un DataTable vacío en caso de error
+                // Mostrar el mensaje de error en el ErrorProvider
+                errorProvider.SetError(txtUsuario, mensajeError);
             }
         }
 
@@ -94,12 +71,11 @@ namespace PupuseriaJenny.Forms
                 nombresEmpleado = row["nombresEmpleado"].ToString(),
                 apellidosEmpleado = row["apellidosEmpleado"].ToString(),
                 direccion = row["direccion"].ToString(),
-                email= row["email"].ToString(),
+                email = row["email"].ToString(),
                 fechaNacimiento = Convert.ToDateTime(row["fechaNacimiento"]),
-                idCargo = Convert.ToInt32(row["idEmpleados"]),
-                telefono = row["direccion"].ToString()
+                idCargo = Convert.ToInt32(row["idCargo"]),
+                telefono = row["telefono"].ToString()
             };
         }
     }
-
 }
