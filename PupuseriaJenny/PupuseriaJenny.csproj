@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLS\Empleados.cs" />
+    <Compile Include="CLS\Inventario.cs" />
     <Compile Include="Custom\RJButton.cs">
       <SubType>Component</SubType>
     </Compile>

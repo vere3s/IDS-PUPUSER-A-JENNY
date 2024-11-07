@@ -7,19 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PupuseriaJenny.CLS;
 
 namespace PupuseriaJenny.Forms
 {
     public partial class InventarioForm : Form
     {
-        
-        private Button btnIzquierda;
-        private Button btnDerecha;
-        private int desplazamiento = 100;
+
+
+        BindingSource Datos = new BindingSource();
         public InventarioForm()
         {
             InitializeComponent();
-       
+            Inventario inventario = new Inventario();
+            Datos.DataSource = inventario.ObtenerInventarioProductos();
+            dataGridView1.DataSource = Datos;
+   
             CargarCategorias();
         }
 
@@ -43,15 +46,18 @@ namespace PupuseriaJenny.Forms
                     Height = 40,
                     Location = new Point(xPosition, 10),
                  
-                    Text = nombreCategoria
+                    Text = nombreCategoria,Name = nombreCategoria,
                 };
-
+                boton.Click += (s, e) => {
+                    Datos.Filter = $"Categoria LIKE '%{nombreCategoria}%'";
+                };
                 panelBotones.Controls.Add(boton);
                 xPosition += 90; // Ajusta la distancia entre botones
             }
 
             // Ajustar el ancho del panel de botones según la cantidad de botones agregados
             panelBotones.Width = xPosition;
+            
         }
 
         private DataTable ObtenerCategoriasDeBaseDeDatos()
@@ -71,6 +77,10 @@ namespace PupuseriaJenny.Forms
             return table;
         }
 
-      
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Asegúrate de que el índice de la fila sea válido
+            
+        }
     }
 }

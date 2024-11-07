@@ -143,6 +143,96 @@ namespace RestauranteGestion.Core.DataAccess
             }
             return FilasAfectadas;
         }
+        public async Task<DataTable> EjecutarConsultaAsync(string pSentencia, Dictionary<string, object> parametros)
+        {
+            DataTable dataTable = new DataTable();
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                if (base.Conectar())
+                {
+                    comando.Connection = base._CONEXION;
+                    comando.CommandType = System.Data.CommandType.Text;
+                    comando.CommandText = pSentencia;
+
+                    // Agregar parámetros
+                    if (parametros != null)
+                    {
+                        foreach (var parametro in parametros)
+                        {
+                            comando.Parameters.AddWithValue(parametro.Key, parametro.Value);
+                        }
+                    }
+
+                    // Ejecutar el comando y llenar el DataTable
+                    using (MySqlDataReader reader = (MySqlDataReader)await comando.ExecuteReaderAsync())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                Desconectar();
+            }
+
+            return dataTable;
+        }
+
+        public async Task<int> EjecutarSentenciaAsync(string pSentencia, Dictionary<string, object> parametros)
+        {
+            int filasAfectadas = 0;
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                if (await base.ConectarAsync()) // Asegúrate de que Conectar sea también async
+                {
+                    comando.Connection = base._CONEXION;
+                    comando.CommandType = System.Data.CommandType.Text;
+                    comando.CommandText = pSentencia;
+
+                    // Agregar parámetros
+                    if (parametros != null)
+                    {
+                        foreach (var parametro in parametros)
+                        {
+                            comando.Parameters.AddWithValue(parametro.Key, parametro.Value);
+                        }
+                    }
+
+                    // Construir la consulta final para depuración
+                    string consultaFinal = pSentencia;
+                    foreach (var parametro in parametros)
+                    {
+                        consultaFinal = consultaFinal.Replace(parametro.Key, $"'{parametro.Value}'");
+                    }
+
+                    // Mostrar la consulta final en la consola
+                    Console.WriteLine(consultaFinal);
+
+                    // Ejecutar la sentencia de forma asincrónica
+                    filasAfectadas = await comando.ExecuteNonQueryAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al ejecutar sentencia: {ex.Message}");
+                filasAfectadas = -1;
+            }
+            finally
+            {
+                await DesconectarAsync(); // Asegúrate de que Desconectar sea también async
+            }
+
+            return filasAfectadas;
+        }
+
         public int EjecutarSentencia(String pSentencia, Dictionary<string, object> parametros)
         {
             int FilasAfectadas = 0;

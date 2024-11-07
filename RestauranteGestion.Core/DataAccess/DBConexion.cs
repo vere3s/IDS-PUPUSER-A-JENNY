@@ -31,6 +31,37 @@ namespace RestauranteGestion.Core.DataAccess
                 return false;
             }
         }
+        public async Task<bool> ConectarAsync()
+        {
+            try
+            {
+                var connectionString = $"Server={ServerIP};Port=3306;Database={Database};Uid={UserId};Pwd={Password};SSLMode=None";
+                _CONEXION = new MySqlConnection(connectionString);
+                await _CONEXION.OpenAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al conectar: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task DesconectarAsync()
+        {
+            try
+            {
+                if (_CONEXION != null && _CONEXION.State == System.Data.ConnectionState.Open)
+                {
+                    await _CONEXION.CloseAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al desconectar: {ex.Message}");
+            }
+        }
+
 
         public void Desconectar()
         {
