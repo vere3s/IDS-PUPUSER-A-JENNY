@@ -20,6 +20,7 @@ namespace PupuseriaJenny.Forms
             InitializeComponent();
             CargarBotonesCategorias();
             flpProductos.Controls.Clear();
+            dgvProductosDetalles.Rows.Clear();  // Limpia el DataGridView
         }
         private void CargarBotonesCategorias()
         {
@@ -81,7 +82,7 @@ namespace PupuseriaJenny.Forms
                     };
                     try
                     {
-                        Image productoImagen = Image.FromFile("ruta_de_tu_imagen/" + row["nombreProducto"].ToString() + ".png");
+                        Image productoImagen = Image.FromFile("/" + row["nombreProducto"].ToString() + ".png");
                         btnProducto.Image = ResizeImage(productoImagen, 140, 90); 
                     }
                     catch (Exception)
@@ -90,11 +91,31 @@ namespace PupuseriaJenny.Forms
                         Image imagenPredeterminada = Properties.Resources.imagenPredeterminada;
                         btnProducto.Image = ResizeImage(imagenPredeterminada, 132, 80);
                     }
+                    // Agrega el evento Click al botón del producto
+                    btnProducto.Click += (s, ev) => DetallesProductosVenta(row);
 
                     // Agrega el botón de producto al FlowLayoutPanel
                     flpProductos.Controls.Add(btnProducto);
                 }
             }
+        }
+        // Método para mostrar los detalles del producto en el DataGridView
+        private void DetallesProductosVenta(DataRow producto)
+        {
+
+            dgvProductosDetalles.Rows.Add(
+                producto["nombreProducto"].ToString(),
+                producto["costoUnitarioProducto"].ToString(),
+                producto["precioProducto"].ToString()
+            );
+
+            // Agrega los detalles del producto
+            //dgvProductosDetalles.Rows.Add("idProducto", producto["idProducto"]);
+            //dgvProductosDetalles.Rows.Add("nombreProducto", producto["nombreProducto"]);
+            //dgvProductosDetalles.Rows.Add("costoUnitarioProducto", producto["costoUnitarioProducto"]);
+            //dgvProductosDetalles.Rows.Add("precioProducto", producto["precioProducto"]);
+            //dgvProductosDetalles.Rows.Add("idCategoria", producto["idCategoria"]);
+            //dgvProductosDetalles.Rows.Add("idProveedor", producto["idProveedor"]);
         }
 
         // Método para redimensionar la imagen

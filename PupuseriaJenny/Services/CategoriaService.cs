@@ -39,7 +39,7 @@ namespace PupuseriaJenny.Services
         public static DataTable ObtenerProductosPorCategoria(string categoria)
         {
             DataTable resultado = new DataTable();
-            string consulta = @"SELECT p.nombreProducto 
+            string consulta = @"SELECT p.nombreProducto, p.costoUnitarioProducto, p.precioProducto 
                         FROM RG_Producto p
                         JOIN RG_Categoria c ON p.idCategoria = c.idCategoria
                         WHERE c.categoria = @categoria
