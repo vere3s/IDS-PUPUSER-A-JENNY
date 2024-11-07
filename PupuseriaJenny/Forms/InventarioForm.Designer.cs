@@ -33,17 +33,12 @@
             this.tb1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBotones = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEditar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnEliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.rjTextBox1 = new PupuseriaJenny.Custom.RJTextBox();
             this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton2 = new PupuseriaJenny.Custom.RJButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tb1.SuspendLayout();
@@ -67,27 +62,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.88889F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.11111F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1904, 821);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1370, 749);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.nombre,
-            this.cantidadDisponible,
-            this.btnEditar,
-            this.btnEliminar});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(293, 289);
+            this.dataGridView1.Location = new System.Drawing.Point(211, 264);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1608, 529);
+            this.dataGridView1.Size = new System.Drawing.Size(1156, 482);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tb1
             // 
@@ -96,12 +81,12 @@
             this.tb1.Controls.Add(this.panelBotones, 0, 0);
             this.tb1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tb1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb1.Location = new System.Drawing.Point(293, 3);
+            this.tb1.Location = new System.Drawing.Point(211, 3);
             this.tb1.Name = "tb1";
             this.tb1.RowCount = 2;
             this.tb1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.64238F));
             this.tb1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.35762F));
-            this.tb1.Size = new System.Drawing.Size(1608, 280);
+            this.tb1.Size = new System.Drawing.Size(1156, 255);
             this.tb1.TabIndex = 5;
             // 
             // panelBotones
@@ -111,7 +96,7 @@
             this.panelBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelBotones.Location = new System.Drawing.Point(3, 3);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(1602, 62);
+            this.panelBotones.Size = new System.Drawing.Size(1150, 62);
             this.panelBotones.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -119,78 +104,10 @@
             this.flowLayoutPanel1.Controls.Add(this.rjTextBox1);
             this.flowLayoutPanel1.Controls.Add(this.rjButton3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 234);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 209);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1602, 43);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1150, 43);
             this.flowLayoutPanel1.TabIndex = 3;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.rjButton1, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.rjButton2, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 289);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(284, 100);
-            this.tableLayoutPanel3.TabIndex = 6;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(284, 280);
-            this.panel1.TabIndex = 4;
-            // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ID.DataPropertyName = "id";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 43;
-            // 
-            // nombre
-            // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombre.DataPropertyName = "nombre";
-            this.nombre.HeaderText = "nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // cantidadDisponible
-            // 
-            this.cantidadDisponible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cantidadDisponible.DataPropertyName = "cantidadDisponible";
-            this.cantidadDisponible.HeaderText = "Cantidad";
-            this.cantidadDisponible.Name = "cantidadDisponible";
-            this.cantidadDisponible.ReadOnly = true;
-            this.cantidadDisponible.Width = 74;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.HeaderText = "Acciones";
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.ReadOnly = true;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.ToolTipText = "Editar";
-            this.btnEditar.UseColumnTextForButtonValue = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.HeaderText = "";
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.ReadOnly = true;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseColumnTextForButtonValue = true;
             // 
             // rjTextBox1
             // 
@@ -233,6 +150,22 @@
             this.rjButton3.TextColor = System.Drawing.Color.Black;
             this.rjButton3.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.rjButton1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.rjButton2, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 264);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(202, 100);
+            this.tableLayoutPanel3.TabIndex = 6;
+            // 
             // rjButton1
             // 
             this.rjButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(238)))), ((int)(((byte)(91)))));
@@ -247,7 +180,7 @@
             this.rjButton1.Name = "rjButton1";
             this.rjButton1.Size = new System.Drawing.Size(164, 44);
             this.rjButton1.TabIndex = 1;
-            this.rjButton1.Text = "Editar";
+            this.rjButton1.Text = "rjButton1";
             this.rjButton1.TextColor = System.Drawing.Color.White;
             this.rjButton1.UseVisualStyleBackColor = false;
             // 
@@ -265,16 +198,25 @@
             this.rjButton2.Name = "rjButton2";
             this.rjButton2.Size = new System.Drawing.Size(164, 44);
             this.rjButton2.TabIndex = 2;
-            this.rjButton2.Text = "Eliminar";
+            this.rjButton2.Text = "rjButton2";
             this.rjButton2.TextColor = System.Drawing.Color.White;
             this.rjButton2.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(202, 255);
+            this.panel1.TabIndex = 4;
             // 
             // InventarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1904, 821);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "InventarioForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -301,10 +243,5 @@
         private Custom.RJButton rjButton2;
         private Custom.RJTextBox rjTextBox1;
         private System.Windows.Forms.Panel panelBotones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDisponible;
-        private System.Windows.Forms.DataGridViewButtonColumn btnEditar;
-        private System.Windows.Forms.DataGridViewButtonColumn btnEliminar;
     }
 }
