@@ -33,6 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
             this.cbCortesia = new System.Windows.Forms.CheckBox();
             this.lbSubTotal = new System.Windows.Forms.Label();
             this.lbDescuento = new System.Windows.Forms.Label();
@@ -43,6 +44,9 @@
             this.tbCortesia = new System.Windows.Forms.TextBox();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.dgvProductosDetalles = new System.Windows.Forms.DataGridView();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbMesa = new System.Windows.Forms.Label();
             this.tbMesa = new System.Windows.Forms.TextBox();
@@ -52,6 +56,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flpCategorias = new System.Windows.Forms.FlowLayoutPanel();
+            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton5 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -59,14 +65,8 @@
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
             this.button6 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
-            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
-            this.rjButton5 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton2 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.spcVentas)).BeginInit();
             this.spcVentas.Panel1.SuspendLayout();
             this.spcVentas.Panel2.SuspendLayout();
@@ -170,6 +170,27 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(325, 170);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // rjButton3
+            // 
+            this.rjButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rjButton3.BackColor = System.Drawing.Color.OrangeRed;
+            this.rjButton3.BackgroundColor = System.Drawing.Color.OrangeRed;
+            this.rjButton3.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton3.BorderRadius = 5;
+            this.rjButton3.BorderSize = 0;
+            this.rjButton3.FlatAppearance.BorderSize = 0;
+            this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton3.ForeColor = System.Drawing.Color.White;
+            this.rjButton3.Location = new System.Drawing.Point(262, 139);
+            this.rjButton3.MinimumSize = new System.Drawing.Size(100, 40);
+            this.rjButton3.Name = "rjButton3";
+            this.rjButton3.Size = new System.Drawing.Size(100, 40);
+            this.rjButton3.TabIndex = 4;
+            this.rjButton3.Text = "Cobrar";
+            this.rjButton3.TextColor = System.Drawing.Color.White;
+            this.rjButton3.UseVisualStyleBackColor = false;
             // 
             // cbCortesia
             // 
@@ -320,6 +341,30 @@
             this.dgvProductosDetalles.Size = new System.Drawing.Size(325, 345);
             this.dgvProductosDetalles.TabIndex = 4;
             // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.DataPropertyName = "nombreProducto";
+            this.nombreProducto.HeaderText = "nombreProducto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // costoUnitarioProducto
+            // 
+            this.costoUnitarioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.costoUnitarioProducto.DataPropertyName = "costoUnitarioProducto";
+            this.costoUnitarioProducto.HeaderText = "costoUnitarioProducto";
+            this.costoUnitarioProducto.Name = "costoUnitarioProducto";
+            this.costoUnitarioProducto.ReadOnly = true;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.precioProducto.DataPropertyName = "precioProducto";
+            this.precioProducto.HeaderText = "precioProducto";
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            // 
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -428,6 +473,44 @@
             this.flpCategorias.Size = new System.Drawing.Size(319, 54);
             this.flpCategorias.TabIndex = 33;
             // 
+            // rjButton4
+            // 
+            this.rjButton4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton4.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton4.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton4.BorderRadius = 5;
+            this.rjButton4.BorderSize = 0;
+            this.rjButton4.FlatAppearance.BorderSize = 0;
+            this.rjButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton4.ForeColor = System.Drawing.Color.White;
+            this.rjButton4.Location = new System.Drawing.Point(3, 3);
+            this.rjButton4.Name = "rjButton4";
+            this.rjButton4.Size = new System.Drawing.Size(104, 46);
+            this.rjButton4.TabIndex = 8;
+            this.rjButton4.Text = "Categorias";
+            this.rjButton4.TextColor = System.Drawing.Color.White;
+            this.rjButton4.UseVisualStyleBackColor = false;
+            // 
+            // rjButton5
+            // 
+            this.rjButton5.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton5.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton5.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton5.BorderRadius = 5;
+            this.rjButton5.BorderSize = 0;
+            this.rjButton5.FlatAppearance.BorderSize = 0;
+            this.rjButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton5.ForeColor = System.Drawing.Color.White;
+            this.rjButton5.Location = new System.Drawing.Point(113, 3);
+            this.rjButton5.Name = "rjButton5";
+            this.rjButton5.Size = new System.Drawing.Size(104, 46);
+            this.rjButton5.TabIndex = 9;
+            this.rjButton5.Text = "Categorias";
+            this.rjButton5.TextColor = System.Drawing.Color.White;
+            this.rjButton5.UseVisualStyleBackColor = false;
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.pictureBox1);
@@ -510,65 +593,6 @@
             this.panel5.Size = new System.Drawing.Size(459, 57);
             this.panel5.TabIndex = 1;
             // 
-            // rjButton3
-            // 
-            this.rjButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rjButton3.BackColor = System.Drawing.Color.OrangeRed;
-            this.rjButton3.BackgroundColor = System.Drawing.Color.OrangeRed;
-            this.rjButton3.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton3.BorderRadius = 5;
-            this.rjButton3.BorderSize = 0;
-            this.rjButton3.FlatAppearance.BorderSize = 0;
-            this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton3.ForeColor = System.Drawing.Color.White;
-            this.rjButton3.Location = new System.Drawing.Point(262, 139);
-            this.rjButton3.MinimumSize = new System.Drawing.Size(100, 40);
-            this.rjButton3.Name = "rjButton3";
-            this.rjButton3.Size = new System.Drawing.Size(100, 40);
-            this.rjButton3.TabIndex = 4;
-            this.rjButton3.Text = "Cobrar";
-            this.rjButton3.TextColor = System.Drawing.Color.White;
-            this.rjButton3.UseVisualStyleBackColor = false;
-            // 
-            // rjButton4
-            // 
-            this.rjButton4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton4.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton4.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton4.BorderRadius = 5;
-            this.rjButton4.BorderSize = 0;
-            this.rjButton4.FlatAppearance.BorderSize = 0;
-            this.rjButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton4.ForeColor = System.Drawing.Color.White;
-            this.rjButton4.Location = new System.Drawing.Point(3, 3);
-            this.rjButton4.Name = "rjButton4";
-            this.rjButton4.Size = new System.Drawing.Size(104, 46);
-            this.rjButton4.TabIndex = 8;
-            this.rjButton4.Text = "Categorias";
-            this.rjButton4.TextColor = System.Drawing.Color.White;
-            this.rjButton4.UseVisualStyleBackColor = false;
-            // 
-            // rjButton5
-            // 
-            this.rjButton5.BackColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton5.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton5.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton5.BorderRadius = 5;
-            this.rjButton5.BorderSize = 0;
-            this.rjButton5.FlatAppearance.BorderSize = 0;
-            this.rjButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton5.ForeColor = System.Drawing.Color.White;
-            this.rjButton5.Location = new System.Drawing.Point(113, 3);
-            this.rjButton5.Name = "rjButton5";
-            this.rjButton5.Size = new System.Drawing.Size(104, 46);
-            this.rjButton5.TabIndex = 9;
-            this.rjButton5.Text = "Categorias";
-            this.rjButton5.TextColor = System.Drawing.Color.White;
-            this.rjButton5.UseVisualStyleBackColor = false;
-            // 
             // rjButton2
             // 
             this.rjButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -608,30 +632,6 @@
             this.rjButton1.Text = "Salir";
             this.rjButton1.TextColor = System.Drawing.Color.White;
             this.rjButton1.UseVisualStyleBackColor = false;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.DataPropertyName = "nombreProducto";
-            this.nombreProducto.HeaderText = "nombreProducto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // costoUnitarioProducto
-            // 
-            this.costoUnitarioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.costoUnitarioProducto.DataPropertyName = "costoUnitarioProducto";
-            this.costoUnitarioProducto.HeaderText = "costoUnitarioProducto";
-            this.costoUnitarioProducto.Name = "costoUnitarioProducto";
-            this.costoUnitarioProducto.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.DataPropertyName = "precioProducto";
-            this.precioProducto.HeaderText = "precioProducto";
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
             // 
             // Ventas
             // 

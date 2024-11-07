@@ -1,16 +1,99 @@
-﻿using RestauranteGestion.Core.DataAccess;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PupuseriaJenny.Models;
+using RestauranteGestion.Core.DataAccess;
 
 namespace PupuseriaJenny.Services
 {
-    internal class CategoriaService
+    public class CategoriaService
     {
-        public static List<string> CategoriasProductos()
+        private readonly DBOperacion _operacion;
+
+        public CategoriaService()
+        {
+            _operacion = new DBOperacion();
+        }
+        public bool Insertar(Categorias categorias)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("INSERT INTO RG_Categoria(categoria) VALUES(@categoria);");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@categoria", categorias.Categoria }
+                };
+
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
+        public bool Actualizar(Categorias categorias)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("UPDATE RG_Categoria SET ");
+            sentencia.Append("categoria = @categoria ");
+            sentencia.Append("WHERE idCategoria = @idCategoria;");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@categoria", categorias.Categoria },
+                    { "@idCategoria", categorias.IdCategoria }
+                };
+
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
+
+        public bool Eliminar(int idCategoria)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("DELETE FROM RG_Categoria WHERE idCategoria = @idCategoria;");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idCategoria", idCategoria }
+                };
+
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+            return resultado;
+        }
+        public List<string> CategoriasProductos()
         {
             List<string> categorias = new List<string>();
             string consulta = @"SELECT DISTINCT c.categoria 
@@ -18,10 +101,9 @@ namespace PupuseriaJenny.Services
                                 JOIN RG_Producto p ON c.idCategoria = p.idCategoria 
                                 ORDER BY c.categoria ASC;";
 
-            DBOperacion operacion = new DBOperacion();
             try
             {
-                DataTable resultado = operacion.Consultar(consulta);
+                DataTable resultado = _operacion.Consultar(consulta);
 
                 foreach (DataRow row in resultado.Rows)
                 {
@@ -36,7 +118,7 @@ namespace PupuseriaJenny.Services
             return categorias;
         }
 
-        public static DataTable ObtenerProductosPorCategoria(string categoria)
+        public DataTable ObtenerProductosPorCategoria(string categoria)
         {
             DataTable resultado = new DataTable();
             string consulta = @"SELECT p.nombreProducto, p.costoUnitarioProducto, p.precioProducto 
@@ -45,7 +127,6 @@ namespace PupuseriaJenny.Services
                         WHERE c.categoria = @categoria
                         ORDER BY p.nombreProducto ASC;";
 
-            DBOperacion operacion = new DBOperacion();
             try
             {
                 // Agregar parámetro
@@ -54,7 +135,7 @@ namespace PupuseriaJenny.Services
                     { "@categoria", categoria }
                 };
 
-                resultado = operacion.Consultar(consulta, parametros);
+                resultado = _operacion.Consultar(consulta, parametros);
             }
             catch (Exception ex)
             {

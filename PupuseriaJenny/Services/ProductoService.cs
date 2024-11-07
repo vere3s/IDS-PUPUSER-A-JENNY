@@ -4,30 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using PupuseriaJenny.Models;
 
-namespace PupuseriaJenny.CLS
+namespace PupuseriaJenny.Services
 {
-    internal class Productos
+    public class ProductoService
     {
-        Int32 _idProducto;
-        string _nombreProducto;
-        decimal _costoUnitarioProducto;
-        decimal _precioProducto;
-        Int32 _idCategoria;
-        Int32 _idProveedor;
+        private readonly DBOperacion _operacion;
 
-        public int idProducto { get => _idProducto; set => _idProducto = value; }
-        public string nombreProducto { get => _nombreProducto; set => _nombreProducto = value; }
-        public decimal costoUnitarioProducto { get => _costoUnitarioProducto; set => _costoUnitarioProducto = value; }
-        public decimal precioProducto { get => _precioProducto; set => _precioProducto = value; }
-        public int idCategoria { get => _idCategoria; set => _idCategoria = value; }
-        public int idProveedor { get => _idProveedor; set => _idProveedor = value; }
-
-        public bool Insertar()
+        public ProductoService()
+        {
+            _operacion = new DBOperacion();
+        }
+        public bool Insertar(Productos productos)
         {
             bool resultado = false;
-            DBOperacion operacion = new DBOperacion();
             StringBuilder sentencia = new StringBuilder();
             sentencia.Append("INSERT INTO RG_Producto(nombreProducto, costoUnitarioProducto, precioProducto, idCategoria, idProveedor) VALUES(@nombreProducto, @costoUnitarioProducto, @precioProducto, @idCategoria, @idProveedor);");
 
@@ -35,14 +26,14 @@ namespace PupuseriaJenny.CLS
             {
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@nombreProducto", nombreProducto },
-                    { "@costoUnitarioProducto", costoUnitarioProducto },
-                    { "@precioProducto", precioProducto },
-                    { "@idCategoria", idCategoria },
-                    { "@idProveedor", idProveedor }
+                    { "@nombreProducto", productos.NombreProducto },
+                    { "@costoUnitarioProducto", productos.CostoUnitarioProducto },
+                    { "@precioProducto", productos.PrecioProducto },
+                    { "@idCategoria", productos.IdCategoria },
+                    { "@idProveedor", productos.IdProveedor }
                 };
 
-                if (operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
                 {
                     resultado = true;
                 }
@@ -54,10 +45,9 @@ namespace PupuseriaJenny.CLS
             return resultado;
         }
 
-        public bool Actualizar()
+        public bool Actualizar(Productos productos)
         {
             bool resultado = false;
-            DBOperacion operacion = new DBOperacion();
             StringBuilder sentencia = new StringBuilder();
             sentencia.Append("UPDATE RG_Producto SET ");
             sentencia.Append("nombreProducto = @nombreProducto, " +
@@ -71,15 +61,15 @@ namespace PupuseriaJenny.CLS
             {
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@nombreProducto", nombreProducto },
-                    { "@costoUnitarioProducto", costoUnitarioProducto },
-                    { "@precioProducto", precioProducto },
-                    { "@idCategoria", idCategoria },
-                    { "@idProveedor", idProveedor },
-                    { "@idProducto", idProducto }
+                    { "@nombreProducto", productos.NombreProducto },
+                    { "@costoUnitarioProducto", productos.CostoUnitarioProducto },
+                    { "@precioProducto", productos.PrecioProducto },
+                    { "@idCategoria", productos.IdCategoria },
+                    { "@idProveedor", productos.IdProveedor },
+                    { "@idProducto", productos.IdProducto }
                 };
 
-                if (operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
                 {
                     resultado = true;
                 }
@@ -91,10 +81,9 @@ namespace PupuseriaJenny.CLS
             return resultado;
         }
 
-        public bool Eliminar()
+        public bool Eliminar(int idProducto)
         {
             bool resultado = false;
-            DBOperacion operacion = new DBOperacion();
             StringBuilder sentencia = new StringBuilder();
             sentencia.Append("DELETE FROM RG_Producto WHERE idProducto = @idProducto;");
 
@@ -105,7 +94,7 @@ namespace PupuseriaJenny.CLS
                     { "@idProducto", idProducto }
                 };
 
-                if (operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
                 {
                     resultado = true;
                 }

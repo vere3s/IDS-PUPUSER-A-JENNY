@@ -24,11 +24,12 @@ namespace PupuseriaJenny.Forms
         }
         private void CargarBotonesCategorias()
         {
+            CategoriaService categoriaService = new CategoriaService();
             // Limpia cualquier botón previo en el FlowLayoutPanel
             flpCategorias.Controls.Clear();
 
             // Obtiene las categorías de productos desde la base de datos
-            List<string> categoriasProductos = CategoriaService.CategoriasProductos();
+            List<string> categoriasProductos = categoriaService.CategoriasProductos();
 
             foreach (string categoria in categoriasProductos)
             {
@@ -56,13 +57,14 @@ namespace PupuseriaJenny.Forms
             RJButton btnCategoria = sender as RJButton;
             if (btnCategoria != null)
             {
+                CategoriaService categoriaService = new CategoriaService();
                 string categoriaSeleccionada = btnCategoria.Tag.ToString();
 
                 // Limpia productos previos en el FlowLayoutPanel
                 flpProductos.Controls.Clear();
 
                 // Obtiene los productos de la categoría seleccionada
-                var productos = CategoriaService.ObtenerProductosPorCategoria(categoriaSeleccionada);
+                var productos = categoriaService.ObtenerProductosPorCategoria(categoriaSeleccionada);
 
                 foreach (DataRow row in productos.Rows)
                 {
