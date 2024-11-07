@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             this.spcVentas = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
             this.cbCortesia = new System.Windows.Forms.CheckBox();
             this.lbSubTotal = new System.Windows.Forms.Label();
             this.lbDescuento = new System.Windows.Forms.Label();
@@ -44,9 +46,6 @@
             this.tbCortesia = new System.Windows.Forms.TextBox();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.dgvProductosDetalles = new System.Windows.Forms.DataGridView();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbMesa = new System.Windows.Forms.Label();
             this.tbMesa = new System.Windows.Forms.TextBox();
@@ -56,8 +55,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flpCategorias = new System.Windows.Forms.FlowLayoutPanel();
-            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
-            this.rjButton5 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -65,6 +62,12 @@
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
             this.button6 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton5 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton2 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.spcVentas)).BeginInit();
@@ -171,27 +174,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(325, 170);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // rjButton3
-            // 
-            this.rjButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rjButton3.BackColor = System.Drawing.Color.OrangeRed;
-            this.rjButton3.BackgroundColor = System.Drawing.Color.OrangeRed;
-            this.rjButton3.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton3.BorderRadius = 5;
-            this.rjButton3.BorderSize = 0;
-            this.rjButton3.FlatAppearance.BorderSize = 0;
-            this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton3.ForeColor = System.Drawing.Color.White;
-            this.rjButton3.Location = new System.Drawing.Point(262, 139);
-            this.rjButton3.MinimumSize = new System.Drawing.Size(100, 40);
-            this.rjButton3.Name = "rjButton3";
-            this.rjButton3.Size = new System.Drawing.Size(100, 40);
-            this.rjButton3.TabIndex = 4;
-            this.rjButton3.Text = "Cobrar";
-            this.rjButton3.TextColor = System.Drawing.Color.White;
-            this.rjButton3.UseVisualStyleBackColor = false;
-            // 
             // cbCortesia
             // 
             this.cbCortesia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -203,6 +185,7 @@
             this.cbCortesia.Size = new System.Drawing.Size(15, 28);
             this.cbCortesia.TabIndex = 9;
             this.cbCortesia.UseVisualStyleBackColor = true;
+            this.cbCortesia.CheckedChanged += new System.EventHandler(this.cbCortesia_CheckedChanged);
             // 
             // lbSubTotal
             // 
@@ -269,6 +252,7 @@
             this.tbSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSubTotal.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSubTotal.Location = new System.Drawing.Point(116, 3);
             this.tbSubTotal.MaximumSize = new System.Drawing.Size(200, 50);
@@ -284,6 +268,7 @@
             this.tbDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbDescuento.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDescuento.Location = new System.Drawing.Point(116, 37);
             this.tbDescuento.MaximumSize = new System.Drawing.Size(200, 50);
@@ -293,18 +278,20 @@
             this.tbDescuento.Size = new System.Drawing.Size(140, 35);
             this.tbDescuento.TabIndex = 5;
             this.tbDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbDescuento.TextChanged += new System.EventHandler(this.tbDescuento_TextChanged);
             // 
             // tbCortesia
             // 
             this.tbCortesia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCortesia.Enabled = false;
+            this.tbCortesia.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbCortesia.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCortesia.Location = new System.Drawing.Point(116, 71);
             this.tbCortesia.MaximumSize = new System.Drawing.Size(200, 50);
             this.tbCortesia.MinimumSize = new System.Drawing.Size(100, 25);
             this.tbCortesia.Name = "tbCortesia";
+            this.tbCortesia.ReadOnly = true;
             this.tbCortesia.Size = new System.Drawing.Size(140, 35);
             this.tbCortesia.TabIndex = 6;
             this.tbCortesia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -314,6 +301,7 @@
             this.tbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTotal.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTotal.Location = new System.Drawing.Point(116, 105);
             this.tbTotal.MaximumSize = new System.Drawing.Size(200, 50);
@@ -328,42 +316,43 @@
             // 
             this.dgvProductosDetalles.AllowUserToAddRows = false;
             this.dgvProductosDetalles.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            this.dgvProductosDetalles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProductosDetalles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvProductosDetalles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductosDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductosDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombreProducto,
             this.costoUnitarioProducto,
             this.precioProducto});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvProductosDetalles, 2);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvProductosDetalles.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProductosDetalles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProductosDetalles.EnableHeadersVisualStyles = false;
             this.dgvProductosDetalles.Location = new System.Drawing.Point(3, 61);
             this.dgvProductosDetalles.Name = "dgvProductosDetalles";
             this.dgvProductosDetalles.ReadOnly = true;
+            this.dgvProductosDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductosDetalles.Size = new System.Drawing.Size(325, 345);
             this.dgvProductosDetalles.TabIndex = 4;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.DataPropertyName = "nombreProducto";
-            this.nombreProducto.HeaderText = "nombreProducto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // costoUnitarioProducto
-            // 
-            this.costoUnitarioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.costoUnitarioProducto.DataPropertyName = "costoUnitarioProducto";
-            this.costoUnitarioProducto.HeaderText = "costoUnitarioProducto";
-            this.costoUnitarioProducto.Name = "costoUnitarioProducto";
-            this.costoUnitarioProducto.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.DataPropertyName = "precioProducto";
-            this.precioProducto.HeaderText = "precioProducto";
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
             // 
             // panel2
             // 
@@ -443,7 +432,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel4);
             this.splitContainer1.Size = new System.Drawing.Size(465, 585);
-            this.splitContainer1.SplitterDistance = 60;
+            this.splitContainer1.SplitterDistance = 64;
             this.splitContainer1.TabIndex = 34;
             // 
             // tableLayoutPanel3
@@ -458,7 +447,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(465, 60);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(465, 64);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // flpCategorias
@@ -470,8 +459,136 @@
             this.flpCategorias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpCategorias.Location = new System.Drawing.Point(3, 3);
             this.flpCategorias.Name = "flpCategorias";
-            this.flpCategorias.Size = new System.Drawing.Size(319, 54);
+            this.flpCategorias.Size = new System.Drawing.Size(319, 58);
             this.flpCategorias.TabIndex = 33;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.pictureBox1);
+            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(328, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(134, 58);
+            this.panel4.TabIndex = 34;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(103, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(3, 9);
+            this.textBox1.MinimumSize = new System.Drawing.Size(250, 25);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(250, 26);
+            this.textBox1.TabIndex = 2;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.flpProductos, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel5, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(465, 517);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // flpProductos
+            // 
+            this.flpProductos.Controls.Add(this.button6);
+            this.flpProductos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpProductos.Location = new System.Drawing.Point(3, 3);
+            this.flpProductos.Name = "flpProductos";
+            this.flpProductos.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
+            this.flpProductos.Size = new System.Drawing.Size(459, 448);
+            this.flpProductos.TabIndex = 0;
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button6.Location = new System.Drawing.Point(10, 10);
+            this.button6.Margin = new System.Windows.Forms.Padding(0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(144, 110);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "Pupusa";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.rjButton2);
+            this.panel5.Controls.Add(this.rjButton1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 457);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(459, 57);
+            this.panel5.TabIndex = 1;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.DataPropertyName = "nombreProducto";
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // costoUnitarioProducto
+            // 
+            this.costoUnitarioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.costoUnitarioProducto.DataPropertyName = "costoUnitarioProducto";
+            this.costoUnitarioProducto.HeaderText = "Costo Unitario";
+            this.costoUnitarioProducto.Name = "costoUnitarioProducto";
+            this.costoUnitarioProducto.ReadOnly = true;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.precioProducto.DataPropertyName = "precioProducto";
+            this.precioProducto.HeaderText = "Precio";
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            // 
+            // rjButton3
+            // 
+            this.rjButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rjButton3.BackColor = System.Drawing.Color.OrangeRed;
+            this.rjButton3.BackgroundColor = System.Drawing.Color.OrangeRed;
+            this.rjButton3.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton3.BorderRadius = 5;
+            this.rjButton3.BorderSize = 0;
+            this.rjButton3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.rjButton3.FlatAppearance.BorderSize = 0;
+            this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton3.ForeColor = System.Drawing.Color.White;
+            this.rjButton3.Location = new System.Drawing.Point(262, 139);
+            this.rjButton3.MinimumSize = new System.Drawing.Size(100, 40);
+            this.rjButton3.Name = "rjButton3";
+            this.rjButton3.Size = new System.Drawing.Size(100, 40);
+            this.rjButton3.TabIndex = 4;
+            this.rjButton3.Text = "Cobrar";
+            this.rjButton3.TextColor = System.Drawing.Color.White;
+            this.rjButton3.UseVisualStyleBackColor = false;
             // 
             // rjButton4
             // 
@@ -510,88 +627,6 @@
             this.rjButton5.Text = "Categorias";
             this.rjButton5.TextColor = System.Drawing.Color.White;
             this.rjButton5.UseVisualStyleBackColor = false;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(328, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(134, 54);
-            this.panel4.TabIndex = 34;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(103, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(3, 9);
-            this.textBox1.MinimumSize = new System.Drawing.Size(250, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 26);
-            this.textBox1.TabIndex = 2;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.flpProductos, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.panel5, 0, 1);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(465, 521);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // flpProductos
-            // 
-            this.flpProductos.Controls.Add(this.button6);
-            this.flpProductos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpProductos.Location = new System.Drawing.Point(3, 3);
-            this.flpProductos.Name = "flpProductos";
-            this.flpProductos.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
-            this.flpProductos.Size = new System.Drawing.Size(459, 452);
-            this.flpProductos.TabIndex = 0;
-            // 
-            // button6
-            // 
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button6.Location = new System.Drawing.Point(10, 10);
-            this.button6.Margin = new System.Windows.Forms.Padding(0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(144, 110);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "Pupusa";
-            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.rjButton2);
-            this.panel5.Controls.Add(this.rjButton1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 461);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(459, 57);
-            this.panel5.TabIndex = 1;
             // 
             // rjButton2
             // 

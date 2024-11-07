@@ -37,11 +37,12 @@ namespace PupuseriaJenny.Forms
                 RJButton btnCategoria = new RJButton
                 {
                     Text = categoria,  // Establece el nombre de la categoría como texto del botón
-                    Width = 104,
-                    Height = 46,
+                    Width = 120,
+                    Height = 62,
                     BorderRadius = 20,
                     BackColor = Color.DodgerBlue,
-                    ForeColor = Color.White
+                    ForeColor = Color.White,
+                    Font = new Font("Microsoft Sans Serif", 12)
                 };
                 btnCategoria.Tag = categoria;
                 // Evento de clic
@@ -118,6 +119,9 @@ namespace PupuseriaJenny.Forms
             //dgvProductosDetalles.Rows.Add("precioProducto", producto["precioProducto"]);
             //dgvProductosDetalles.Rows.Add("idCategoria", producto["idCategoria"]);
             //dgvProductosDetalles.Rows.Add("idProveedor", producto["idProveedor"]);
+
+            // Llama al método para actualizar los totales
+            CalcularTotales();
         }
 
         // Método para redimensionar la imagen
@@ -130,6 +134,56 @@ namespace PupuseriaJenny.Forms
                 g.DrawImage(img, 0, 0, width, height);
             }
             return resizedImage;
+        }
+        private void CalcularTotales()
+        {
+            decimal subtotal = 0;
+            decimal descuento = 0;
+            decimal total = 0;
+            decimal cortesia = 0;
+
+            // Se recorren las filas del DataGridView para calcular el subtotal
+            foreach (DataGridViewRow row in dgvProductosDetalles.Rows)
+            {
+                if (row.Cells["precioProducto"].Value != null)
+                {
+                    decimal precioProducto = Convert.ToDecimal(row.Cells["precioProducto"].Value);
+                    subtotal += precioProducto;
+                }
+            }
+
+            // Obtiene el valor del descuento si existe (ejemplo: 10% = 0.10m)
+            if (decimal.TryParse(tbDescuento.Text, out decimal descuentoPorcentaje))
+            {
+                descuento = subtotal * (descuentoPorcentaje / 100);
+            }
+
+            // Calcula el total con descuento
+            total = subtotal - descuento;
+
+            // Verifica si está activado el CheckBox de cortesía
+            if (cbCortesia.Checked)
+            {
+                tbCortesia.Text = total.ToString("C");
+                tbTotal.Text = cortesia.ToString("C");
+            } else
+            {
+                // Muestra los valores en los controles del TableLayoutPanel
+                tbSubTotal.Text = subtotal.ToString("C");
+                tbDescuento.Text = descuento.ToString("C");
+                tbTotal.Text = total.ToString("C");
+                tbCortesia.Text = cortesia.ToString("C");
+            }
+        }
+
+        private void tbDescuento_TextChanged(object sender, EventArgs e)
+        {
+            CalcularTotales();
+        }
+
+        private void cbCortesia_CheckedChanged(object sender, EventArgs e)
+        {
+            CalcularTotales();
         }
     }
 }
