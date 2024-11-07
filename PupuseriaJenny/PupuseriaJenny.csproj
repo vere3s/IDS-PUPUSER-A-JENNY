@@ -48,9 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CLS\Empleados.cs" />
-    <Compile Include="CLS\Inventario.cs" />
-    <Compile Include="CLS\Usuario.cs" />
     <Compile Include="Custom\RJButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,9 +88,11 @@
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
+    <Compile Include="Services\Inventario.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="SesionManager\Sesion.cs" />
     <EmbeddedResource Include="Custom\RJTextBox.resx">

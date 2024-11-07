@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using PupuseriaJenny.CLS;
+using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 
 namespace PupuseriaJenny.Forms
@@ -65,16 +66,16 @@ namespace PupuseriaJenny.Forms
             SesionManager.Sesion oSesion = SesionManager.Sesion.ObtenerInstancia();
             oSesion.Usuario = txtUsuario.Text;
             oSesion.Contraseña = txtContraseña.Text.ToString();
-            oSesion.empleado = new Empleados
+            oSesion.empleado = new Empleado
             {
-                idEmpleados = Convert.ToInt32(row["idEmpleados"]),
-                nombresEmpleado = row["nombresEmpleado"].ToString(),
-                apellidosEmpleado = row["apellidosEmpleado"].ToString(),
-                direccion = row["direccion"].ToString(),
-                email = row["email"].ToString(),
-                fechaNacimiento = Convert.ToDateTime(row["fechaNacimiento"]),
-                idCargo = Convert.ToInt32(row["idCargo"]),
-                telefono = row["telefono"].ToString()
+                IdEmpleado= Convert.ToInt32(row["idEmpleados"]),
+                NombresEmpleado = row["nombresEmpleado"].ToString(),
+                ApellidosEmpleado= row["apellidosEmpleado"].ToString(),
+                Direccion = row["direccion"].ToString(),
+                Email= row["email"].ToString(),
+            FechaNacimiento = Convert.ToDateTime(row["fechaNacimiento"]),
+                IdCargo = Convert.ToInt32(row["idCargo"]),
+                Telefono = row["telefono"].ToString()
             };
         }
     }

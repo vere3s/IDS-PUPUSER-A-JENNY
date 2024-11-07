@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.SqlServer.Server;
 using PupuseriaJenny.CLS;
+using PupuseriaJenny.Models;
 using RestauranteGestion.Core.DataAccess;
 
 namespace PupuseriaJenny.SesionManager
@@ -15,7 +16,7 @@ namespace PupuseriaJenny.SesionManager
     {
         private static Sesion _instance;
         private static readonly object _lock = new object();
-        public Empleados empleado;
+        public Empleado empleado;
         String _Usuario;
         String _Contraseña;
 
