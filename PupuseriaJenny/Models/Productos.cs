@@ -16,10 +16,10 @@ namespace PupuseriaJenny.Models
         public string NombreProducto { get; set; }
 
         [Required(ErrorMessage = "El costo unitario del producto es obligatorio.")]
-        public string CostoUnitarioProducto { get; set; }
+        public decimal CostoUnitarioProducto { get; set; }
 
         [Required(ErrorMessage = "El precio del producto es obligatorio.")]
-        public string PrecioProducto { get; set; }
+        public decimal PrecioProducto { get; set; }
 
         [Required(ErrorMessage = "La categoria del producto es obligatorio.")]
         public string IdCategoria { get; set; }
