@@ -19,7 +19,8 @@ namespace PupuseriaJenny.Forms
 
         private void btnGtPersonal_Click(object sender, EventArgs e)
         {
-
+            UsuariosGestion formUsuarios = new UsuariosGestion();
+            formUsuarios.Show();
         }
 
         private void btnVenta_Click(object sender, EventArgs e)

@@ -69,6 +69,18 @@
     <Compile Include="Forms\Compras.Designer.cs">
       <DependentUpon>Compras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EmpleadosEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmpleadosEdicion.Designer.cs">
+      <DependentUpon>EmpleadosEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmpleadosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmpleadosGestion.Designer.cs">
+      <DependentUpon>EmpleadosGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +99,30 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\RolesEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RolesEdicion.Designer.cs">
+      <DependentUpon>RolesEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RolesGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RolesGestion.Designer.cs">
+      <DependentUpon>RolesGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsuarioEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UsuarioEdicion.Designer.cs">
+      <DependentUpon>UsuarioEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UsuariosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UsuariosGestion.Designer.cs">
+      <DependentUpon>UsuariosGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +132,7 @@
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Productos.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +140,7 @@
     <Compile Include="Services\EmpleadoService.cs" />
     <Compile Include="Services\Inventario.cs" />
     <Compile Include="Services\ProductoService.cs" />
+    <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="SesionManager\Sesion.cs" />
     <EmbeddedResource Include="Custom\RJTextBox.resx">
@@ -119,6 +157,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RolesEdicion.resx">
+      <DependentUpon>RolesEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RolesGestion.resx">
+      <DependentUpon>RolesGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsuarioEdicion.resx">
+      <DependentUpon>UsuarioEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UsuariosGestion.resx">
+      <DependentUpon>UsuariosGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ventas.resx">
       <DependentUpon>Ventas.cs</DependentUpon>
