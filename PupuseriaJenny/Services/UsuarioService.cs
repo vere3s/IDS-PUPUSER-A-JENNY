@@ -10,16 +10,19 @@ namespace PupuseriaJenny.Services
         public DataTable AutenticarUsuario(string usuario, string contraseña)
         {
             string query = @"
-                SELECT 
-                    u.IDUsuario, u.Usuario, 
-                    e.IDEmpleado, e.Nombre, e.Cargo, e.Telefono, e.Email
-                FROM 
-                    usuarios u
-                INNER JOIN 
-                    empleados e ON u.IDEmpleado = e.IDEmpleado
-                WHERE 
-                    u.Usuario = @Usuario AND 
-                    u.Contraseña = @Contraseña;";
+    SELECT 
+      u.IDUsuario, u.Usuario, 
+      e.IDEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.emailEmpleado,r.rol
+  FROM 
+      rg_usuario u
+  INNER JOIN 
+      rg_empleado e ON u.IDEmpleado = e.IDEmpleado
+        INNER JOIN 
+      rg_rol r ON u.idRol =  r.idRol
+    WHERE 
+        u.Usuario = @Usuario AND 
+        u.contraseniaUsuario = @Contraseña;";
+
 
             var oOperacion = new DBOperacion();
             var parameters = new Dictionary<string, object>

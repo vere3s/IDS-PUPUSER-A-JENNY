@@ -4,7 +4,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
+
 
 namespace RestauranteGestion.Core.DataAccess
 {
@@ -65,7 +66,7 @@ namespace RestauranteGestion.Core.DataAccess
             catch (Exception ex)
             {
                 Resultado = new DataTable();
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.ToString());
             }
             finally
             {

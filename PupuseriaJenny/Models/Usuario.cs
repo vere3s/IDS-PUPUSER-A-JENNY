@@ -8,9 +8,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PupuseriaJenny.CLS
+namespace PupuseriaJenny.Models
 {
-    internal class Usuario
+   public class Usuario
     {
         public int IDUsuario { get; set; }
 

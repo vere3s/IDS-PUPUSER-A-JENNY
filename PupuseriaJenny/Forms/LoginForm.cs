@@ -69,13 +69,13 @@ namespace PupuseriaJenny.Forms
             oSesion.empleado = new Empleado
             {
                 IdEmpleado= Convert.ToInt32(row["idEmpleados"]),
-                NombresEmpleado = row["nombresEmpleado"].ToString(),
-                ApellidosEmpleado= row["apellidosEmpleado"].ToString(),
-                Direccion = row["direccion"].ToString(),
-                Email= row["email"].ToString(),
-            FechaNacimiento = Convert.ToDateTime(row["fechaNacimiento"]),
+                NombreEmpleado = row["nombresEmpleado"].ToString(),
+                ApellidoEmpleado= row["apellidosEmpleado"].ToString(),
+                DireccionEmpleado= row["direccion"].ToString(),
+                EmailEmpleado= row["email"].ToString(),
+            FechaNacimientoEmpleado = Convert.ToDateTime(row["fechaNacimiento"]),
                 IdCargo = Convert.ToInt32(row["idCargo"]),
-                Telefono = row["telefono"].ToString()
+                TelefonoEmpelado = row["telefono"].ToString()
             };
         }
     }
