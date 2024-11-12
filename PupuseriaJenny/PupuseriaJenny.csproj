@@ -63,11 +63,29 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CantidadProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CantidadProductoForm.Designer.cs">
+      <DependentUpon>CantidadProductoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Compras.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Compras.Designer.cs">
       <DependentUpon>Compras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetallesOrdenLlevarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetallesOrdenLlevarForm.Designer.cs">
+      <DependentUpon>DetallesOrdenLlevarForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DetallesOrdenMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DetallesOrdenMesaForm.Designer.cs">
+      <DependentUpon>DetallesOrdenMesaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EmpleadosEdicion.cs">
       <SubType>Form</SubType>
@@ -99,6 +117,18 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MostrarOrdenesPendientesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MostrarOrdenesPendientesForm.Designer.cs">
+      <DependentUpon>MostrarOrdenesPendientesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OrdenVentasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrdenVentasForm.Designer.cs">
+      <DependentUpon>OrdenVentasForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RolesEdicion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +140,12 @@
     </Compile>
     <Compile Include="Forms\RolesGestion.Designer.cs">
       <DependentUpon>RolesGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeleccionarVentasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeleccionarVentasForm.Designer.cs">
+      <DependentUpon>SeleccionarVentasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UsuarioEdicion.cs">
       <SubType>Form</SubType>
@@ -130,15 +166,21 @@
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Categorias.cs" />
+    <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Mesas.cs" />
+    <Compile Include="Models\Ordenes.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoriaService.cs" />
+    <Compile Include="Services\DetalleVentaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
     <Compile Include="Services\Inventario.cs" />
+    <Compile Include="Services\MesaService.cs" />
+    <Compile Include="Services\OrdenService.cs" />
     <Compile Include="Services\ProductoService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
@@ -160,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OrdenVentasForm.resx">
+      <DependentUpon>OrdenVentasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RolesEdicion.resx">
       <DependentUpon>RolesEdicion.cs</DependentUpon>
@@ -212,6 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imagenPredeterminada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageTable.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
