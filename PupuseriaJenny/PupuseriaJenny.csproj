@@ -85,6 +85,18 @@
     <Compile Include="Forms\CantidadProductoForm.Designer.cs">
       <DependentUpon>CantidadProductoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CargosEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CargosEdicion.Designer.cs">
+      <DependentUpon>CargosEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CargosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CargosGestion.Designer.cs">
+      <DependentUpon>CargosGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Compras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,7 +188,6 @@
       <DependentUpon>UsuariosGestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cargos.cs" />
-
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -204,19 +215,23 @@
     <EmbeddedResource Include="Forms\CantidadProductoForm.resx">
       <DependentUpon>CantidadProductoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CargosEdicion.resx">
+      <DependentUpon>CargosEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CargosGestion.resx">
+      <DependentUpon>CargosGestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Compras.resx">
       <DependentUpon>Compras.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Forms\EmpleadosEdicion.resx">
       <DependentUpon>EmpleadosEdicion.cs</DependentUpon>
- </EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetallesOrdenLlevarForm.resx">
       <DependentUpon>DetallesOrdenLlevarForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DetallesOrdenMesaForm.resx">
       <DependentUpon>DetallesOrdenMesaForm.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmpleadosGestion.resx">
       <DependentUpon>EmpleadosGestion.cs</DependentUpon>

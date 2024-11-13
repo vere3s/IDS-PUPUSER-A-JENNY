@@ -21,7 +21,6 @@ namespace PupuseriaJenny.Forms
             InitializeComponent();
             _cargosService = new CargoService();
         }
-
         // Método para validar la entrada de texto en el campo de Cargo
         private Boolean Validar()
         {
@@ -48,7 +47,7 @@ namespace PupuseriaJenny.Forms
                 if (Validar())
                 {
                     // Crear un objeto de tipo Roles y sincronizarlo con la GUI
-                   Cargos cargo = new Cargos();
+                    Cargos cargo = new Cargos();
 
                     try
                     {

@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargosGestion));
             this.dgvCargos = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.IDCargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCargos)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -51,33 +51,33 @@
             // 
             this.dgvCargos.AllowUserToAddRows = false;
             this.dgvCargos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SlateGray;
-            this.dgvCargos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateGray;
+            this.dgvCargos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCargos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvCargos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCargos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCargos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCargos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCargos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDCargo,
             this.Cargo});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCargos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCargos.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvCargos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCargos.EnableHeadersVisualStyles = false;
             this.dgvCargos.Location = new System.Drawing.Point(40, 77);
@@ -86,42 +86,7 @@
             this.dgvCargos.RowHeadersWidth = 51;
             this.dgvCargos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCargos.Size = new System.Drawing.Size(720, 333);
-            this.dgvCargos.TabIndex = 18;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEliminar,
-            this.toolStripSeparator1,
-            this.btnEditar,
-            this.toolStripSeparator2,
-            this.btnAgregar,
-            this.tbFiltro,
-            this.toolStripLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(40, 40);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(720, 37);
-            this.toolStrip1.TabIndex = 17;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
-            // 
-            // tbFiltro
-            // 
-            this.tbFiltro.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tbFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFiltro.Name = "tbFiltro";
-            this.tbFiltro.Size = new System.Drawing.Size(200, 37);
+            this.dgvCargos.TabIndex = 20;
             // 
             // IDCargo
             // 
@@ -141,6 +106,23 @@
             this.Cargo.Name = "Cargo";
             this.Cargo.ReadOnly = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEliminar,
+            this.toolStripSeparator1,
+            this.btnEditar,
+            this.toolStripSeparator2,
+            this.btnAgregar,
+            this.tbFiltro,
+            this.toolStripLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(40, 40);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(720, 37);
+            this.toolStrip1.TabIndex = 19;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // btnEliminar
             // 
             this.btnEliminar.AutoSize = false;
@@ -156,6 +138,11 @@
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
+            // 
             // btnEditar
             // 
             this.btnEditar.AutoSize = false;
@@ -170,6 +157,11 @@
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
+            // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.SteelBlue;
@@ -183,6 +175,14 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // tbFiltro
+            // 
+            this.tbFiltro.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tbFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFiltro.Name = "tbFiltro";
+            this.tbFiltro.Size = new System.Drawing.Size(200, 37);
             // 
             // toolStripLabel1
             // 
