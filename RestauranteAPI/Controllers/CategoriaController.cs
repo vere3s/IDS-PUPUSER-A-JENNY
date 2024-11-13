@@ -8,7 +8,7 @@ namespace RestauranteAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CategoriaController : ControllerBase
     {
         private readonly CategoriaService _categoriaService;
@@ -50,10 +50,12 @@ namespace RestauranteAPI.Controllers
 
         // Obtener productos por categoría
         [HttpGet("productos/{categoria}")]
+   
         public IActionResult ObtenerProductosPorCategoria(string categoria)
         {
             try
             {
+                // Obtenemos los productos desde el servicio
                 DataTable productos = _categoriaService.ObtenerProductosPorCategoria(categoria);
 
                 // Verificamos si no hay productos para la categoría
@@ -62,15 +64,34 @@ namespace RestauranteAPI.Controllers
                     return NotFound(new { message = "No se encontraron productos para esta categoría." });
                 }
 
+                // Convertir DataTable a una lista de objetos de tipo Producto
+                var listaProductos = new List<Productos>();
+                foreach (DataRow row in productos.Rows)
+                {
+                    listaProductos.Add(new Productos
+                    {
+                        IdProducto = Convert.ToInt32(row["idProducto"]),
+                        NombreProducto = row["NombreProducto"].ToString(),
+                        PrecioProducto = Convert.ToDecimal(row["PrecioProducto"]),
+                        CostoUnitarioProducto = Convert.ToDecimal(row["CostoUnitarioProducto"])
+                        // Asumiendo que tienes una columna llamada "ImagenUrl" en tu DataTable
+
+                    });
+                }
+
                 // Si se encontraron productos, los retornamos en la respuesta
-                return Ok(productos);
+                return Ok(listaProductos);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al obtener productos: {ex.Message}");
+                // Registrar el error con un servicio de logging adecuado (por ejemplo, serilog, log4net, etc.)
+               // _logger.LogError($"Error al obtener productos para la categoría {categoria}: {ex.Message}");
+
+                // Devolver error con detalles
                 return StatusCode(500, new { message = "Hubo un error al obtener los productos.", error = ex.Message });
             }
         }
+
 
         // Insertar una nueva categoría
         [HttpPost]
