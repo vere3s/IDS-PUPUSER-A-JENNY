@@ -35,7 +35,7 @@ namespace PupuseriaJenny.Models
 
         [Required(ErrorMessage = "El cargo es obligatorio.")]
         public int IdCargo { get; set; }  // Coincide con 'idCargo' en la base de datos
-        Cargos cargo { get; set; }
+        string cargo { get; set; }
 
         public Boolean Eliminar()
         {

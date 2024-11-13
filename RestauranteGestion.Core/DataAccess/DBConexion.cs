@@ -14,7 +14,7 @@ namespace RestauranteGestion.Core.DataAccess
         private const string ServerIP = "localhost"; // IP del servidor MySQL
         private const string Database = "RestauranteGestion";
         private const string UserId = "root";
-        private const string Password = "root";
+        private const string Password = "12345";
 
         public bool Conectar()
         {

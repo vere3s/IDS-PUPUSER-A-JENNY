@@ -136,8 +136,7 @@ namespace PupuseriaJenny.Services
         public DataTable ObtenerTodos()
         {
             // Construcción de la sentencia SQL
-            string sentencia = "SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpelado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo FROM RG_Empleado";
-
+            string sentencia = "SELECT e.idEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpelado,e.direccionEmpleado, e.emailEmpleado, e.fechaNacimientoEmpleado,e.idCargo, c.cargo FROM RG_Empleado e JOIN RG_Cargo c ON e.idCargo = c.idCargo"; 
             try
             {
                 // Consulta a la base de datos
