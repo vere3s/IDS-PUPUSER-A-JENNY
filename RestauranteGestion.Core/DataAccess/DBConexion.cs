@@ -14,13 +14,14 @@ namespace RestauranteGestion.Core.DataAccess
         private const string ServerIP = "localhost"; // IP del servidor MySQL
         private const string Database = "RestauranteGestion";
         private const string UserId = "root";
-        private const string Password = "12345";
+        private const string Password = "1234";
 
         public bool Conectar()
         {
             try
             {
-                var connectionString = $"Server={ServerIP};Port=3306;Database={Database};Uid={UserId};Pwd={Password};SSLMode=None";
+                var connectionString = $"Server={ServerIP};Port=3306;Database={Database};Uid={UserId};Pwd={Password};AllowPublicKeyRetrieval=True;SSLMode=None";
+
                 _CONEXION = new MySqlConnection(connectionString);
                 _CONEXION.Open();
                 return true;
