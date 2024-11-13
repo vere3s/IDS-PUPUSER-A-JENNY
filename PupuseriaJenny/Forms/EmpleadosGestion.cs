@@ -106,5 +106,11 @@ namespace PupuseriaJenny.Forms
                 CargarEmpleados();
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            CargosGestion formCargos = new CargosGestion();
+            formCargos.Show();
+        }
     }
 }
