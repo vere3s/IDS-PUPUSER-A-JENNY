@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RestauranteGestion.Core.DataAccess;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace PupuseriaJenny.Models
 {
@@ -33,5 +35,32 @@ namespace PupuseriaJenny.Models
 
         [Required(ErrorMessage = "El cargo es obligatorio.")]
         public int IdCargo { get; set; }  // Coincide con 'idCargo' en la base de datos
+        Cargos cargo { get; set; }
+
+        public Boolean Eliminar()
+        {
+            Boolean Resultado = false;
+            DBOperacion Operacion = new DBOperacion(); // Agregar referencias= Referencias-Agregar referencia
+            StringBuilder Sentencia = new StringBuilder(); // Objeto para construir cadenas complejas
+            Sentencia.Append("DELETE FROM RG_Empleado ");
+            Sentencia.Append("WHERE idEmpleado = " + IdEmpleado + ";");
+            try
+            {
+                if (Operacion.EjecutarSentencia(Sentencia.ToString()) >= 0)
+                {
+                    Resultado = true;
+                }
+                else
+                {
+                    Resultado = false;
+                }
+            }
+            catch (Exception)
+            {
+                Resultado = false;
+            }
+            return Resultado;
+        }
+
     }
 }

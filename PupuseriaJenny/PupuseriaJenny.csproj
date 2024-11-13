@@ -129,6 +129,7 @@
     <Compile Include="Forms\Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cargos.cs" />
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Productos.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CargoService.cs" />
     <Compile Include="Services\CategoriaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
     <Compile Include="Services\Inventario.cs" />
@@ -148,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Compras.resx">
       <DependentUpon>Compras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmpleadosEdicion.resx">
+      <DependentUpon>EmpleadosEdicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmpleadosGestion.resx">
       <DependentUpon>EmpleadosGestion.cs</DependentUpon>

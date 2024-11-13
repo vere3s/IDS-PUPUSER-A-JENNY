@@ -32,6 +32,8 @@ namespace PupuseriaJenny.Forms
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
 
+            EmpleadosGestion formEmpleado = new EmpleadosGestion();
+            formEmpleado.Show();
         }
     }
 }
