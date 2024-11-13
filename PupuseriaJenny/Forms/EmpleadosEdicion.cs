@@ -47,6 +47,7 @@ namespace PupuseriaJenny.Forms
             var empleado = _empleadoService.ObtenerPorId(idEmpleado);
             if (empleado != null)
             {
+                tbIdEmpleado.Text = empleado.IdEmpleado.ToString();
                 tbNombre.Text = empleado.NombreEmpleado;
                 tbApellido.Text = empleado.ApellidoEmpleado;
                 tbTelefono.Text = empleado.TelefonoEmpelado;

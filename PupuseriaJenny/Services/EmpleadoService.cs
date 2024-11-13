@@ -133,40 +133,33 @@ namespace PupuseriaJenny.Services
             return empleado;
         }
 
-        public virtual List<Empleado> ObtenerTodos()
+        public DataTable ObtenerTodos()
         {
-            List<Empleado> empleados = new List<Empleado>();
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpelado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo ");
-            sentencia.Append("FROM RG_Empleado;");
+            // Construcción de la sentencia SQL
+            string sentencia = "SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpelado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo FROM RG_Empleado";
 
             try
             {
-                DataTable tabla = _operacion.Consultar(sentencia.ToString());
-                foreach (DataRow fila in tabla.Rows)
-                {
-                    Empleado empleado = new Empleado
-                    {
-                        IdEmpleado = Convert.ToInt32(fila["idEmpleado"]),
-                        NombreEmpleado = fila["nombreEmpleado"].ToString(),
-                        ApellidoEmpleado = fila["apellidoEmpleado"].ToString(),
-                        TelefonoEmpelado = fila["telefonoEmpelado"].ToString(),
-                        DireccionEmpleado = fila["direccionEmpleado"].ToString(),
-                        EmailEmpleado = fila["emailEmpleado"].ToString(),
-                        FechaNacimientoEmpleado = Convert.ToDateTime(fila["fechaNacimientoEmpleado"]),
-                        IdCargo = Convert.ToInt32(fila["idCargo"])
-                    };
-                    empleados.Add(empleado);
-                }
-            }
-            catch (Exception  ex)
-            {
-                empleados = null;
-                Console.WriteLine("Eliminar error es" + ex.Message);
-            }
+                // Consulta a la base de datos
+                DataTable tabla = _operacion.Consultar(sentencia);
 
-            return empleados;
+                // Verifica si la consulta devolvió datos
+                if (tabla == null || tabla.Rows.Count == 0)
+                {
+                    Console.WriteLine("No se encontraron registros en la tabla de empleados.");
+                    return null;
+                }
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores y log de la excepción
+                Console.WriteLine("Error al obtener empleados: " + ex.Message);
+                return null;
+            }
         }
+
 
         public bool Eliminar(int idEmpleado)
         {

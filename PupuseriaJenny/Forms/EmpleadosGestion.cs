@@ -14,117 +14,97 @@ namespace PupuseriaJenny.Forms
 {
     public partial class EmpleadosGestion : Form
     {
-
-        BindingSource DATOS = new BindingSource();
+        private readonly BindingSource _datos = new BindingSource();
         private readonly EmpleadoService _empleadoService;
+
         public EmpleadosGestion()
         {
             InitializeComponent();
             _empleadoService = new EmpleadoService();
             CargarEmpleados();
         }
+
         private void CargarEmpleados()
-        {
-            var empleados = _empleadoService.ObtenerTodos();
-            var empleadosConCargo = empleados.Select(e => new
-            {
-                e.IdEmpleado,
-                e.NombreEmpleado,
-                e.ApellidoEmpleado,
-                e.TelefonoEmpelado,
-                e.DireccionEmpleado,
-                e.EmailEmpleado,
-                e.FechaNacimientoEmpleado,
-                Cargo = ObtenerNombreCargo(e.IdCargo)
-            }).ToList();
-
-            dgvEmpleados.DataSource = empleadosConCargo;
-        }
-
-        private string ObtenerNombreCargo(int idCargo)
-        {
-            var cargoService = new CargoService();
-            var cargo = cargoService.ObtenerCargos().FirstOrDefault(c => c.IdCargo == idCargo);
-            return cargo?.cargo ?? "Desconocido";
-        }
-
-        void Cargar()
-        {
-
-
-            Services.EmpleadoService empleadoService = new Services.EmpleadoService();
-            DATOS.DataSource = empleadoService.ObtenerTodos();
-            dgvEmpleados.AutoGenerateColumns = false;
-            dgvEmpleados.DataSource = DATOS;
-
-        }
-        private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                EmpleadosEdicion formEdicion = new EmpleadosEdicion();
+                DataTable empleados = _empleadoService.ObtenerTodos();
+
+                if (empleados == null || empleados.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay datos de empleados para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataGridView1.DataSource = null;  // Limpia el DataGridView si no hay datos.
+                    return;
+                }
+
+                _datos.DataSource = empleados;
+                dataGridView1.AutoGenerateColumns = true;
+                dataGridView1.DataSource = _datos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar empleados: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            using (var formEdicion = new EmpleadosEdicion())
+            {
                 formEdicion.ShowDialog();
                 CargarEmpleados();
-            }
-            catch (Exception)
-            {
-
-                throw;
             }
         }
 
         private void EmpleadosGestion_Load(object sender, EventArgs e)
         {
-
             CargarEmpleados();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione un empleado para eliminar.");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("¿Está seguro de eliminar este empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes) return;
+
             try
             {
-                // Delete the selected role
-                if (dgvEmpleados.SelectedRows.Count > 0)
+                int idEmpleado = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["idEmpleado"].Value);
+                if (_empleadoService.Eliminar(idEmpleado))
                 {
-                    if (MessageBox.Show("¿Está seguro de eliminar este empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        int idEmpleado = Convert.ToInt32(dgvEmpleados.SelectedRows[0].Cells["idEmpleado"].Value);
-                        Empleado oempleados = new Empleado();
-                        oempleados.IdEmpleado = idEmpleado;
-                        if (oempleados.Eliminar())
-                        {
-                            MessageBox.Show("Empleado eliminado correctamente.");
-                            Cargar();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al eliminar el rol.");
-                        }
-                    }
+                    MessageBox.Show("Empleado eliminado correctamente.");
+                    CargarEmpleados();
                 }
                 else
                 {
-                    MessageBox.Show("Por favor seleccione un empleado para eliminar.");
+                    MessageBox.Show("Error al eliminar el empleado.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar el Empleado: " + ex.Message);
+                MessageBox.Show($"Error al eliminar el empleado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvEmpleados.CurrentRow != null)
+            if (dataGridView1.CurrentRow == null)
             {
-                int idEmpleado = Convert.ToInt32(dgvEmpleados.CurrentRow.Cells["IdEmpleado"].Value);
-                EmpleadosEdicion formEdicion = new EmpleadosEdicion(idEmpleado);
+                MessageBox.Show("Por favor, seleccione un empleado para editar.");
+                return;
+            }
+
+            int idEmpleado = Convert.ToInt32(dataGridView1.CurrentRow.Cells["IdEmpleado"].Value);
+            using (var formEdicion = new EmpleadosEdicion(idEmpleado))
+            {
                 formEdicion.ShowDialog();
                 CargarEmpleados();
             }
         }
-
-      
-
     }
 }
