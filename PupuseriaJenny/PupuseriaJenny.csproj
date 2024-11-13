@@ -175,6 +175,7 @@
     <Compile Include="Forms\UsuariosGestion.Designer.cs">
       <DependentUpon>UsuariosGestion.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <Compile Include="Forms\Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +183,8 @@
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cargos.cs" />
+=======
+>>>>>>> Stashed changes
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
@@ -206,11 +209,22 @@
     <EmbeddedResource Include="Custom\RJTextBox.resx">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CantidadProductoForm.resx">
+      <DependentUpon>CantidadProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Compras.resx">
       <DependentUpon>Compras.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< Updated upstream
     <EmbeddedResource Include="Forms\EmpleadosEdicion.resx">
       <DependentUpon>EmpleadosEdicion.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Forms\DetallesOrdenLlevarForm.resx">
+      <DependentUpon>DetallesOrdenLlevarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DetallesOrdenMesaForm.resx">
+      <DependentUpon>DetallesOrdenMesaForm.cs</DependentUpon>
+>>>>>>> Stashed changes
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmpleadosGestion.resx">
       <DependentUpon>EmpleadosGestion.cs</DependentUpon>
@@ -224,6 +238,9 @@
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MostrarOrdenesPendientesForm.resx">
+      <DependentUpon>MostrarOrdenesPendientesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrdenVentasForm.resx">
       <DependentUpon>OrdenVentasForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,14 +250,14 @@
     <EmbeddedResource Include="Forms\RolesGestion.resx">
       <DependentUpon>RolesGestion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeleccionarVentasForm.resx">
+      <DependentUpon>SeleccionarVentasForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsuarioEdicion.resx">
       <DependentUpon>UsuarioEdicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UsuariosGestion.resx">
       <DependentUpon>UsuariosGestion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Ventas.resx">
-      <DependentUpon>Ventas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -123,11 +123,32 @@ namespace PupuseriaJenny.Services
             return _operacion.EjecutarSentencia(sentencia, parametros) > 0;
         }
         
-        public DataTable ObtenerOrdenesPendientes()
+        public DataTable ObtenerOrdenesPendientesSinMesa()
         {
             DataTable ordenPendiente = new DataTable();
-            string consulta = @"SELECT idOrden, estadoOrden 
+            string consulta = @"SELECT idOrden, estadoOrden, clienteOrden, fechaOrden, tipoOrden, idMesa, comentarioOrden  
                                 FROM RG_Orden
+                                WHERE estadoOrden = 'Pendiente'
+                                AND idMesa IS NULL;";
+
+            try
+            {
+                ordenPendiente = _operacion.Consultar(consulta);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener las ordenes pendientes sin mesa: " + ex.Message);
+            }
+
+            return ordenPendiente;
+        }
+        public DataTable ObtenerOrdenesPendientesConMesa()
+        {
+            DataTable ordenPendiente = new DataTable();
+            string consulta = @"SELECT ord.idOrden, ord.estadoOrden, ord.clienteOrden, ord.fechaOrden, ord.tipoOrden, m.numeroMesa AS idMesa, ord.comentarioOrden 
+                                FROM RG_Orden ord
+                                JOIN RG_Mesa m ON m.idMesa = ord.idMesa
                                 WHERE estadoOrden = 'Pendiente';";
 
             try
@@ -137,7 +158,7 @@ namespace PupuseriaJenny.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener las ordenes pendientes: " + ex.Message);
+                Console.WriteLine("Error al obtener las ordenes pendientes con mesa: " + ex.Message);
             }
 
             return ordenPendiente;

@@ -25,7 +25,7 @@ namespace PupuseriaJenny.Forms
 
         private void btnVenta_Click(object sender, EventArgs e)
         {
-            Ventas formVentas = new Ventas();
+            SeleccionarVentasForm formVentas = new SeleccionarVentasForm();
             formVentas.Show();
         }
 

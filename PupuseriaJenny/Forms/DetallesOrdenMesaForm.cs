@@ -43,19 +43,20 @@ namespace PupuseriaJenny.Forms
             RJButton btnMesa = new RJButton
             {
                 Text = row["numeroMesa"].ToString(),
-                Width = 173,
-                Height = 167,
+                Width = 193,
+                Height = 147,
                 BackColor = Color.White,
                 ForeColor = Color.Black,
                 BorderRadius = 8,
+                Font = new Font("Microsoft Sans Serif", 14),
                 TextImageRelation = TextImageRelation.ImageAboveText,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ImageAlign = ContentAlignment.TopCenter,
                 Padding = new Padding(0),
-                Margin = new Padding(10),
+                Margin = new Padding(30),
             };
             Image imagenPredeterminada = Properties.Resources.imageTable;
-            btnMesa.Image = ResizeImage(imagenPredeterminada, 132, 80);
+            btnMesa.Image = ResizeImage(imagenPredeterminada, 152, 110);
             btnMesa.Click += (s, ev) => DetallesOrdenMesa(row);
             return btnMesa;
         }
