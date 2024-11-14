@@ -218,6 +218,7 @@
     <Compile Include="Models\Mesas.cs" />
     <Compile Include="Models\Opciones.cs" />
     <Compile Include="Models\Ordenes.cs" />
+    <Compile Include="Models\Permiso.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Services\MesaService.cs" />
     <Compile Include="Services\OpcionService.cs" />
     <Compile Include="Services\OrdenService.cs" />
+    <Compile Include="Services\PermisoService.cs" />
     <Compile Include="Services\ProductoService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
@@ -285,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PermisosEdicion.resx">
       <DependentUpon>PermisosEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PermisosGestion.resx">
+      <DependentUpon>PermisosGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RolesEdicion.resx">
       <DependentUpon>RolesEdicion.cs</DependentUpon>

@@ -64,12 +64,12 @@ namespace PupuseriaJenny.Forms
                 int idUsuario = Convert.ToInt32(dgvUsuarios.SelectedRows[0].Cells["idUsuario"].Value);
                 if (_usuarioService.Eliminar(idUsuario))
                 {
-                    MessageBox.Show("Empleado eliminado correctamente.");
+                    MessageBox.Show("Usuario eliminado correctamente.");
                     CargarUsuarios();
                 }
                 else
                 {
-                    MessageBox.Show("Error al eliminar el empleado.");
+                    MessageBox.Show("Error al eliminar el usuario.");
                 }
             }
             catch (Exception ex)

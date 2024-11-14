@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.tbRol = new System.Windows.Forms.TextBox();
-            this.tbIDRol = new System.Windows.Forms.TextBox();
+            this.tbIDPermiso = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbIDRol = new System.Windows.Forms.ComboBox();
-            this.cbIDEmpleado = new System.Windows.Forms.ComboBox();
+            this.cbOpcion = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.Notificador = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbAcceso = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Notificador)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -51,6 +54,7 @@
             this.btnCancelar.TabIndex = 17;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -63,25 +67,17 @@
             this.btnGuardar.TabIndex = 16;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // tbRol
+            // tbIDPermiso
             // 
-            this.tbRol.BackColor = System.Drawing.Color.Lavender;
-            this.tbRol.Location = new System.Drawing.Point(80, 63);
-            this.tbRol.Margin = new System.Windows.Forms.Padding(2);
-            this.tbRol.Name = "tbRol";
-            this.tbRol.Size = new System.Drawing.Size(202, 20);
-            this.tbRol.TabIndex = 15;
-            // 
-            // tbIDRol
-            // 
-            this.tbIDRol.BackColor = System.Drawing.Color.Lavender;
-            this.tbIDRol.Location = new System.Drawing.Point(80, 22);
-            this.tbIDRol.Margin = new System.Windows.Forms.Padding(2);
-            this.tbIDRol.Name = "tbIDRol";
-            this.tbIDRol.ReadOnly = true;
-            this.tbIDRol.Size = new System.Drawing.Size(88, 20);
-            this.tbIDRol.TabIndex = 14;
+            this.tbIDPermiso.BackColor = System.Drawing.Color.Lavender;
+            this.tbIDPermiso.Location = new System.Drawing.Point(80, 22);
+            this.tbIDPermiso.Margin = new System.Windows.Forms.Padding(2);
+            this.tbIDPermiso.Name = "tbIDPermiso";
+            this.tbIDPermiso.ReadOnly = true;
+            this.tbIDPermiso.Size = new System.Drawing.Size(88, 20);
+            this.tbIDPermiso.TabIndex = 14;
             // 
             // label2
             // 
@@ -117,15 +113,15 @@
             this.cbIDRol.Size = new System.Drawing.Size(202, 21);
             this.cbIDRol.TabIndex = 47;
             // 
-            // cbIDEmpleado
+            // cbOpcion
             // 
-            this.cbIDEmpleado.BackColor = System.Drawing.Color.GhostWhite;
-            this.cbIDEmpleado.FormattingEnabled = true;
-            this.cbIDEmpleado.Location = new System.Drawing.Point(80, 105);
-            this.cbIDEmpleado.Margin = new System.Windows.Forms.Padding(2);
-            this.cbIDEmpleado.Name = "cbIDEmpleado";
-            this.cbIDEmpleado.Size = new System.Drawing.Size(202, 21);
-            this.cbIDEmpleado.TabIndex = 46;
+            this.cbOpcion.BackColor = System.Drawing.Color.GhostWhite;
+            this.cbOpcion.FormattingEnabled = true;
+            this.cbOpcion.Location = new System.Drawing.Point(80, 105);
+            this.cbOpcion.Margin = new System.Windows.Forms.Padding(2);
+            this.cbOpcion.Name = "cbOpcion";
+            this.cbOpcion.Size = new System.Drawing.Size(202, 21);
+            this.cbOpcion.TabIndex = 46;
             // 
             // label4
             // 
@@ -152,24 +148,40 @@
             this.label3.TabIndex = 44;
             this.label3.Text = "Rol";
             // 
+            // Notificador
+            // 
+            this.Notificador.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.Notificador.ContainerControl = this;
+            // 
+            // cbAcceso
+            // 
+            this.cbAcceso.BackColor = System.Drawing.Color.GhostWhite;
+            this.cbAcceso.FormattingEnabled = true;
+            this.cbAcceso.Location = new System.Drawing.Point(80, 63);
+            this.cbAcceso.Margin = new System.Windows.Forms.Padding(2);
+            this.cbAcceso.Name = "cbAcceso";
+            this.cbAcceso.Size = new System.Drawing.Size(202, 21);
+            this.cbAcceso.TabIndex = 48;
+            // 
             // PermisosEdicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(328, 279);
+            this.Controls.Add(this.cbAcceso);
             this.Controls.Add(this.cbIDRol);
-            this.Controls.Add(this.cbIDEmpleado);
+            this.Controls.Add(this.cbOpcion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.tbRol);
-            this.Controls.Add(this.tbIDRol);
+            this.Controls.Add(this.tbIDPermiso);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "PermisosEdicion";
             this.Text = "PermisosEdicion";
+            ((System.ComponentModel.ISupportInitialize)(this.Notificador)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,13 +191,14 @@
 
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
-        public System.Windows.Forms.TextBox tbRol;
-        public System.Windows.Forms.TextBox tbIDRol;
+        public System.Windows.Forms.TextBox tbIDPermiso;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cbIDRol;
-        public System.Windows.Forms.ComboBox cbIDEmpleado;
+        public System.Windows.Forms.ComboBox cbOpcion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ErrorProvider Notificador;
+        public System.Windows.Forms.ComboBox cbAcceso;
     }
 }
