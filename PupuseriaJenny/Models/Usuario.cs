@@ -22,14 +22,14 @@ namespace PupuseriaJenny.Models
         [Required(ErrorMessage = "La contraseña es obligatoria.")]
         [MinLength(6, ErrorMessage = "La contraseña debe tener al menos 6 caracteres.")]
         public string Contraseña { get; set; }
+        Int32 _IDEmpleado;
+        Int32 _IDRol;
+        public int IDEmpleado { get => _IDEmpleado; set => _IDEmpleado = value; }
+        public int IDRol { get => _IDRol; set => _IDRol = value; }
+
 
         // Constructor para crear el usuario
-        public Usuario(int idUsuario, string usuarioNombre, string contraseña)
-        {
-            IDUsuario = idUsuario;
-            UsuarioNombre = usuarioNombre;
-            Contraseña = contraseña;
-        }
+       
         public bool EsValido(out string mensajeError)
         {
             var validationContext = new ValidationContext(this, null, null);
@@ -43,17 +43,13 @@ namespace PupuseriaJenny.Models
 
         // Para los metodos insertar, eliminar y modificar 
       
-        Int32 _IDEmpleado;
-        Int32 _IDRol;
-        public int IDEmpleado { get => _IDEmpleado; set => _IDEmpleado = value; }
-        public int IDRol { get => _IDRol; set => _IDRol = value; }
-
+      
         public Boolean Insertar()
         {
             Boolean Resultado = false;
             DBOperacion Operacion = new DBOperacion();
             StringBuilder Sentencia = new StringBuilder(); // objeto para construir cadenas complejas
-            Sentencia.Append("INSERT INTO usuarios(Usuario, Contraseña, IDEmpleado, IDRol) VALUES(");
+            Sentencia.Append("INSERT INTO RG_Usuario(Usuario, contraseniaUsuario, idEmpleado, idRol) VALUES(");
             Sentencia.Append("'" + UsuarioNombre + "', ");
             Sentencia.Append("'" + Usuario.ConvertirContraseña(Contraseña) + "', ");
             Sentencia.Append("'" + IDEmpleado + "', ");
@@ -80,12 +76,12 @@ namespace PupuseriaJenny.Models
             Boolean Resultado = false;
             DBOperacion Operacion = new DBOperacion();
             StringBuilder Sentencia = new StringBuilder(); // objeto para construir cadenas complejas
-            Sentencia.Append("UPDATE usuarios SET ");
-            Sentencia.Append("Usuario = '" + UsuarioNombre + "', ");
-            Sentencia.Append("Contraseña = '" + Usuario.ConvertirContraseña(Contraseña) + "', ");
-            Sentencia.Append("IDEmpleado = '" + _IDEmpleado + "', ");
-            Sentencia.Append("IDRol = '" + _IDRol + "' ");
-            Sentencia.Append("WHERE IDUsuario = " + IDUsuario + "; ");
+            Sentencia.Append("UPDATE RG_Usuario SET ");
+            Sentencia.Append("usuario = '" + UsuarioNombre + "', ");
+            Sentencia.Append("contraseniaUsuario = '" + Usuario.ConvertirContraseña(Contraseña) + "', ");
+            Sentencia.Append("idEmpleado = '" + _IDEmpleado + "', ");
+            Sentencia.Append("idRol = '" + _IDRol + "' ");
+            Sentencia.Append("WHERE idUsuario = " + IDUsuario + "; ");
             try
             {
                 if (Operacion.EjecutarSentencia(Sentencia.ToString()) >= 0)
@@ -108,8 +104,8 @@ namespace PupuseriaJenny.Models
             Boolean Resultado = false;
             DBOperacion Operacion = new DBOperacion(); // Agregar referencias= Referencias-Agregar referencia
             StringBuilder Sentencia = new StringBuilder(); // Objeto para construir cadenas complejas
-            Sentencia.Append("DELETE FROM usuarios ");
-            Sentencia.Append("WHERE IDUsuario = " + IDUsuario + ";");
+            Sentencia.Append("DELETE FROM RG_Usuario ");
+            Sentencia.Append("WHERE idUsuario = " + IDUsuario + ";");
             try
             {
                 if (Operacion.EjecutarSentencia(Sentencia.ToString()) >= 0)
@@ -144,7 +140,7 @@ namespace PupuseriaJenny.Models
         public static bool UsuarioExiste(string oUsuario)
         {
             DataTable Resultado = new DataTable();
-            String Consulta = @"SELECT Usuario FROM Usuarios WHERE Usuario = '" + oUsuario + "';";
+            String Consulta = @"SELECT usuario FROM RG_Usuarios WHERE usuario = '" + oUsuario + "';";
             DBOperacion operacion = new DBOperacion();
             try
             {
