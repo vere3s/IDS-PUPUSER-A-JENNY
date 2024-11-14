@@ -151,11 +151,35 @@
     <Compile Include="Forms\MostrarOrdenesPendientesForm.Designer.cs">
       <DependentUpon>MostrarOrdenesPendientesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\OpcionesEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OpcionesEdicion.Designer.cs">
+      <DependentUpon>OpcionesEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OpcionesGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OpcionesGestion.Designer.cs">
+      <DependentUpon>OpcionesGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OrdenVentasForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\OrdenVentasForm.Designer.cs">
       <DependentUpon>OrdenVentasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PermisosEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PermisosEdicion.Designer.cs">
+      <DependentUpon>PermisosEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PermisosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PermisosGestion.Designer.cs">
+      <DependentUpon>PermisosGestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\RolesEdicion.cs">
       <SubType>Form</SubType>
@@ -192,6 +216,7 @@
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Mesas.cs" />
+    <Compile Include="Models\Opciones.cs" />
     <Compile Include="Models\Ordenes.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -204,6 +229,7 @@
     <Compile Include="Services\EmpleadoService.cs" />
     <Compile Include="Services\Inventario.cs" />
     <Compile Include="Services\MesaService.cs" />
+    <Compile Include="Services\OpcionService.cs" />
     <Compile Include="Services\OrdenService.cs" />
     <Compile Include="Services\ProductoService.cs" />
     <Compile Include="Services\RolesService.cs" />
@@ -248,8 +274,17 @@
     <EmbeddedResource Include="Forms\MostrarOrdenesPendientesForm.resx">
       <DependentUpon>MostrarOrdenesPendientesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OpcionesEdicion.resx">
+      <DependentUpon>OpcionesEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OpcionesGestion.resx">
+      <DependentUpon>OpcionesGestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrdenVentasForm.resx">
       <DependentUpon>OrdenVentasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PermisosEdicion.resx">
+      <DependentUpon>PermisosEdicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RolesEdicion.resx">
       <DependentUpon>RolesEdicion.cs</DependentUpon>

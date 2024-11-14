@@ -141,5 +141,34 @@ namespace PupuseriaJenny.Forms
         {
             FiltrarLocalmente();
         }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void btnPermisos_Click(object sender, EventArgs e)
+        {
+            PermisosGestion formPermisos = new PermisosGestion();
+            formPermisos.Show();
+        }
+
+        private void btnOpciones_Click(object sender, EventArgs e)
+        {
+           OpcionesGestion formOpciones = new OpcionesGestion();
+            formOpciones.Show();
+        }
+
+        private void btnCargos_Click(object sender, EventArgs e)
+        {
+            CargosGestion formCargos = new CargosGestion();
+            formCargos.Show();
+
+        }
     }
 }
