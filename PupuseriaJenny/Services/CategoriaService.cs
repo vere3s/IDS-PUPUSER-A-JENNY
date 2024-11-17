@@ -144,5 +144,42 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
+
+        public CategoriaService(DBOperacion operacion = null)
+        {
+            _operacion = operacion ?? new DBOperacion();
+        }
+
+        public List<Categorias> ObtenerCategorias()
+        {
+            List<Categorias> listaCategorias = new List<Categorias>();
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("SELECT idCategoria, categoria FROM RG_Categoria;");
+
+            try
+            {
+                // Llama a Consultar en DBOperacion
+                DataTable resultado = _operacion.Consultar(sentencia.ToString(), new Dictionary<string, object>());
+
+                foreach (DataRow row in resultado.Rows)
+                {
+                    Categorias categoria = new Categorias
+                    {
+                        
+                        IdCategoria= Convert.ToInt32(row["idCategoria"]),
+                        Categoria = row["Categoria"].ToString()
+                    };
+                    listaCategorias.Add(categoria);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener roles: " + ex.Message);
+            }
+
+            return listaCategorias;
+        }
+       
+
     }
 }
