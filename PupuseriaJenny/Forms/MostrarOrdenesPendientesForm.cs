@@ -1,4 +1,5 @@
 ﻿using PupuseriaJenny.Custom;
+using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using System;
 using System.Collections.Generic;
@@ -113,6 +114,12 @@ namespace PupuseriaJenny.Forms
 
             // Recarga las órdenes pendientes al cerrar OrdenVentasForm
             CargarOrdenesPendientes();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            SeleccionarVentasForm seleccionarVentasForm = new SeleccionarVentasForm();
+            seleccionarVentasForm.ShowDialog();
         }
     }
 }

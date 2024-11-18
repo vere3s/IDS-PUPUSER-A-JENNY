@@ -170,7 +170,7 @@ namespace PupuseriaJenny.Forms
                 {
                     IdOrden = _currentIdOrden,
                     IdProducto = Convert.ToInt32(producto["idProducto"]),
-                    IdReceta = 1,  // Suponiendo que "IdReceta" es siempre 1
+                    IdReceta = 1,
                     CantidadDetalleVenta = cantidad,
                     SubTotalDetalleVenta = totalPrecio
                 };
@@ -178,7 +178,19 @@ namespace PupuseriaJenny.Forms
                 DetalleVentaService detalleVentaService = new DetalleVentaService();
                 // Inserta el detalle en la base de datos y obtener el idDetalleVenta generado
                 int idDetalleVentaGenerado = detalleVentaService.Insertar(nuevoDetalle);
-                if (idDetalleVentaGenerado > 0)
+
+                // Crea el objeto Ventas para guardar en la base de datos
+                Ventas nuevaVenta = new Ventas
+                {
+                    IdEmpleado = 2,
+                    IdDetalleVenta = idDetalleVentaGenerado,
+                    TotalVenta = totalPrecio
+                };
+
+                VentaService ventaService = new VentaService();
+
+                // Inserta la venta en la base de datos
+                if (idDetalleVentaGenerado > 0 && ventaService.Insertar(nuevaVenta))
                 {
                     // Agrega el producto a la vista
                     int rowIndex = dgvProductosDetalles.Rows.Add();
@@ -383,7 +395,7 @@ namespace PupuseriaJenny.Forms
         }
         private void btnCobrar_Click(object sender, EventArgs e)
         {
-            string estado = "Pagado";
+            string estado = "Pagada";
 
             OrdenService ordenService = new OrdenService();
             if (ordenService.EstadoOrden(_currentIdOrden, estado))

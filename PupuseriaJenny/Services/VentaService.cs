@@ -9,43 +9,27 @@ using System.Threading.Tasks;
 
 namespace PupuseriaJenny.Services
 {
-    public class MesaService
+    public class VentaService
     {
         private readonly DBOperacion _operacion;
 
-        public MesaService()
+        public VentaService()
         {
             _operacion = new DBOperacion();
         }
-        public DataTable Mesa()
-        {
-            DataTable resultado = new DataTable();
-            string consulta = @"SELECT idMesa, numeroMesa
-                        FROM RG_Mesa
-                        ORDER BY numeroMesa ASC;";
-
-            try
-            {
-                resultado = _operacion.Consultar(consulta);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener mesas: " + ex.Message);
-            }
-
-            return resultado;
-        }
-        public bool Insertar(Mesas mesas)
+        public bool Insertar(Ventas ventas)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Mesa(numeroMesa) VALUES(@numeroMesa);");
+            sentencia.Append("INSERT INTO RG_Venta(idEmpleado, idDetalleVenta, totalVenta) VALUES(@idEmpleado, @idDetalleVenta, @totalVenta);");
 
             try
             {
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@numeroMesa", mesas.NumeroMesa }
+                    { "@idEmpleado", ventas.IdEmpleado },
+                    { "@idDetalleVenta", ventas.IdDetalleVenta },
+                    { "@totalVenta", ventas.TotalVenta }
                 };
 
                 if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
@@ -59,20 +43,24 @@ namespace PupuseriaJenny.Services
             }
             return resultado;
         }
-        public bool Actualizar(Mesas mesas)
+        public bool Actualizar(Ventas ventas)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("UPDATE RG_Mesa SET ");
-            sentencia.Append("numeroMesa = @numeroMesa ");
-            sentencia.Append("WHERE idMesa = @idMesa;");
+            sentencia.Append("UPDATE RG_Venta SET ");
+            sentencia.Append("idEmpleado = @idEmpleado ");
+            sentencia.Append("idDetalleVenta = @idDetalleVenta ");
+            sentencia.Append("totalVenta = @totalVenta ");
+            sentencia.Append("WHERE idVenta = @idVenta;");
 
             try
             {
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@numeroMesa", mesas.NumeroMesa },
-                    { "@idMesa", mesas.IdMesa }
+                    { "@idEmpleado", ventas.IdEmpleado },
+                    { "@idDetalleVenta", ventas.IdDetalleVenta },
+                    { "@totalVenta", ventas.TotalVenta },
+                    { "@idVenta", ventas.IdVenta }
                 };
 
                 if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
@@ -87,17 +75,17 @@ namespace PupuseriaJenny.Services
             return resultado;
         }
 
-        public bool Eliminar(int idMesa)
+        public bool Eliminar(int idVenta)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("DELETE FROM RG_Mesa WHERE idMesa = @idMesa;");
+            sentencia.Append("DELETE FROM RG_Venta WHERE idVenta = @idVenta;");
 
             try
             {
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@idMesa", idMesa }
+                    { "@idVenta", idVenta }
                 };
 
                 if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)

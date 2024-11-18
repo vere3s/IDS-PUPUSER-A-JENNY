@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PupuseriaJenny.Models
 {
-    internal class Ordenes
+    public class Ordenes
     {
         public int IdOrden { get; set; }
         public int IdMesa { get; set; }
