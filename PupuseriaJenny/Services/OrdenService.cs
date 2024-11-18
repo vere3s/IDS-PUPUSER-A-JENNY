@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PupuseriaJenny.Services
 {
-    internal class OrdenService
+    public class OrdenService
     {
         private readonly DBOperacion _operacion;
 

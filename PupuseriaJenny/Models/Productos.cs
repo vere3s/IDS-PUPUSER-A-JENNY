@@ -22,9 +22,8 @@ namespace PupuseriaJenny.Models
         public decimal PrecioProducto { get; set; }
 
         [Required(ErrorMessage = "La categoria del producto es obligatorio.")]
-        public string IdCategoria { get; set; }
+        public int IdCategoria { get; set; }
 
-        [Required(ErrorMessage = "El proveedor es obligatorio.")]
-        public int IdProveedor { get; set; }
+        public string ImagenProducto { get; set; }
     }
 }
