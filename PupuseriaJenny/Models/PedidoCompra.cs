@@ -6,21 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//CREATE TABLE DetallePedidoProducto (
-//    idDetallePedidoProducto INT PRIMARY KEY AUTO_INCREMENT,
-//    idPedidoCompra INT,
-//    idProducto INT,
-//    cantidadProducto INT NOT NULL,
-//    precio DECIMAL(10, 2),
-//   subtotal DECIMAL(10, 2) AS (cantidadProducto * precio),
-//    FOREIGN KEY (idPedidoCompra) REFERENCES PedidoCompra(idPedidoCompra),
-//    FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
-//);
+
 
 namespace PupuseriaJenny.Models
 {
-    internal class PedidoCompra
+    public class PedidoCompra
     {
+
         [Key]
         public int IdDetallePedidoProducto { get; set; }
 
@@ -46,6 +38,9 @@ namespace PupuseriaJenny.Models
 
         // Propiedades de navegación para las claves foráneas
         public virtual PedidoCompra pedidoCompra { get; set; }
-        public virtual Producto producto { get; set; }
+        public virtual Producto Producto { get; set; }
+        public object IdProveedor { get; internal set; }
+        public object FechaPedidoCompra { get; internal set; }
+        public object EstadoPedidoCompra { get; internal set; }
     }
 }

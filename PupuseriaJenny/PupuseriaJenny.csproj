@@ -213,13 +213,17 @@
     </Compile>
     <Compile Include="Models\Cargos.cs" />
     <Compile Include="Models\Categorias.cs" />
+    <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Mesas.cs" />
     <Compile Include="Models\Opciones.cs" />
     <Compile Include="Models\Ordenes.cs" />
+    <Compile Include="Models\PedidoCompra.cs" />
     <Compile Include="Models\Permiso.cs" />
+    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Productos.cs" />
+    <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Program.cs" />
@@ -233,8 +237,10 @@
     <Compile Include="Services\MesaService.cs" />
     <Compile Include="Services\OpcionService.cs" />
     <Compile Include="Services\OrdenService.cs" />
+    <Compile Include="Services\PedidoCompraService.cs" />
     <Compile Include="Services\PermisoService.cs" />
     <Compile Include="Services\ProductoService.cs" />
+    <Compile Include="Services\ProveedorService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
     <Compile Include="SesionManager\Sesion.cs" />
