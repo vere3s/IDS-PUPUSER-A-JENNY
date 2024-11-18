@@ -12,24 +12,22 @@ using System.Windows.Forms;
 
 namespace PupuseriaJenny.Forms
 {
-    public partial class CargosEdicion : Form
+    public partial class CategoriasEdicion : Form
     {
-        private readonly CargoService _cargosService;
-
-        public CargosEdicion()
+        private readonly CategoriaService _categoriasService;
+        public CategoriasEdicion()
         {
             InitializeComponent();
-            _cargosService = new CargoService();
+            _categoriasService = new CategoriaService();
         }
-        // Método para validar la entrada de texto en el campo de Cargo
         private Boolean Validar()
         {
             Boolean valido = true;
             try
             {
-                if (tbCargo.Text.Trim().Length == 0)
+                if (tbCategoria.Text.Trim().Length == 0)
                 {
-                    Notificador.SetError(tbCargo, "Este campo no puede estar vacío");
+                    Notificador.SetError(tbCategoria, "Este campo no puede estar vacío");
                     valido = false;
                 }
             }
@@ -39,7 +37,6 @@ namespace PupuseriaJenny.Forms
             }
             return valido;
         }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -47,23 +44,23 @@ namespace PupuseriaJenny.Forms
                 if (Validar())
                 {
                     // Crear un objeto de tipo Roles y sincronizarlo con la GUI
-                    Cargos cargo = new Cargos();
+                    Categorias categoria = new Categorias();
 
                     try
                     {
-                        cargo.IdCargo = Convert.ToInt32(tbIDCargo.Text);
+                        categoria.IdCategoria = Convert.ToInt32(tbIDCategoria.Text);
                     }
                     catch (Exception)
                     {
-                        cargo.IdCargo = 0;
+                        categoria.IdCategoria = 0;
                     }
 
-                    cargo.cargo = tbCargo.Text;
+                    categoria.Categoria = tbCategoria.Text;
 
                     // Proceder según si es una inserción o una actualización
-                    if (cargo.IdCargo == 0) // Si el ID es 0, es una inserción
+                    if (categoria.IdCategoria == 0) // Si el ID es 0, es una inserción
                     {
-                        if (_cargosService.Insertar(cargo)) // Llamada al servicio para insertar
+                        if (_categoriasService.Insertar(categoria)) // Llamada al servicio para insertar
                         {
                             MessageBox.Show("Registro guardado con éxito");
                             Close();
@@ -75,7 +72,7 @@ namespace PupuseriaJenny.Forms
                     }
                     else // Si tiene un ID válido, se actualiza
                     {
-                        if (_cargosService.Actualizar(cargo)) // Llamada al servicio para actualizar
+                        if (_categoriasService.Actualizar(categoria)) // Llamada al servicio para actualizar
                         {
                             MessageBox.Show("Registro actualizado con éxito");
                             Close();
@@ -96,26 +93,6 @@ namespace PupuseriaJenny.Forms
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void tbCargo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbIDCargo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
