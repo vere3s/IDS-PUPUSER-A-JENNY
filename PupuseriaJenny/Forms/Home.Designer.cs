@@ -47,9 +47,10 @@
             this.btnGtPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGtPersonal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGtPersonal.ForeColor = System.Drawing.Color.Black;
-            this.btnGtPersonal.Location = new System.Drawing.Point(69, 88);
+            this.btnGtPersonal.Location = new System.Drawing.Point(52, 72);
+            this.btnGtPersonal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGtPersonal.Name = "btnGtPersonal";
-            this.btnGtPersonal.Size = new System.Drawing.Size(211, 148);
+            this.btnGtPersonal.Size = new System.Drawing.Size(158, 120);
             this.btnGtPersonal.TabIndex = 0;
             this.btnGtPersonal.Text = "Gestion de Personal";
             this.btnGtPersonal.TextColor = System.Drawing.Color.Black;
@@ -67,9 +68,10 @@
             this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVenta.ForeColor = System.Drawing.Color.Black;
-            this.btnVenta.Location = new System.Drawing.Point(333, 88);
+            this.btnVenta.Location = new System.Drawing.Point(250, 72);
+            this.btnVenta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Size = new System.Drawing.Size(211, 148);
+            this.btnVenta.Size = new System.Drawing.Size(158, 120);
             this.btnVenta.TabIndex = 1;
             this.btnVenta.Text = "Ventas";
             this.btnVenta.TextColor = System.Drawing.Color.Black;
@@ -87,9 +89,10 @@
             this.btnCompras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCompras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompras.ForeColor = System.Drawing.Color.Black;
-            this.btnCompras.Location = new System.Drawing.Point(595, 88);
+            this.btnCompras.Location = new System.Drawing.Point(446, 72);
+            this.btnCompras.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCompras.Name = "btnCompras";
-            this.btnCompras.Size = new System.Drawing.Size(211, 148);
+            this.btnCompras.Size = new System.Drawing.Size(158, 120);
             this.btnCompras.TabIndex = 2;
             this.btnCompras.Text = "Compras";
             this.btnCompras.TextColor = System.Drawing.Color.Black;
@@ -107,9 +110,10 @@
             this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventario.ForeColor = System.Drawing.Color.Black;
-            this.btnInventario.Location = new System.Drawing.Point(595, 309);
+            this.btnInventario.Location = new System.Drawing.Point(446, 251);
+            this.btnInventario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInventario.Name = "btnInventario";
-            this.btnInventario.Size = new System.Drawing.Size(211, 148);
+            this.btnInventario.Size = new System.Drawing.Size(158, 120);
             this.btnInventario.TabIndex = 5;
             this.btnInventario.Text = "Inventario";
             this.btnInventario.TextColor = System.Drawing.Color.Black;
@@ -127,9 +131,10 @@
             this.btnGtProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGtProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGtProductos.ForeColor = System.Drawing.Color.Black;
-            this.btnGtProductos.Location = new System.Drawing.Point(333, 309);
+            this.btnGtProductos.Location = new System.Drawing.Point(250, 251);
+            this.btnGtProductos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGtProductos.Name = "btnGtProductos";
-            this.btnGtProductos.Size = new System.Drawing.Size(211, 148);
+            this.btnGtProductos.Size = new System.Drawing.Size(158, 120);
             this.btnGtProductos.TabIndex = 4;
             this.btnGtProductos.Text = "Gestion de Productos";
             this.btnGtProductos.TextColor = System.Drawing.Color.Black;
@@ -147,9 +152,10 @@
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.Color.Black;
-            this.btnReportes.Location = new System.Drawing.Point(69, 309);
+            this.btnReportes.Location = new System.Drawing.Point(52, 251);
+            this.btnReportes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(211, 148);
+            this.btnReportes.Size = new System.Drawing.Size(158, 120);
             this.btnReportes.TabIndex = 3;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.TextColor = System.Drawing.Color.Black;
@@ -158,18 +164,20 @@
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(870, 554);
+            this.ClientSize = new System.Drawing.Size(652, 450);
             this.Controls.Add(this.btnInventario);
             this.Controls.Add(this.btnGtProductos);
             this.Controls.Add(this.btnReportes);
             this.Controls.Add(this.btnCompras);
             this.Controls.Add(this.btnVenta);
             this.Controls.Add(this.btnGtPersonal);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Home";
             this.Text = "Home";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

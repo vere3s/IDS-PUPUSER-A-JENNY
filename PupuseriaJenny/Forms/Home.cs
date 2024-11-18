@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PupuseriaJenny.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,7 +38,8 @@ namespace PupuseriaJenny.Forms
 
         private void btnGtProductos_Click(object sender, EventArgs e)
         {
-
+            ProductosGestion formProductos = new ProductosGestion();
+            formProductos.Show();
         }
 
         private void btnInventario_Click(object sender, EventArgs e)

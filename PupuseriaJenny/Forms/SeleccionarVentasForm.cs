@@ -46,5 +46,12 @@ namespace PupuseriaJenny.Forms
             mostrarOrdenesForm.ShowDialog();
             this.Close();
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.ShowDialog();
+            this.Close();
+        }
     }
 }

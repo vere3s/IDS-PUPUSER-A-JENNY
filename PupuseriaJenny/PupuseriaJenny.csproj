@@ -139,6 +139,12 @@
     <Compile Include="Forms\EmpleadosGestion.Designer.cs">
       <DependentUpon>EmpleadosGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\HistorialInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistorialInventario.Designer.cs">
+      <DependentUpon>HistorialInventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,18 @@
     <Compile Include="Forms\PermisosGestion.Designer.cs">
       <DependentUpon>PermisosGestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProductosEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductosEdicion.Designer.cs">
+      <DependentUpon>ProductosEdicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProductosGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductosGestion.Designer.cs">
+      <DependentUpon>ProductosGestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RolesEdicion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +246,7 @@
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\Mesas.cs" />
     <Compile Include="Models\Opciones.cs" />
     <Compile Include="Models\Ordenes.cs" />
@@ -238,6 +257,7 @@
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Ventas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CargoService.cs" />
@@ -245,7 +265,7 @@
     <Compile Include="Services\CompraService.cs" />
     <Compile Include="Services\DetalleVentaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
-    <Compile Include="Services\Inventario.cs" />
+    <Compile Include="Services\InventarioService.cs" />
     <Compile Include="Services\MesaService.cs" />
     <Compile Include="Services\OpcionService.cs" />
     <Compile Include="Services\OrdenService.cs" />
@@ -255,6 +275,7 @@
     <Compile Include="Services\ProveedorService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsuarioService.cs" />
+    <Compile Include="Services\VentaService.cs" />
     <Compile Include="SesionManager\Sesion.cs" />
     <EmbeddedResource Include="Custom\RJTextBox.resx">
       <DependentUpon>RJTextBox.cs</DependentUpon>
@@ -289,6 +310,9 @@
     <EmbeddedResource Include="Forms\EmpleadosGestion.resx">
       <DependentUpon>EmpleadosGestion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistorialInventario.resx">
+      <DependentUpon>HistorialInventario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -315,6 +339,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PermisosGestion.resx">
       <DependentUpon>PermisosGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductosEdicion.resx">
+      <DependentUpon>ProductosEdicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductosGestion.resx">
+      <DependentUpon>ProductosGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RolesEdicion.resx">
       <DependentUpon>RolesEdicion.cs</DependentUpon>

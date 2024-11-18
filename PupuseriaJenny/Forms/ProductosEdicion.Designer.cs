@@ -42,6 +42,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tbImagen = new System.Windows.Forms.TextBox();
+            this.btnImagen = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // tbCostoUnitario
@@ -92,7 +96,7 @@
             // 
             this.btnCancelar.BackColor = System.Drawing.Color.White;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.Location = new System.Drawing.Point(304, 333);
+            this.btnCancelar.Location = new System.Drawing.Point(418, 435);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(112, 35);
@@ -105,7 +109,7 @@
             // 
             this.btnAceptar.BackColor = System.Drawing.Color.White;
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.Location = new System.Drawing.Point(46, 333);
+            this.btnAceptar.Location = new System.Drawing.Point(124, 435);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(112, 35);
@@ -190,7 +194,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(39, 248);
+            this.label6.Location = new System.Drawing.Point(39, 322);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 20);
@@ -202,18 +206,47 @@
             this.tbImagen.BackColor = System.Drawing.Color.White;
             this.tbImagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbImagen.Location = new System.Drawing.Point(175, 246);
+            this.tbImagen.Location = new System.Drawing.Point(175, 316);
             this.tbImagen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbImagen.Name = "tbImagen";
             this.tbImagen.Size = new System.Drawing.Size(241, 26);
             this.tbImagen.TabIndex = 58;
+            // 
+            // btnImagen
+            // 
+            this.btnImagen.BackColor = System.Drawing.Color.White;
+            this.btnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen.Location = new System.Drawing.Point(175, 270);
+            this.btnImagen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnImagen.Name = "btnImagen";
+            this.btnImagen.Size = new System.Drawing.Size(190, 36);
+            this.btnImagen.TabIndex = 66;
+            this.btnImagen.Text = "Seleccionar imagen";
+            this.btnImagen.UseVisualStyleBackColor = false;
+            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // pbImagen
+            // 
+            this.pbImagen.BackColor = System.Drawing.Color.White;
+            this.pbImagen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbImagen.Location = new System.Drawing.Point(457, 246);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(153, 124);
+            this.pbImagen.TabIndex = 67;
+            this.pbImagen.TabStop = false;
             // 
             // ProductosEdicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(475, 408);
+            this.ClientSize = new System.Drawing.Size(653, 500);
+            this.Controls.Add(this.pbImagen);
+            this.Controls.Add(this.btnImagen);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbNombre);
@@ -228,9 +261,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "ProductosEdicion";
             this.Text = "ProductosEdicion";
             this.Load += new System.EventHandler(this.ProductosEdicion_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,5 +286,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox tbImagen;
+        private System.Windows.Forms.Button btnImagen;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox pbImagen;
     }
 }

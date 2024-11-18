@@ -22,8 +22,8 @@ namespace PupuseriaJenny.Services
         {
             int idDetalleVenta = -1;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_DetalleVenta(idOrden, idProducto, idReceta, cantidadDetalleVenta, subTotalDetalleVEnta) ");
-            sentencia.Append("VALUES(@idOrden, @idProducto, @idReceta, @cantidadDetalleVenta, @subTotalDetalleVenta);");
+            sentencia.Append("INSERT INTO RG_DetalleVenta(idOrden, idProducto, cantidadDetalleVenta, subTotalDetalleVenta) ");
+            sentencia.Append("VALUES(@idOrden, @idProducto, @cantidadDetalleVenta, @subTotalDetalleVenta);");
             sentencia.Append("SELECT LAST_INSERT_ID();");
 
             try
@@ -32,7 +32,6 @@ namespace PupuseriaJenny.Services
                 {
                     { "@idOrden", detallesVentas.IdOrden },
                     { "@idProducto", detallesVentas.IdProducto },
-                    { "@idReceta", detallesVentas.IdReceta },
                     { "@cantidadDetalleVenta", detallesVentas.CantidadDetalleVenta },
                     { "@subTotalDetalleVenta", detallesVentas.SubTotalDetalleVenta }
                 };
@@ -54,9 +53,8 @@ namespace PupuseriaJenny.Services
             sentencia.Append("UPDATE RG_DetalleVenta SET ");
             sentencia.Append("idOrden = @idOrden, ");
             sentencia.Append("idProducto = @idProducto, ");
-            sentencia.Append("idReceta = @idReceta, ");
             sentencia.Append("cantidadDetalleVenta = @cantidadDetalleVenta, ");
-            sentencia.Append("subTotalDetalleVEnta = @subTotalDetalleVenta ");
+            sentencia.Append("subTotalDetalleVenta = @subTotalDetalleVenta ");
             sentencia.Append("WHERE idDetalleVenta = @idDetalleVenta;");
 
             try
@@ -65,7 +63,6 @@ namespace PupuseriaJenny.Services
                 {
                     { "@idOrden", detallesVentas.IdOrden },
                     { "@idProducto", detallesVentas.IdProducto },
-                    { "@idReceta", detallesVentas.IdReceta },
                     { "@cantidadDetalleVenta", detallesVentas.CantidadDetalleVenta },
                     { "@subTotalDetalleVenta", detallesVentas.SubTotalDetalleVenta },
                     { "@idDetalleVenta", detallesVentas.IdDetalleVenta }

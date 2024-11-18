@@ -24,7 +24,7 @@ namespace PupuseriaJenny.Forms
             {
                 // Crear una instancia del servicio de productos y buscar el producto por ID
                 ProductoService productoService = new ProductoService();
-                Productos productos = productoService.BuscarPorId(idKardex);
+                Productos productos = productoService.ObtenerPorId(idKardex);
 
                 // Crear una instancia del servicio de inventario
                 InventarioService inventarioService = new InventarioService();

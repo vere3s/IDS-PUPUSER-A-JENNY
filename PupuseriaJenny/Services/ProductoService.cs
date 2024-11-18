@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PupuseriaJenny.Models;
+using System.Data;
 
 namespace PupuseriaJenny.Services
 {
@@ -16,55 +17,75 @@ namespace PupuseriaJenny.Services
         {
             _operacion = new DBOperacion();
         }
-        public Productos BuscarPorId(int idProducto)
+        public DataTable ObtenerTodos()
         {
-            Productos producto = null;
-            //MessageBox.Show(idProducto.ToString());
-            // Actualizamos la consulta SQL para incluir idProveedor
-            string sentencia = "SELECT idProducto, nombreProducto, costoUnitarioProducto, precioProducto, idCategoria FROM RG_Producto WHERE idProducto = @idProducto;";
+            // Construcción de la sentencia SQL
+            string sentencia = "SELECT p.idProducto, p.nombreProducto, p.costoUnitarioProducto, p.precioProducto, p.idCategoria, c.categoria, p.imagenProducto FROM rg_producto p JOIN RG_Categoria c ON p.idCategoria = c.idCategoria;";
+            try
+            {
+                // Consulta a la base de datos
+                DataTable tabla = _operacion.Consultar(sentencia);
+
+                // Verifica si la consulta devolvió datos
+                if (tabla == null || tabla.Rows.Count == 0)
+                {
+                    Console.WriteLine("No se encontraron registros en la tabla de productos.");
+                    return null;
+                }
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores y log de la excepción
+                Console.WriteLine("Error al obtener productos: " + ex.Message);
+                return null;
+            }
+        }
+        public virtual Productos ObtenerPorId(int idProducto)
+        {
+            Productos productos = null;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("SELECT idProducto, nombreProducto, costoUnitarioProducto, precioProducto, idCategoria, imagenProducto ");
+            sentencia.Append("FROM RG_Producto ");
+            sentencia.Append("WHERE idProducto = @idProducto;");
 
             try
             {
-                // Parámetros para la consulta
                 var parametros = new Dictionary<string, object>
-        {
-            { "@idProducto", idProducto }
-        };
-
-                // Ejecutar la consulta y recuperar el resultado
-                var resultado = _operacion.Consultar(sentencia, parametros);
-
-                // Si se obtiene un resultado, mapearlo al objeto Producto
-                if (resultado != null && resultado.Rows.Count > 0)
                 {
-                    var fila = resultado.Rows[0]; // Asumimos que solo hay un producto con ese ID
+                    { "@idProducto", idProducto }
+                };
 
-                    producto = new Productos
+                DataTable tabla = _operacion.Consultar(sentencia.ToString(), parametros);
+                if (tabla.Rows.Count > 0)
+                {
+                    DataRow fila = tabla.Rows[0];
+                    productos = new Productos
                     {
-                        // Convertimos los valores de la fila a los tipos correspondientes
                         IdProducto = Convert.ToInt32(fila["idProducto"]),
                         NombreProducto = fila["nombreProducto"].ToString(),
-                        CostoUnitarioProducto = fila["costoUnitarioProducto"] != DBNull.Value ? Convert.ToDecimal(fila["costoUnitarioProducto"]) : 0,
-                        PrecioProducto = fila["precioProducto"] != DBNull.Value ? Convert.ToDecimal(fila["precioProducto"]) : 0
-                        // IdCategoria = Convert.ToInt32(fila["idCategoria"]), // Agregado para que sea consistente con la consulta
-
+                        CostoUnitarioProducto =Convert.ToDecimal(fila["costoUnitarioProducto"]),
+                        PrecioProducto = Convert.ToDecimal(fila["precioProducto"]),
+                        IdCategoria = Convert.ToInt32(fila["idCategoria"]),
+                        ImagenProducto = fila["imagenProducto"].ToString()
                     };
                 }
             }
             catch (Exception ex)
             {
-                // Manejo de excepción
-                Console.WriteLine($"Error al buscar producto: {ex.Message}");
+                productos = null;
+
+                Console.WriteLine("Eliminar error es" + ex.Message);
             }
 
-            return producto;
+            return productos;
         }
-
         public bool Insertar(Productos productos)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Producto(nombreProducto, costoUnitarioProducto, precioProducto, idCategoria, idProveedor) VALUES(@nombreProducto, @costoUnitarioProducto, @precioProducto, @idCategoria, @idProveedor);");
+            sentencia.Append("INSERT INTO RG_Producto(nombreProducto, costoUnitarioProducto, precioProducto, idCategoria, imagenProducto) VALUES(@nombreProducto, @costoUnitarioProducto, @precioProducto, @idCategoria, @imagenProducto);");
 
             try
             {
@@ -74,7 +95,7 @@ namespace PupuseriaJenny.Services
                     { "@costoUnitarioProducto", productos.CostoUnitarioProducto },
                     { "@precioProducto", productos.PrecioProducto },
                     { "@idCategoria", productos.IdCategoria },
-                    { "@idProveedor", productos.IdProveedor }
+                    { "@imagenProducto", productos.ImagenProducto }
                 };
 
                 if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
@@ -98,7 +119,7 @@ namespace PupuseriaJenny.Services
                              "costoUnitarioProducto = @costoUnitarioProducto, " +
                              "precioProducto = @precioProducto, " +
                              "idCategoria = @idCategoria, " +
-                             "idProveedor = @idProveedor, ");
+                             "imagenProducto = @imagenProducto ");
             sentencia.Append("WHERE idProducto = @idProducto;");
 
             try
@@ -109,7 +130,7 @@ namespace PupuseriaJenny.Services
                     { "@costoUnitarioProducto", productos.CostoUnitarioProducto },
                     { "@precioProducto", productos.PrecioProducto },
                     { "@idCategoria", productos.IdCategoria },
-                    { "@idProveedor", productos.IdProveedor },
+                    { "@imagenProducto", productos.ImagenProducto },
                     { "@idProducto", productos.IdProducto }
                 };
 

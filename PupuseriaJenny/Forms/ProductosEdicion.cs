@@ -103,5 +103,29 @@ namespace PupuseriaJenny.Forms
         {
             Close();
         }
+
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // Configura las opciones del OpenFileDialog
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures); // Carpeta predeterminada
+                openFileDialog.Filter = "Archivos de imagen (*.jpg;*.jpeg;*.png;*.bmp)|*.jpg;*.jpeg;*.png;*.bmp|Todos los archivos (*.*)|*.*"; // Filtro
+                openFileDialog.Title = "Seleccionar imagen";
+
+                // Muestra el diálogo y verifica si el usuario seleccionó un archivo
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Obtiene la ruta seleccionada
+                    string rutaImagen = openFileDialog.FileName;
+
+                    // Asigna la ruta al campo de texto
+                    tbImagen.Text = rutaImagen;
+
+                    // Opcional: Muestra una vista previa de la imagen en un PictureBox
+                    pbImagen.Image = Image.FromFile(rutaImagen);
+                }
+            }
+        }
     }
 }

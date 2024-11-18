@@ -1,5 +1,4 @@
-﻿using PupuseriaJenny.CLS;
-using PupuseriaJenny.Custom;
+﻿using PupuseriaJenny.Custom;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using System;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,21 +109,44 @@ namespace PupuseriaJenny.Forms
                 BackColor = Color.White,
                 ForeColor = Color.Black,
                 BorderRadius = 8,
+                Font = new Font("Microsoft Sans Serif", 12, FontStyle.Bold),
                 TextImageRelation = TextImageRelation.ImageAboveText,
                 TextAlign = ContentAlignment.MiddleCenter,
                 ImageAlign = ContentAlignment.TopCenter,
                 Padding = new Padding(0),
             };
+
             try
             {
-                Image productoImagen = Image.FromFile("/" + row["nombreProducto"].ToString() + ".png");
-                btnProducto.Image = ResizeImage(productoImagen, 140, 90);
+                // Verifica si el campo 'imageProducto' contiene una ruta válida
+                if (row["imagenProducto"] != DBNull.Value && !string.IsNullOrEmpty(row["imagenProducto"].ToString()))
+                {
+                    string imagePath = row["imagenProducto"].ToString();
+
+                    // Verifica si el archivo existe en la ruta especificada
+                    if (File.Exists(imagePath))
+                    {
+                        Image productoImagen = Image.FromFile(imagePath); // Carga la imagen desde la ruta
+                        btnProducto.Image = ResizeImage(productoImagen, 132, 80);
+                    }
+                    else
+                    {
+                        // Si el archivo no existe, usa la imagen predeterminada
+                        btnProducto.Image = ResizeImage(Properties.Resources.imagenPredeterminada, 132, 80);
+                    }
+                }
+                else
+                {
+                    // Si no hay enlace, usa una imagen predeterminada
+                    btnProducto.Image = ResizeImage(Properties.Resources.imagenPredeterminada, 132, 80);
+                }
             }
             catch (Exception)
             {
-                // Si falla usa una imagen predeterminada
+                // Si ocurre algún error (descarga fallida, enlace no válido, etc.), usa una imagen predeterminada
                 btnProducto.Image = ResizeImage(Properties.Resources.imagenPredeterminada, 132, 80);
             }
+
             // Agrega el evento Click al botón del producto
             btnProducto.Click += (s, ev) => DetallesProductosVenta(row);
             return btnProducto;
@@ -170,7 +193,6 @@ namespace PupuseriaJenny.Forms
                 {
                     IdOrden = _currentIdOrden,
                     IdProducto = Convert.ToInt32(producto["idProducto"]),
-                    IdReceta = 1,
                     CantidadDetalleVenta = cantidad,
                     SubTotalDetalleVenta = totalPrecio
                 };

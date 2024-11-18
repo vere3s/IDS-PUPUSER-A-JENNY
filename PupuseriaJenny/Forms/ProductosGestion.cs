@@ -57,7 +57,7 @@ namespace PupuseriaJenny.Forms
                 }
                 else
                 {
-                    _datos.Filter = "Nombre like '%" + tbFiltro.Text + "%'"; ;
+                    _datos.Filter = "nombreProducto like '%" + tbFiltro.Text + "%'"; ;
                 }
                 dgvProductos.AutoGenerateColumns = false;
                 dgvProductos.DataSource = _datos;
