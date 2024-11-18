@@ -16,6 +16,50 @@ namespace PupuseriaJenny.Services
         {
             _operacion = new DBOperacion();
         }
+        public Productos BuscarPorId(int idProducto)
+        {
+            Productos producto = null;
+            //MessageBox.Show(idProducto.ToString());
+            // Actualizamos la consulta SQL para incluir idProveedor
+            string sentencia = "SELECT idProducto, nombreProducto, costoUnitarioProducto, precioProducto, idCategoria FROM RG_Producto WHERE idProducto = @idProducto;";
+
+            try
+            {
+                // Parámetros para la consulta
+                var parametros = new Dictionary<string, object>
+        {
+            { "@idProducto", idProducto }
+        };
+
+                // Ejecutar la consulta y recuperar el resultado
+                var resultado = _operacion.Consultar(sentencia, parametros);
+
+                // Si se obtiene un resultado, mapearlo al objeto Producto
+                if (resultado != null && resultado.Rows.Count > 0)
+                {
+                    var fila = resultado.Rows[0]; // Asumimos que solo hay un producto con ese ID
+
+                    producto = new Productos
+                    {
+                        // Convertimos los valores de la fila a los tipos correspondientes
+                        IdProducto = Convert.ToInt32(fila["idProducto"]),
+                        NombreProducto = fila["nombreProducto"].ToString(),
+                        CostoUnitarioProducto = fila["costoUnitarioProducto"] != DBNull.Value ? Convert.ToDecimal(fila["costoUnitarioProducto"]) : 0,
+                        PrecioProducto = fila["precioProducto"] != DBNull.Value ? Convert.ToDecimal(fila["precioProducto"]) : 0
+                        // IdCategoria = Convert.ToInt32(fila["idCategoria"]), // Agregado para que sea consistente con la consulta
+
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepción
+                Console.WriteLine($"Error al buscar producto: {ex.Message}");
+            }
+
+            return producto;
+        }
+
         public bool Insertar(Productos productos)
         {
             bool resultado = false;
