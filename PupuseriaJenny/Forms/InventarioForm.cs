@@ -9,7 +9,7 @@ namespace PupuseriaJenny.Forms
 {
     public partial class InventarioForm : Form
     {
-
+        private bool esProducto = true;
 
         BindingSource Datos = new BindingSource();
         public InventarioForm()
@@ -18,7 +18,7 @@ namespace PupuseriaJenny.Forms
             InventarioService inventario = new InventarioService();
             Datos.DataSource = inventario.ObtenerInventarioProductos();
             dataGridView1.DataSource = Datos;
-
+            this.Text = "Inventario de Productos";
             CargarCategorias();
         }
 
@@ -121,7 +121,26 @@ namespace PupuseriaJenny.Forms
                 MessageBox.Show("Error: Selección no válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void AlternarVista(bool esProducto)
+        {
+            this.esProducto = esProducto;
 
+            // Cargar productos o ingredientes según la selección
+            if (esProducto)
+            {
+                InventarioService inventario = new InventarioService();
+                Datos.DataSource = inventario.ObtenerInventarioProductos(); // Cambiar según el servicio para productos
+                this.Text = "Inventario de Productos"; // Cambiar el título a "Productos"
+            }
+            else
+            {
+                InventarioService inventario = new InventarioService();
+                Datos.DataSource = inventario.ObtenerInventarioIngredientes(); // Cambiar según el servicio para ingredientes
+                this.Text = "Inventario de Ingredientes"; // Cambiar el título a "Ingredientes"
+            }
+
+            dataGridView1.DataSource = Datos;
+        }
         private void rjButton1_Click(object sender, EventArgs e)
         {
             try
@@ -161,5 +180,11 @@ namespace PupuseriaJenny.Forms
             }
         }
 
+        private void btnIngredientes_Click(object sender, EventArgs e)
+        {
+            if (!esProducto) { AlternarVista(true); }
+              // Mostrar productos
+              else { AlternarVista(false); }
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using PupuseriaJenny.CLS;
-using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 
 namespace PupuseriaJenny.Forms
@@ -9,11 +8,12 @@ namespace PupuseriaJenny.Forms
     public partial class HistorialInventario : Form
     {
         private int idKardex;
+        private bool cargarProductos;
 
-        // Eliminamos el BindingSource innecesario, ya que no es necesario para esta operación
-        public HistorialInventario(int id)
+        public HistorialInventario(int id, bool cargarProductos = true)
         {
             this.idKardex = id;
+            this.cargarProductos = cargarProductos;  // Determina si cargar productos o ingredientes
             InitializeComponent();
             Cargar();
         }
@@ -22,44 +22,54 @@ namespace PupuseriaJenny.Forms
         {
             try
             {
-                // Crear una instancia del servicio de productos y buscar el producto por ID
-                ProductoService productoService = new ProductoService();
-                Productos productos = productoService.ObtenerPorId(idKardex);
-
-                // Crear una instancia del servicio de inventario
-                InventarioService inventarioService = new InventarioService();
-
-                // Asegurarse de que las fechas seleccionadas no sean nulas
-               
-
-                // Obtener los registros de Kardex por producto y por periodo
-                var kardexList = inventarioService.ObtenerKardexPorProductoYPeriodo(idKardex, dtInicio.Value, dtFinal.Value);
-
-                // Asignar los resultados al DataGridView
-                dataGridView1.DataSource = kardexList;
-
-                // Verificar si el producto fue encontrado
-                if (productos != null)
+                if (cargarProductos)
                 {
-                    // Si el producto no es nulo, asignar el nombre del producto al TextBox
-                    txtTitulo.Text = "Historial de " + productos.NombreProducto;
+                    // Cargar productos
+                    var productoService = new ProductoService();
+                    var producto = productoService.ObtenerPorId(idKardex);
+                    var kardexList = new InventarioService().ObtenerKardexPorProductoYPeriodo(idKardex, dtInicio.Value, dtFinal.Value);
+                    dataGridView1.DataSource = kardexList;
+
+                    if (producto != null)
+                    {
+                        txtTitulo.Text = "Historial de " + producto.NombreProducto;
+                    }
+                    else
+                    {
+                        txtTitulo.Text = "Producto con ID: " + idKardex;
+                        MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    // Si el producto no se encuentra, mostrar el ID y un mensaje de error
-                    txtTitulo.Text = "Producto con ID: " + idKardex.ToString();
-                    MessageBox.Show("Producto no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Cargar ingredientes
+                    var ingredienteService = new IngredienteService();  // Asumiendo que existe un servicio IngredienteService
+                    var ingrediente = ingredienteService.ObtenerIngredientePorId(idKardex);  // Método hipotético
+                    var kardexList = new InventarioService().ObtenerKardexPorIngredienteYPeriodo(idKardex, dtInicio.Value, dtFinal.Value);  // Método hipotético
+
+                    dataGridView1.DataSource = kardexList;
+
+                    if (ingrediente != null)
+                    {
+                        string nombreIngrediente = ingrediente.Rows[0]["nombreIngrediente"].ToString();
+                        txtTitulo.Text = "Historial de " + nombreIngrediente;  // Asignamos el nombre al TextBox
+                    }
+                    else
+                    {
+                        txtTitulo.Text = "Ingrediente con ID: " + idKardex;
+                        MessageBox.Show("Ingrediente no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error al cargar el historial: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al cargar historial: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            Cargar();  // Actualizar el historial al hacer clic en el botón de actualización
+            Cargar();  // Actualizar historial al hacer clic en el botón
         }
     }
 }

@@ -24,30 +24,29 @@ namespace PupuseriaJenny.CLS
         public decimal costoUnitario { get; set; }
         public int saldoCantidad { get; set; }
         public decimal saldoValor { get; set; }
-        public List<Kardex> ObtenerKardexPorProductoYPeriodo(int idProducto, DateTime fechaInicio, DateTime fechaFin)
-        {
-            List<Kardex> kardexList = new List<Kardex>();
 
+        public DataTable ObtenerKardexPorProductoYPeriodo(int idProducto, DateTime fechaInicio, DateTime fechaFin)
+        {
             // Consulta SQL para obtener los registros de Kardex por idProducto y entre un rango de fechas
             string sentencia = @"
-        SELECT 
-            k.idKardex,
-            k.idProducto,
-            k.idIngrediente,
-            k.fechaMovimientoKardex,
-            k.tipoMovimientoKardex,
-            k.cantidadKardex,
-            k.costoUnitarioKardex,
-            k.saldoCantidadKardex,
-            k.saldoValorKardex
-        FROM 
-            RG_Kardex k
-        WHERE 
-            k.idProducto = @idProducto
-            AND k.fechaMovimientoKardex BETWEEN @fechaInicio AND @fechaFin
-        ORDER BY 
-            k.fechaMovimientoKardex DESC
-        LIMIT 300;";
+    SELECT 
+    k.tipoMovimientoKardex,
+    k.idKardex,
+    k.fechaMovimientoKardex,
+    k.cantidadKardex,
+    k.costoUnitarioKardex,
+    @saldoCantidad := @saldoCantidad + k.cantidadKardex AS saldoCantidadKardex,  -- Suma acumulada de la cantidad
+    @saldoValor := @saldoValor + (k.cantidadKardex * k.costoUnitarioKardex) AS saldoValorKardex  -- Suma acumulada del valor
+FROM 
+    RG_Kardex k,
+    (SELECT @saldoCantidad := 0, @saldoValor := 0) AS vars  -- Inicializa las variables
+WHERE 
+    k.idProducto = @idProducto
+    AND k.fechaMovimientoKardex BETWEEN @fechaInicio AND @fechaFin
+ORDER BY 
+    k.fechaMovimientoKardex DESC
+LIMIT 300;
+";
 
             try
             {
@@ -55,45 +54,30 @@ namespace PupuseriaJenny.CLS
                 var parametros = new Dictionary<string, object>
         {
             { "@idProducto", idProducto },
-            { "@fechaInicio", fechaInicio.ToString("yyyy-MM-dd")  },
-            { "@fechaFin", fechaFin .ToString("yyyy-MM-dd")}
+            { "@fechaInicio", fechaInicio.ToString("yyyy-MM-dd") },
+            { "@fechaFin", fechaFin.ToString("yyyy-MM-dd") }
         };
 
                 DBOperacion operacion = new DBOperacion();
                 // Ejecutar la consulta y obtener el resultado
                 var resultado = operacion.Consultar(sentencia, parametros);
 
-                // Si la consulta devuelve resultados
+                // Si la consulta devuelve resultados, retornamos el DataTable directamente
                 if (resultado != null && resultado.Rows.Count > 0)
                 {
-                    foreach (DataRow fila in resultado.Rows)
-                    {
-                        var kardex = new Kardex
-                        {
-                            // Asegúrate de que la fila es una fila válida de la base de datos
-                            IdKardex = Convert.ToInt32(fila["idKardex"]),
-                            IdProducto = fila["idProducto"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["idProducto"]),
-                            IdIngrediente = fila["idIngrediente"] == DBNull.Value ? (int?)null : Convert.ToInt32(fila["idIngrediente"]),
-                            FechaMovimientoKardex = Convert.ToDateTime(fila["fechaMovimientoKardex"]),
-                            TipoMovimientoKardex = fila["tipoMovimientoKardex"].ToString(),
-                            CantidadKardex = fila["cantidadKardex"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["cantidadKardex"]),
-                            CostoUnitarioKardex = fila["costoUnitarioKardex"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["costoUnitarioKardex"]),
-                            SaldoCantidadKardex = fila["saldoCantidadKardex"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["saldoCantidadKardex"]),
-                            SaldoValorKardex = fila["saldoValorKardex"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["saldoValorKardex"])
-
-                        };
-
-                        kardexList.Add(kardex);
-                    }
+                    return resultado;
+                }
+                else
+                {
+                    return null;  // O puedes retornar un DataTable vacío si prefieres
                 }
             }
             catch (Exception ex)
             {
                 // Manejo de errores
                 Console.WriteLine($"Error al obtener Kardex: {ex.Message}");
+                return null;
             }
-
-            return kardexList;
         }
 
         public async Task<bool> InsertarEntradaAsync()
@@ -233,6 +217,44 @@ namespace PupuseriaJenny.CLS
             }
         }
         */
+        public DataTable ObtenerInventarioIngredientes()
+        {
+            DBOperacion operacion = new DBOperacion();
+            StringBuilder sentencia = new StringBuilder();
+
+            // Consulta SQL para obtener id, nombre y cantidad disponible de ingredientes
+            sentencia.Append(@"
+        SELECT 
+            i.idIngrediente, 
+            i.nombreIngrediente, 
+            COALESCE(SUM(e.cantidadEntrada), 0) - COALESCE(SUM(s.cantidadSalida), 0) AS cantidadDisponible, 
+            c.categoria
+        FROM 
+            RG_Ingrediente i
+        LEFT JOIN 
+            RG_Categoria c ON i.idCategoria = c.idCategoria
+        LEFT JOIN 
+            RG_Entrada e ON i.idIngrediente = e.idIngrediente
+        LEFT JOIN 
+            RG_Salida s ON i.idIngrediente = s.idIngrediente
+        GROUP BY 
+            i.idIngrediente, i.nombreIngrediente, c.categoria
+        LIMIT 0, 300;
+    ");
+
+            try
+            {
+                // Ejecutar la consulta y obtener un DataTable
+                DataTable resultado = operacion.Consultar(sentencia.ToString());
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null; // O manejar el error según sea necesario
+            }
+        }
+
         public DataTable ObtenerInventarioProductos()
         {
             DBOperacion operacion = new DBOperacion();
@@ -303,6 +325,61 @@ LIMIT 0, 300;
             {
                 Console.WriteLine("Error: " + ex.Message);
                 return null; // O manejar el error según sea necesario
+            }
+        }
+
+        public DataTable ObtenerKardexPorIngredienteYPeriodo(int idIngrediente, DateTime fechaInicio, DateTime fechaFin)
+        {
+            // Consulta SQL para obtener los registros de Kardex por idIngrediente y entre un rango de fechas
+            string sentencia = @"
+    SELECT 
+        k.tipoMovimientoKardex,
+        k.idKardex,
+        k.fechaMovimientoKardex,
+        k.cantidadKardex,
+        k.costoUnitarioKardex,
+        @saldoCantidad := @saldoCantidad + k.cantidadKardex AS saldoCantidadKardex,  -- Suma acumulada de la cantidad
+        @saldoValor := @saldoValor + (k.cantidadKardex * k.costoUnitarioKardex) AS saldoValorKardex  -- Suma acumulada del valor
+    FROM 
+        RG_Kardex k,
+        (SELECT @saldoCantidad := 0, @saldoValor := 0) AS vars  -- Inicializa las variables
+    WHERE 
+        k.idIngrediente = @idIngrediente  -- Cambiar para ingredientes
+        AND k.fechaMovimientoKardex BETWEEN @fechaInicio AND @fechaFin
+    ORDER BY 
+        k.fechaMovimientoKardex DESC
+    LIMIT 300;
+    ";
+
+            try
+            {
+                // Parámetros para la consulta
+                var parametros = new Dictionary<string, object>
+        {
+            { "@idIngrediente", idIngrediente },
+            { "@fechaInicio", fechaInicio.ToString("yyyy-MM-dd") },
+            { "@fechaFin", fechaFin.ToString("yyyy-MM-dd") }
+        };
+
+                // Ejecutar la consulta
+                DBOperacion operacion = new DBOperacion();
+                var resultado = operacion.Consultar(sentencia, parametros);
+
+                // Si la consulta devuelve resultados, retornamos el DataTable
+                if (resultado != null && resultado.Rows.Count > 0)
+                {
+                    return resultado;
+                }
+                else
+                {
+                    return null;  // O puedes retornar un DataTable vacío si prefieres
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                Console.WriteLine($"Error al obtener Kardex de Ingredientes: {ex.Message}");
+                return null;
             }
         }
 

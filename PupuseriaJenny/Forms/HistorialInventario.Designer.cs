@@ -41,6 +41,14 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.Final = new System.Windows.Forms.Label();
             this.dtFinal = new System.Windows.Forms.DateTimePicker();
+            this.Movimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldoCantidadKardex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldoValorKardex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnActualizar = new PupuseriaJenny.Custom.RJButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -121,6 +129,15 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Movimiento,
+            this.id,
+            this.fecha,
+            this.cantidad,
+            this.costo,
+            this.saldoCantidadKardex,
+            this.saldoValorKardex,
+            this.Column1});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 51);
             this.dataGridView1.Name = "dataGridView1";
@@ -201,10 +218,80 @@
             this.dtFinal.Size = new System.Drawing.Size(102, 20);
             this.dtFinal.TabIndex = 0;
             // 
+            // Movimiento
+            // 
+            this.Movimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Movimiento.DataPropertyName = "tipoMovimientoKardex";
+            this.Movimiento.HeaderText = "Movimiento";
+            this.Movimiento.Name = "Movimiento";
+            this.Movimiento.ReadOnly = true;
+            this.Movimiento.Width = 86;
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.id.DataPropertyName = "idKardex";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 43;
+            // 
+            // fecha
+            // 
+            this.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.fecha.DataPropertyName = "fechaMovimientoKardex";
+            this.fecha.HeaderText = "fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            this.fecha.Width = 59;
+            // 
+            // cantidad
+            // 
+            this.cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cantidad.DataPropertyName = "cantidadKardex";
+            this.cantidad.HeaderText = "cantidad";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            this.cantidad.Width = 73;
+            // 
+            // costo
+            // 
+            this.costo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.costo.DataPropertyName = "costoUnitarioKardex";
+            this.costo.HeaderText = "costo";
+            this.costo.Name = "costo";
+            this.costo.ReadOnly = true;
+            this.costo.Width = 58;
+            // 
+            // saldoCantidadKardex
+            // 
+            this.saldoCantidadKardex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.saldoCantidadKardex.DataPropertyName = "saldoCantidadKardex";
+            this.saldoCantidadKardex.HeaderText = "saldoCantidadKardex";
+            this.saldoCantidadKardex.Name = "saldoCantidadKardex";
+            this.saldoCantidadKardex.ReadOnly = true;
+            this.saldoCantidadKardex.Width = 132;
+            // 
+            // saldoValorKardex
+            // 
+            this.saldoValorKardex.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.saldoValorKardex.DataPropertyName = "saldoValorKardex";
+            this.saldoValorKardex.HeaderText = "saldoValorKardex";
+            this.saldoValorKardex.Name = "saldoValorKardex";
+            this.saldoValorKardex.ReadOnly = true;
+            this.saldoValorKardex.Width = 114;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
             // btnActualizar
             // 
-            this.btnActualizar.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnActualizar.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnActualizar.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnActualizar.BackgroundColor = System.Drawing.Color.DarkGreen;
             this.btnActualizar.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.btnActualizar.BorderRadius = 0;
             this.btnActualizar.BorderSize = 0;
@@ -259,5 +346,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Final;
         private Custom.RJButton btnActualizar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Movimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saldoCantidadKardex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saldoValorKardex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
