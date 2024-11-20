@@ -151,6 +151,18 @@
     <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\IngredienteGestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IngredienteGestion.Designer.cs">
+      <DependentUpon>IngredienteGestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IngredientesEdicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IngredientesEdicion.Designer.cs">
+      <DependentUpon>IngredientesEdicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InventarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +258,7 @@
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Ingredientes.cs" />
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\Mesas.cs" />
     <Compile Include="Models\Opciones.cs" />
@@ -265,6 +278,7 @@
     <Compile Include="Services\CompraService.cs" />
     <Compile Include="Services\DetalleVentaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
+    <Compile Include="Services\IngredienteService.cs" />
     <Compile Include="Services\InventarioService.cs" />
     <Compile Include="Services\MesaService.cs" />
     <Compile Include="Services\OpcionService.cs" />
@@ -315,6 +329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IngredienteGestion.resx">
+      <DependentUpon>IngredienteGestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IngredientesEdicion.resx">
+      <DependentUpon>IngredientesEdicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InventarioForm.resx">
       <DependentUpon>InventarioForm.cs</DependentUpon>

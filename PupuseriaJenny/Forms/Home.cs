@@ -52,5 +52,13 @@ namespace PupuseriaJenny.Forms
         {
 
         }
+
+        private void btnIngredientes_Click(object sender, EventArgs e)
+        {
+
+            IngredienteGestion formIngrediente = new IngredienteGestion();
+            formIngrediente.Show();
+
+        }
     }
 }
