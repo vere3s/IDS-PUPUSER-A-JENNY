@@ -225,8 +225,8 @@ LIMIT 300;
             // Consulta SQL para obtener id, nombre y cantidad disponible de ingredientes
             sentencia.Append(@"
         SELECT 
-            i.idIngrediente, 
-            i.nombreIngrediente, 
+            i.idIngrediente as id, 
+            i.nombreIngrediente as nombre, 
             COALESCE(SUM(e.cantidadEntrada), 0) - COALESCE(SUM(s.cantidadSalida), 0) AS cantidadDisponible, 
             c.categoria
         FROM 
@@ -263,8 +263,8 @@ LIMIT 300;
             // Consulta SQL para obtener id, nombre y cantidad disponible de productos
             sentencia.Append(@"
        SELECT 
-    p.idProducto, 
-    p.nombreProducto, 
+    p.idProducto as id, 
+    p.nombreProducto as nombre, 
     COALESCE(SUM(e.cantidadEntrada), 0) - COALESCE(SUM(s.cantidadSalida), 0) AS cantidadDisponible, 
     c.categoria
 FROM 

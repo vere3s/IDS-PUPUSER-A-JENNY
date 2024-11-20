@@ -30,10 +30,6 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tb1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBotones = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -43,6 +39,10 @@
             this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
             this.btnIngredientes = new PupuseriaJenny.Custom.RJButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tb1.SuspendLayout();
@@ -87,39 +87,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(1156, 482);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // idProducto
-            // 
-            this.idProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.idProducto.DataPropertyName = "idProducto";
-            this.idProducto.HeaderText = "ID";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            this.idProducto.Width = 43;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.DataPropertyName = "nombreProducto";
-            this.nombreProducto.HeaderText = "nombre";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // cantidadDisponible
-            // 
-            this.cantidadDisponible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cantidadDisponible.DataPropertyName = "cantidadDisponible";
-            this.cantidadDisponible.HeaderText = "cantidad";
-            this.cantidadDisponible.Name = "cantidadDisponible";
-            this.cantidadDisponible.ReadOnly = true;
-            this.cantidadDisponible.Width = 73;
-            // 
-            // categoria
-            // 
-            this.categoria.DataPropertyName = "categoria";
-            this.categoria.HeaderText = "categoria";
-            this.categoria.Name = "categoria";
-            this.categoria.ReadOnly = true;
             // 
             // tb1
             // 
@@ -177,6 +144,7 @@
             this.rjTextBox1.TabIndex = 4;
             this.rjTextBox1.Texts = "";
             this.rjTextBox1.UnderlinedStyle = false;
+            this.rjTextBox1._TextChanged += new System.EventHandler(this.rjTextBox1__TextChanged);
             // 
             // rjButton3
             // 
@@ -261,6 +229,39 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(202, 255);
             this.panel1.TabIndex = 4;
+            // 
+            // idProducto
+            // 
+            this.idProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.idProducto.DataPropertyName = "id";
+            this.idProducto.HeaderText = "ID";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Width = 43;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.DataPropertyName = "nombre";
+            this.nombreProducto.HeaderText = "nombre";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // cantidadDisponible
+            // 
+            this.cantidadDisponible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cantidadDisponible.DataPropertyName = "cantidadDisponible";
+            this.cantidadDisponible.HeaderText = "cantidad";
+            this.cantidadDisponible.Name = "cantidadDisponible";
+            this.cantidadDisponible.ReadOnly = true;
+            this.cantidadDisponible.Width = 73;
+            // 
+            // categoria
+            // 
+            this.categoria.DataPropertyName = "categoria";
+            this.categoria.HeaderText = "categoria";
+            this.categoria.Name = "categoria";
+            this.categoria.ReadOnly = true;
             // 
             // InventarioForm
             // 
