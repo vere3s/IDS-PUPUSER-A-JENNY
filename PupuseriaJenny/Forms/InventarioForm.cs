@@ -28,8 +28,16 @@ namespace PupuseriaJenny.Forms
             var operacion = new CategoriaService();
 
             // Simulación de una consulta que trae datos de categorías (ahora es una lista de strings)
-            List<string> categorias = operacion.CategoriasProductos();
-
+            List<string> categorias = new List<string>();
+            if (esProducto)
+            {
+                categorias = operacion.CategoriasProductos(); // Cargar categorías de productos
+            }
+            else
+            {
+                categorias = operacion.CategoriasIngredientes(); // Cargar categorías de ingredientes
+            }
+            panelBotones.Controls.Clear();
             panelBotones.AutoScroll = true;
             panelBotones.BorderStyle = BorderStyle.None;
             int xPosition = 0;
@@ -88,38 +96,7 @@ namespace PupuseriaJenny.Forms
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verifica que el clic haya sido en una fila válida (e.RowIndex >= 0)
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    // Obtén el índice de la fila seleccionada
-                    int filaSeleccionada = e.RowIndex;
-
-                    // Verificar si el valor de la celda es válido y convertirlo a entero
-                    var valorCelda = dataGridView1.Rows[filaSeleccionada].Cells[0].Value;
-
-                    if (valorCelda != null && int.TryParse(valorCelda.ToString(), out int idProducto))
-                    {
-                        // Si el valor es válido, pasar el ID al formulario HistorialInventario
-                       
-                    }
-                    else
-                    {
-                        // Si no es un ID válido, mostrar un mensaje de error
-                        MessageBox.Show("El ID del producto no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Manejo de excepciones generales
-                    MessageBox.Show($"Ocurrió un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                // Si se hace clic fuera de una fila válida
-                MessageBox.Show("Error: Selección no válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
         private void AlternarVista(bool esProducto)
         {
@@ -138,7 +115,7 @@ namespace PupuseriaJenny.Forms
                 Datos.DataSource = inventario.ObtenerInventarioIngredientes(); // Cambiar según el servicio para ingredientes
                 this.Text = "Inventario de Ingredientes"; // Cambiar el título a "Ingredientes"
             }
-
+            CargarCategorias();
             dataGridView1.DataSource = Datos;
         }
         private void rjButton1_Click(object sender, EventArgs e)
@@ -156,11 +133,19 @@ namespace PupuseriaJenny.Forms
                     int id = Int32.TryParse(valorCelda.ToString(), out int idProducto) ? idProducto : 0;
                     // Verificar si el valor de la celda es válido y convertirlo a entero
                     // Si el valor es válido, pasar el ID al formulario HistorialInventario
-                    HistorialInventario historial = new HistorialInventario(id);
-                     //   historial.IdKardex = Int32.TryParse(valorCelda.ToString());  // Asumiendo que tienes una propiedad 'IdKardex' en el formulario HistorialInventario
+
+                    HistorialInventario historial;
+                    if (esProducto) {
+                historial = new HistorialInventario(id,true);
+                        //   historial.IdKardex = Int32.TryParse(valorCelda.ToString());  // Asumiendo que tienes una propiedad 'IdKardex' en el formulario HistorialInventario
                         // Intentar convertir el valor de la celda a int y asignarlo directamente a IdKardex
-                   
-  
+                    }
+                    else
+                    {
+                        historial = new HistorialInventario(id, false);
+
+                    }
+
                     historial.Show();
 
                    
@@ -182,9 +167,20 @@ namespace PupuseriaJenny.Forms
 
         private void btnIngredientes_Click(object sender, EventArgs e)
         {
-            if (!esProducto) { AlternarVista(true); }
+            if (!esProducto) { AlternarVista(true);
+
+                btnIngredientes.Text = "Ingredientes";
+            }
               // Mostrar productos
-              else { AlternarVista(false); }
+              else { AlternarVista(false);
+                btnIngredientes.Text = "Productos";
+            }
+        }
+
+        private void rjTextBox1__TextChanged(object sender, EventArgs e)
+        {
+           string text = rjTextBox1.Texts;
+            Datos.Filter = $"nombre LIKE '%{text}%'";
         }
     }
 }

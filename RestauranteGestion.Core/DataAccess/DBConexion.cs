@@ -28,7 +28,7 @@ namespace RestauranteGestion.Core.DataAccess
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al conectar: {ex.Message}");
+                Console.WriteLine($"Error al conectar: {ex.ToString()}");
                 return false;
             }
         }

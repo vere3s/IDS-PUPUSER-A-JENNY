@@ -34,13 +34,6 @@
             this.txtTitulo = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtInicio = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.Final = new System.Windows.Forms.Label();
-            this.dtFinal = new System.Windows.Forms.DateTimePicker();
             this.Movimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +42,15 @@
             this.saldoCantidadKardex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldoValorKardex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.Final = new System.Windows.Forms.Label();
+            this.dtFinal = new System.Windows.Forms.DateTimePicker();
             this.btnActualizar = new PupuseriaJenny.Custom.RJButton();
+            this.btnPDF = new PupuseriaJenny.Custom.RJButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -145,79 +146,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(788, 359);
             this.dataGridView1.TabIndex = 0;
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel5);
-            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel4);
-            this.flowLayoutPanel2.Controls.Add(this.btnActualizar);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(788, 42);
-            this.flowLayoutPanel2.TabIndex = 1;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Controls.Add(this.dtInicio, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(108, 42);
-            this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // dtInicio
-            // 
-            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicio.Location = new System.Drawing.Point(3, 24);
-            this.dtInicio.Name = "dtInicio";
-            this.dtInicio.Size = new System.Drawing.Size(102, 20);
-            this.dtInicio.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Inicio";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.Final, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.dtFinal, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(117, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(108, 42);
-            this.tableLayoutPanel4.TabIndex = 4;
-            // 
-            // Final
-            // 
-            this.Final.AutoSize = true;
-            this.Final.Location = new System.Drawing.Point(3, 0);
-            this.Final.Name = "Final";
-            this.Final.Size = new System.Drawing.Size(29, 13);
-            this.Final.TabIndex = 2;
-            this.Final.Text = "Final";
-            // 
-            // dtFinal
-            // 
-            this.dtFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFinal.Location = new System.Drawing.Point(3, 24);
-            this.dtFinal.Name = "dtFinal";
-            this.dtFinal.Size = new System.Drawing.Size(102, 20);
-            this.dtFinal.TabIndex = 0;
-            // 
             // Movimiento
             // 
             this.Movimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -288,6 +216,80 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel5);
+            this.flowLayoutPanel2.Controls.Add(this.tableLayoutPanel4);
+            this.flowLayoutPanel2.Controls.Add(this.btnActualizar);
+            this.flowLayoutPanel2.Controls.Add(this.btnPDF);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(788, 42);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.dtInicio, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(108, 42);
+            this.tableLayoutPanel5.TabIndex = 3;
+            // 
+            // dtInicio
+            // 
+            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInicio.Location = new System.Drawing.Point(3, 24);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.Size = new System.Drawing.Size(102, 20);
+            this.dtInicio.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Inicio";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.Final, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dtFinal, 0, 1);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(117, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(108, 42);
+            this.tableLayoutPanel4.TabIndex = 4;
+            // 
+            // Final
+            // 
+            this.Final.AutoSize = true;
+            this.Final.Location = new System.Drawing.Point(3, 0);
+            this.Final.Name = "Final";
+            this.Final.Size = new System.Drawing.Size(29, 13);
+            this.Final.TabIndex = 2;
+            this.Final.Text = "Final";
+            // 
+            // dtFinal
+            // 
+            this.dtFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFinal.Location = new System.Drawing.Point(3, 24);
+            this.dtFinal.Name = "dtFinal";
+            this.dtFinal.Size = new System.Drawing.Size(102, 20);
+            this.dtFinal.TabIndex = 0;
+            // 
             // btnActualizar
             // 
             this.btnActualizar.BackColor = System.Drawing.Color.DarkGreen;
@@ -307,6 +309,25 @@
             this.btnActualizar.UseVisualStyleBackColor = false;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
+            // btnPDF
+            // 
+            this.btnPDF.BackColor = System.Drawing.Color.Crimson;
+            this.btnPDF.BackgroundColor = System.Drawing.Color.Crimson;
+            this.btnPDF.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPDF.BorderRadius = 0;
+            this.btnPDF.BorderSize = 0;
+            this.btnPDF.FlatAppearance.BorderSize = 0;
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.ForeColor = System.Drawing.Color.White;
+            this.btnPDF.Location = new System.Drawing.Point(329, 3);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(99, 40);
+            this.btnPDF.TabIndex = 6;
+            this.btnPDF.Text = "PDF";
+            this.btnPDF.TextColor = System.Drawing.Color.White;
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
             // HistorialInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,7 +335,9 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "HistorialInventario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HistorialInventario";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -354,5 +377,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn saldoCantidadKardex;
         private System.Windows.Forms.DataGridViewTextBoxColumn saldoValorKardex;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private Custom.RJButton btnPDF;
     }
 }
