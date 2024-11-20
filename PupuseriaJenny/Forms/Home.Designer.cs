@@ -48,7 +48,7 @@
             this.btnIngredientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngredientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngredientes.ForeColor = System.Drawing.Color.Black;
-            this.btnIngredientes.Location = new System.Drawing.Point(480, 118);
+            this.btnIngredientes.Location = new System.Drawing.Point(473, 118);
             this.btnIngredientes.Margin = new System.Windows.Forms.Padding(2);
             this.btnIngredientes.Name = "btnIngredientes";
             this.btnIngredientes.Size = new System.Drawing.Size(150, 123);
@@ -69,7 +69,7 @@
             this.btnInventario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInventario.ForeColor = System.Drawing.Color.Black;
-            this.btnInventario.Location = new System.Drawing.Point(374, 285);
+            this.btnInventario.Location = new System.Drawing.Point(366, 285);
             this.btnInventario.Margin = new System.Windows.Forms.Padding(2);
             this.btnInventario.Name = "btnInventario";
             this.btnInventario.Size = new System.Drawing.Size(150, 123);
@@ -111,7 +111,7 @@
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.Color.Black;
-            this.btnReportes.Location = new System.Drawing.Point(611, 285);
+            this.btnReportes.Location = new System.Drawing.Point(584, 285);
             this.btnReportes.Margin = new System.Windows.Forms.Padding(2);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(150, 123);
@@ -153,7 +153,7 @@
             this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVenta.ForeColor = System.Drawing.Color.Black;
-            this.btnVenta.Location = new System.Drawing.Point(707, 118);
+            this.btnVenta.Location = new System.Drawing.Point(684, 118);
             this.btnVenta.Margin = new System.Windows.Forms.Padding(2);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(150, 123);
