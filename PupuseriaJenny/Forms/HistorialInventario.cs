@@ -48,15 +48,15 @@ namespace PupuseriaJenny.Forms
                 {
                     // Cargar ingredientes
                     var ingredienteService = new IngredienteService();  // Asumiendo que existe un servicio IngredienteService
-                    var ingrediente = ingredienteService.ObtenerIngredientePorId(idKardex);  // Método hipotético
+                    var ingrediente = ingredienteService.ObtenerPorId(idKardex);  // Método hipotético
                     Datos.DataSource = new InventarioService().ObtenerKardexPorIngredienteYPeriodo(idKardex, dtInicio.Value, dtFinal.Value);  // Método hipotético
 
                     dataGridView1.DataSource = Datos;
 
                     if (ingrediente != null)
                     {
-                        string nombreIngrediente = ingrediente.Rows[0]["nombreIngrediente"].ToString();
-                        txtTitulo.Text = "Historial de " + nombreIngrediente;  // Asignamos el nombre al TextBox
+                        ///string nombreIngrediente = ingrediente.Rows[0]["nombreIngrediente"].ToString();
+                        txtTitulo.Text = "Historial de " + ingrediente.NombreIngrediente;  // Asignamos el nombre al TextBox
                     }
                     else
                     {
