@@ -292,7 +292,6 @@ namespace PupuseriaJenny.Forms
 
             foreach (DataRow row in productosOrden.Rows)
             {
-                // Agrega cada producto al DataGridView con los detalles correspondientes
                 int rowIndex = dgvProductosDetalles.Rows.Add(
                     row["idDetalleVenta"].ToString(),
                     row["idProducto"].ToString(),

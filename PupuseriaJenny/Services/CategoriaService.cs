@@ -168,7 +168,33 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
+        public DataTable ObtenerIngredientesPorCategoria(string categoria)
+        {
+            DataTable resultado = new DataTable();
+            string consulta = @"SELECT i.idIngrediente, i.nombreIngrediente, dp.precioDetallePedidoIngrediente, i.imagenProducto
+                            FROM RG_Ingrediente i
+                            JOIN RG_Categoria c ON i.idCategoria = c.idCategoria
+                            JOIN RG_DetallePedidoIngrediente dp ON i.idIngrediente = dp.idIngrediente
+                            WHERE c.categoria = @categoria
+                            ORDER BY i.nombreIngrediente ASC";
 
+            try
+            {
+                // Agregar parámetro
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@categoria", categoria }
+                };
+
+                resultado = _operacion.Consultar(consulta, parametros);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener ingredientes: " + ex.Message);
+            }
+
+            return resultado;
+        }
         public CategoriaService(DBOperacion operacion = null)
         {
             _operacion = operacion ?? new DBOperacion();

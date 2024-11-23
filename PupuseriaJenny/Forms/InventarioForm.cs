@@ -182,5 +182,12 @@ namespace PupuseriaJenny.Forms
            string text = rjTextBox1.Texts;
             Datos.Filter = $"nombre LIKE '%{text}%'";
         }
+
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            Close();
+            DescargarInventarioForm descargarInventarioForm = new DescargarInventarioForm();
+            descargarInventarioForm.ShowDialog();
+        }
     }
 }
