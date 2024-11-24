@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SeleccionarVentasForm));
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOpcionLlevar = new PupuseriaJenny.Custom.RJButton();
@@ -127,13 +128,15 @@
             this.btnPedidosAbiertos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedidosAbiertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidosAbiertos.ForeColor = System.Drawing.Color.White;
-            this.btnPedidosAbiertos.Location = new System.Drawing.Point(218, 3);
+            this.btnPedidosAbiertos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidosAbiertos.Image")));
+            this.btnPedidosAbiertos.Location = new System.Drawing.Point(220, 3);
             this.btnPedidosAbiertos.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnPedidosAbiertos.Name = "btnPedidosAbiertos";
-            this.btnPedidosAbiertos.Size = new System.Drawing.Size(268, 84);
+            this.btnPedidosAbiertos.Size = new System.Drawing.Size(266, 84);
             this.btnPedidosAbiertos.TabIndex = 6;
             this.btnPedidosAbiertos.Text = "Pedidos abiertos";
             this.btnPedidosAbiertos.TextColor = System.Drawing.Color.White;
+            this.btnPedidosAbiertos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPedidosAbiertos.UseVisualStyleBackColor = false;
             this.btnPedidosAbiertos.Click += new System.EventHandler(this.btnPedidosAbiertos_Click);
             // 
@@ -142,6 +145,7 @@
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnSalir.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnSalir.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.btnSalir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSalir.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.btnSalir.BorderRadius = 5;
             this.btnSalir.BorderSize = 0;
@@ -149,13 +153,16 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.Location = new System.Drawing.Point(509, 3);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(268, 84);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
+            this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalir.TextColor = System.Drawing.Color.White;
+            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
@@ -233,7 +240,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SeleccionarVentasForm";
-            this.Text = "VentasForm";
+            this.Text = "Seleccionar Tipo de Venta";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

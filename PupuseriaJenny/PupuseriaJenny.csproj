@@ -346,7 +346,6 @@
     <Compile Include="Models\Ordenes.cs" />
     <Compile Include="Models\PedidoCompra.cs" />
     <Compile Include="Models\Permiso.cs" />
-    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Roles.cs" />

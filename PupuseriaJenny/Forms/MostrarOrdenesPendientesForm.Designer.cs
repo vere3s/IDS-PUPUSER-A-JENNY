@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MostrarOrdenesPendientesForm));
             this.flpOrdenesPendientes = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -54,7 +55,7 @@
             this.flpOrdenesPendientes.Location = new System.Drawing.Point(3, 3);
             this.flpOrdenesPendientes.Name = "flpOrdenesPendientes";
             this.flpOrdenesPendientes.Padding = new System.Windows.Forms.Padding(90, 0, 10, 0);
-            this.flpOrdenesPendientes.Size = new System.Drawing.Size(794, 399);
+            this.flpOrdenesPendientes.Size = new System.Drawing.Size(794, 383);
             this.flpOrdenesPendientes.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -68,8 +69,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.44444F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.55556F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -78,9 +79,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 408);
+            this.panel1.Location = new System.Drawing.Point(3, 392);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 39);
+            this.panel1.Size = new System.Drawing.Size(794, 55);
             this.panel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -99,7 +100,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 39);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 55);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // btnSalir
@@ -114,13 +115,15 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Location = new System.Drawing.Point(637, 3);
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(637, 5);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(137, 33);
+            this.btnSalir.Size = new System.Drawing.Size(137, 44);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.TextColor = System.Drawing.Color.White;
+            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
@@ -131,7 +134,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(311, 33);
+            this.panel2.Size = new System.Drawing.Size(311, 49);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -162,7 +165,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(320, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(311, 33);
+            this.panel4.Size = new System.Drawing.Size(311, 49);
             this.panel4.TabIndex = 1;
             // 
             // label2
@@ -192,8 +195,9 @@
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MostrarOrdenesPendientesForm";
-            this.Text = "MostrarOrdenes";
+            this.Text = "Ordenes Pendientes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

@@ -38,7 +38,7 @@ namespace PupuseriaJenny.Models
 
         // Propiedades de navegación para las claves foráneas
         public virtual PedidoCompra pedidoCompra { get; set; }
-        public virtual Producto Producto { get; set; }
+        public virtual Productos Producto { get; set; }
         public object IdProveedor { get; internal set; }
         public object FechaPedidoCompra { get; internal set; }
         public object EstadoPedidoCompra { get; internal set; }

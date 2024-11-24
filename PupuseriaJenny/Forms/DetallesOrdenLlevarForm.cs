@@ -23,7 +23,6 @@ namespace PupuseriaJenny.Forms
             InitializeComponent();
             _ordenService = new OrdenService();
             _tipoOrden = tipoOrden;
-            this.FormClosed += (s, e) => this.Dispose();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -47,13 +46,14 @@ namespace PupuseriaJenny.Forms
 
             if (idOrden > 0)
             {
+                // Oculta el formulario padre (SeleccionarVentasForm)
+                if (this.Owner != null)
+                {
+                    this.Owner.Hide();
+                }
                 // Abre el formulario de ventas
                 AbrirOrdenVentasForm(idOrden);
 
-                // Cierra el formulario de detalles
-                this.Close();
-                this.Dispose();
-                new SeleccionarVentasForm().Close();
                 //MessageBox.Show("Orden creada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -64,6 +64,8 @@ namespace PupuseriaJenny.Forms
         private void AbrirOrdenVentasForm(int idOrden)
         {
             OrdenVentasForm ordenVentasForm = new OrdenVentasForm(idOrden);
+            this.Dispose();
+            this.Close();
             ordenVentasForm.ShowDialog();
         }
         private void btnCancelar_Click(object sender, EventArgs e)
