@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnEliminarIngrediente = new PupuseriaJenny.Custom.RJButton();
             this.dgvIngredientesDetalles = new System.Windows.Forms.DataGridView();
+            this.idIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioDetallePedidoIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flpCategorias = new System.Windows.Forms.FlowLayoutPanel();
             this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
@@ -45,10 +49,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDescargarIngredientes = new PupuseriaJenny.Custom.RJButton();
-            this.idIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioDetallePedidoIngrediente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -134,21 +134,21 @@
             // 
             this.dgvIngredientesDetalles.AllowUserToAddRows = false;
             this.dgvIngredientesDetalles.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            this.dgvIngredientesDetalles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            this.dgvIngredientesDetalles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIngredientesDetalles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvIngredientesDetalles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngredientesDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredientesDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIngredientesDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIngredientesDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idIngrediente,
@@ -156,14 +156,14 @@
             this.precioDetallePedidoIngrediente,
             this.Cantidad});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvIngredientesDetalles, 2);
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngredientesDetalles.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredientesDetalles.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvIngredientesDetalles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIngredientesDetalles.EnableHeadersVisualStyles = false;
             this.dgvIngredientesDetalles.Location = new System.Drawing.Point(3, 3);
@@ -172,6 +172,36 @@
             this.dgvIngredientesDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIngredientesDetalles.Size = new System.Drawing.Size(345, 354);
             this.dgvIngredientesDetalles.TabIndex = 36;
+            // 
+            // idIngrediente
+            // 
+            this.idIngrediente.DataPropertyName = "idIngrediente";
+            this.idIngrediente.HeaderText = "idIngrediente";
+            this.idIngrediente.Name = "idIngrediente";
+            this.idIngrediente.ReadOnly = true;
+            this.idIngrediente.Visible = false;
+            // 
+            // nombreIngrediente
+            // 
+            this.nombreIngrediente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreIngrediente.DataPropertyName = "nombreIngrediente";
+            this.nombreIngrediente.HeaderText = "Ingrediente";
+            this.nombreIngrediente.Name = "nombreIngrediente";
+            this.nombreIngrediente.ReadOnly = true;
+            // 
+            // precioDetallePedidoIngrediente
+            // 
+            this.precioDetallePedidoIngrediente.DataPropertyName = "precioDetallePedidoIngrediente";
+            this.precioDetallePedidoIngrediente.HeaderText = "Costo Unitario";
+            this.precioDetallePedidoIngrediente.Name = "precioDetallePedidoIngrediente";
+            this.precioDetallePedidoIngrediente.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
             // 
             // tableLayoutPanel2
             // 
@@ -303,36 +333,6 @@
             this.btnDescargarIngredientes.UseVisualStyleBackColor = false;
             this.btnDescargarIngredientes.Click += new System.EventHandler(this.btnDescargarIngredientes_Click);
             // 
-            // idIngrediente
-            // 
-            this.idIngrediente.DataPropertyName = "idIngrediente";
-            this.idIngrediente.HeaderText = "idIngrediente";
-            this.idIngrediente.Name = "idIngrediente";
-            this.idIngrediente.ReadOnly = true;
-            this.idIngrediente.Visible = false;
-            // 
-            // nombreIngrediente
-            // 
-            this.nombreIngrediente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreIngrediente.DataPropertyName = "nombreIngrediente";
-            this.nombreIngrediente.HeaderText = "Ingrediente";
-            this.nombreIngrediente.Name = "nombreIngrediente";
-            this.nombreIngrediente.ReadOnly = true;
-            // 
-            // precioDetallePedidoIngrediente
-            // 
-            this.precioDetallePedidoIngrediente.DataPropertyName = "precioDetallePedidoIngrediente";
-            this.precioDetallePedidoIngrediente.HeaderText = "Costo Unitario";
-            this.precioDetallePedidoIngrediente.Name = "precioDetallePedidoIngrediente";
-            this.precioDetallePedidoIngrediente.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
             // DescargarInventarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,7 +340,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Name = "DescargarInventarioForm";
-            this.Text = "DescargarInventarioForm";
+            this.Text = "Descarga de Inventario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
