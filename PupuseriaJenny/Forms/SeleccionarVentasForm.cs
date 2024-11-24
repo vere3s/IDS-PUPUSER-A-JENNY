@@ -24,33 +24,34 @@ namespace PupuseriaJenny.Forms
         private void btnOpcionRestaurante_Click(object sender, EventArgs e)
         {
             AbrirDetallesMesaForm("Comer en Restaurante");
-            this.Close();
-            this.Dispose();
         }
         private void AbrirDetallesOrdenForm(string tipoOrden)
         {
             // Crea una instancia del formulario de detalles y pasa el tipo de orden
             DetallesOrdenLlevarForm detallesOrdenForm = new DetallesOrdenLlevarForm(tipoOrden);
+            detallesOrdenForm.Owner = this; // Establece SeleccionarVentasForm como padre
             detallesOrdenForm.ShowDialog();
+            this.Show();
         }
         private void AbrirDetallesMesaForm(string tipoOrden)
         {
             // Crea una instancia del formulario de detalles y pasa el tipo de orden
             DetallesOrdenMesaForm detallesOrdenForm = new DetallesOrdenMesaForm(tipoOrden);
+            this.Hide(); // Oculta el formulario actual
             detallesOrdenForm.ShowDialog();
+            this.Show();
         }
 
         private void btnPedidosAbiertos_Click(object sender, EventArgs e)
         {
             MostrarOrdenesPendientesForm mostrarOrdenesForm = new MostrarOrdenesPendientesForm();
+            this.Hide();
             mostrarOrdenesForm.ShowDialog();
-            this.Close();
+            this.Show();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
-            home.ShowDialog();
             this.Close();
         }
     }

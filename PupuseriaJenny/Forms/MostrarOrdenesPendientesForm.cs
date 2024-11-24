@@ -110,6 +110,8 @@ namespace PupuseriaJenny.Forms
             // Abre el formulario de OrdenVentas para editar la orden seleccionada
             OrdenVentasForm ordenVentasForm = new OrdenVentasForm(idOrden);
             ordenVentasForm.NumeroMesa = mesa.ToString();
+            this.Dispose();
+            this.Close();
             ordenVentasForm.ShowDialog();
 
             // Recarga las órdenes pendientes al cerrar OrdenVentasForm
@@ -118,8 +120,7 @@ namespace PupuseriaJenny.Forms
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            SeleccionarVentasForm seleccionarVentasForm = new SeleccionarVentasForm();
-            seleccionarVentasForm.ShowDialog();
+            this.Close();
         }
     }
 }

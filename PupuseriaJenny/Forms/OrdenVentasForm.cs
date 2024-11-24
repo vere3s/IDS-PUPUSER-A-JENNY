@@ -354,9 +354,7 @@ namespace PupuseriaJenny.Forms
 
                 if (result == DialogResult.OK)
                 {
-                    Close();
-                    SeleccionarVentasForm seleccionarVentasForm = new SeleccionarVentasForm();
-                    seleccionarVentasForm.ShowDialog();
+                    this.Close();
                 }
             }
             else
@@ -368,9 +366,7 @@ namespace PupuseriaJenny.Forms
                     OrdenService ordenService = new OrdenService();
                     if (ordenService.Eliminar(_currentIdOrden))
                     {
-                        Close();
-                        SeleccionarVentasForm seleccionarVentasForm = new SeleccionarVentasForm();
-                        seleccionarVentasForm.ShowDialog();
+                        this.Close();
                     }
                     else
                     {
@@ -394,14 +390,12 @@ namespace PupuseriaJenny.Forms
                     if (ordenService.EstadoOrden(_currentIdOrden, estado))
                     {
                         MessageBox.Show("La orden ha sido cancelada con éxito.", "Orden Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
                     }
                     else
                     {
                         MessageBox.Show("Hubo un problema al cancelar la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    Close();
-                    new SeleccionarVentasForm().ShowDialog();
                 }
             }
             else
@@ -438,8 +432,9 @@ namespace PupuseriaJenny.Forms
 
                 if (result == DialogResult.OK)
                 {
-                    Close();
                     MostrarOrdenesPendientesForm mostrarOrdenesForm = new MostrarOrdenesPendientesForm();
+                    this.Dispose();
+                    this.Close();
                     mostrarOrdenesForm.ShowDialog();
                 }
             }
@@ -452,8 +447,9 @@ namespace PupuseriaJenny.Forms
                     OrdenService ordenService = new OrdenService();
                     if (ordenService.Eliminar(_currentIdOrden))
                     {
-                        Close();
                         MostrarOrdenesPendientesForm mostrarOrdenesForm = new MostrarOrdenesPendientesForm();
+                        this.Dispose();
+                        this.Close();
                         mostrarOrdenesForm.ShowDialog();
                     }
                     else

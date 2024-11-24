@@ -1,4 +1,5 @@
-﻿using PupuseriaJenny.Custom;
+﻿using Org.BouncyCastle.Pqc.Crypto.Lms;
+using PupuseriaJenny.Custom;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using System;
@@ -79,6 +80,7 @@ namespace PupuseriaJenny.Forms
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             CrearOrden();
+            this.Close();
         }
         private void CrearOrden()
         {
@@ -98,8 +100,6 @@ namespace PupuseriaJenny.Forms
 
             if (idOrden > 0)
             {
-                this.Close();
-                //this.Dispose();
                 // Abre el formulario de ventas
                 AbrirOrdenVentasForm(idOrden);
                 //MessageBox.Show("Orden creada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -113,18 +113,13 @@ namespace PupuseriaJenny.Forms
         {
             OrdenVentasForm ordenVentasForm = new OrdenVentasForm(idOrden);
             ordenVentasForm.NumeroMesa = tbMesa.Text;  // Pasa el número de mesa
+            this.Dispose();
+            this.Close();
             ordenVentasForm.ShowDialog();
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            //this.Dispose();
-            AbrirSeleccionarVentasForm();
-        }
-        private void AbrirSeleccionarVentasForm()
-        {
-            SeleccionarVentasForm seleccionarVentasForm = new SeleccionarVentasForm();
-            seleccionarVentasForm.ShowDialog();
         }
     }
 }
