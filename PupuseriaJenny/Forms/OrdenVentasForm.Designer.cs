@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrdenVentasForm));
             this.spcVentas = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProductosDetalles = new System.Windows.Forms.DataGridView();
@@ -67,6 +68,7 @@
             this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton5 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
@@ -75,7 +77,6 @@
             this.btnPedidosAbiertos = new PupuseriaJenny.Custom.RJButton();
             this.btnCancelarVenta = new PupuseriaJenny.Custom.RJButton();
             this.btnSalir = new PupuseriaJenny.Custom.RJButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.spcVentas)).BeginInit();
             this.spcVentas.Panel1.SuspendLayout();
             this.spcVentas.Panel2.SuspendLayout();
@@ -93,10 +94,10 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flpCategorias.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.flpProductos.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // spcVentas
@@ -672,6 +673,17 @@
             this.panel4.Size = new System.Drawing.Size(134, 58);
             this.panel4.TabIndex = 34;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(103, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -743,12 +755,14 @@
             this.btnPedidosAbiertos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedidosAbiertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidosAbiertos.ForeColor = System.Drawing.Color.White;
-            this.btnPedidosAbiertos.Location = new System.Drawing.Point(126, 8);
+            this.btnPedidosAbiertos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidosAbiertos.Image")));
+            this.btnPedidosAbiertos.Location = new System.Drawing.Point(125, 8);
             this.btnPedidosAbiertos.Name = "btnPedidosAbiertos";
-            this.btnPedidosAbiertos.Size = new System.Drawing.Size(104, 46);
+            this.btnPedidosAbiertos.Size = new System.Drawing.Size(105, 46);
             this.btnPedidosAbiertos.TabIndex = 4;
             this.btnPedidosAbiertos.Text = "Pedidos abiertos";
             this.btnPedidosAbiertos.TextColor = System.Drawing.Color.White;
+            this.btnPedidosAbiertos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPedidosAbiertos.UseVisualStyleBackColor = false;
             this.btnPedidosAbiertos.Click += new System.EventHandler(this.btnPedidosAbiertos_Click);
             // 
@@ -764,12 +778,14 @@
             this.btnCancelarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelarVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelarVenta.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarVenta.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelarVenta.Image")));
             this.btnCancelarVenta.Location = new System.Drawing.Point(236, 8);
             this.btnCancelarVenta.Name = "btnCancelarVenta";
             this.btnCancelarVenta.Size = new System.Drawing.Size(104, 46);
             this.btnCancelarVenta.TabIndex = 3;
             this.btnCancelarVenta.Text = "Cancelar Venta";
             this.btnCancelarVenta.TextColor = System.Drawing.Color.White;
+            this.btnCancelarVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelarVenta.UseVisualStyleBackColor = false;
             this.btnCancelarVenta.Click += new System.EventHandler(this.btnCancelarVenta_Click);
             // 
@@ -785,25 +801,17 @@
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.Color.White;
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
             this.btnSalir.Location = new System.Drawing.Point(346, 8);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(104, 46);
             this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
+            this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalir.TextColor = System.Drawing.Color.White;
+            this.btnSalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(103, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 26);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // OrdenVentasForm
             // 
@@ -811,7 +819,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 585);
             this.Controls.Add(this.spcVentas);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "OrdenVentasForm";
             this.Text = "Ventas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -836,10 +844,10 @@
             this.flpCategorias.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.flpProductos.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
