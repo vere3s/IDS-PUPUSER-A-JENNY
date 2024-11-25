@@ -36,6 +36,7 @@ builder.Services.AddAuthentication(options =>
 // Agregar controladores (en caso de ser una API)
 builder.Services.AddControllers();
 builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<CategoriaService>();
 
 // Configuración de Swagger (opcional para probar la API)

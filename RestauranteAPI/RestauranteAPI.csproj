@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\NewFolder\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Controllers\NewFolder\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
