@@ -147,6 +147,6 @@ namespace PupuseriaJenny.Forms
                 CalcularTotal();
             }
 
-
-        }
+      
+    }
     }

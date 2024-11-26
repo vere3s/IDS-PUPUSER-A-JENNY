@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Compras));
             this.lbProveedor = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
@@ -45,7 +44,6 @@
             this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton6 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pBbuscar = new System.Windows.Forms.PictureBox();
             this.tBxBuscar = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
@@ -66,6 +64,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.dTPFecha = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.pBbuscar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprasDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -74,7 +73,6 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flpCategorias.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.flpProductos.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -88,6 +86,7 @@
             this.spcVentas.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.SuspendLayout();
             // 
             // lbProveedor
@@ -281,19 +280,6 @@
             this.panel4.Size = new System.Drawing.Size(134, 58);
             this.panel4.TabIndex = 34;
             // 
-            // pBbuscar
-            // 
-            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBbuscar.BackColor = System.Drawing.Color.White;
-            this.pBbuscar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pBbuscar.BackgroundImage")));
-            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pBbuscar.Image = ((System.Drawing.Image)(resources.GetObject("pBbuscar.Image")));
-            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
-            this.pBbuscar.Name = "pBbuscar";
-            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
-            this.pBbuscar.TabIndex = 3;
-            this.pBbuscar.TabStop = false;
-            // 
             // tBxBuscar
             // 
             this.tBxBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -331,7 +317,6 @@
             // button6
             // 
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button6.Location = new System.Drawing.Point(10, 10);
             this.button6.Margin = new System.Windows.Forms.Padding(0);
@@ -456,7 +441,7 @@
             // 
             // lbTotal
             // 
-            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lbTotal.AutoSize = true;
             this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -493,8 +478,8 @@
             // 
             // tbTotal
             // 
-            this.tbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTotal.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -577,6 +562,17 @@
             this.label2.Text = "Fecha:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pBbuscar
+            // 
+            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBbuscar.BackColor = System.Drawing.Color.White;
+            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
+            this.pBbuscar.Name = "pBbuscar";
+            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
+            this.pBbuscar.TabIndex = 3;
+            this.pBbuscar.TabStop = false;
+            // 
             // Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -594,7 +590,6 @@
             this.flpCategorias.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.flpProductos.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -612,6 +607,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.ResumeLayout(false);
 
         }
