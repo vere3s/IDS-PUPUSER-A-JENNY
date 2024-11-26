@@ -1,33 +1,33 @@
-﻿namespace PupuseriaJenny.Forms
-{
-    partial class Compras
+﻿    namespace PupuseriaJenny.Forms
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        partial class Compras
         {
-            if (disposing && (components != null))
+            /// <summary>
+            /// Required designer variable.
+            /// </summary>
+            private System.ComponentModel.IContainer components = null;
+
+            /// <summary>
+            /// Clean up any resources being used.
+            /// </summary>
+            /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+            protected override void Dispose(bool disposing)
             {
-                components.Dispose();
+                if (disposing && (components != null))
+                {
+                    components.Dispose();
+                }
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
-        }
 
-        #region Windows Form Designer generated code
+            #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+            /// <summary>
+            /// Required method for Designer support - do not modify
+            /// the contents of this method with the code editor.
+            /// </summary>
+            private void InitializeComponent()
+            {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,6 +44,7 @@
             this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
             this.rjButton6 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pBbuscar = new System.Windows.Forms.PictureBox();
             this.tBxBuscar = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
@@ -64,7 +65,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.dTPFecha = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.pBbuscar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprasDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -73,6 +73,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flpCategorias.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.flpProductos.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -86,7 +87,6 @@
             this.spcVentas.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.SuspendLayout();
             // 
             // lbProveedor
@@ -279,6 +279,17 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(134, 58);
             this.panel4.TabIndex = 34;
+            // 
+            // pBbuscar
+            // 
+            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBbuscar.BackColor = System.Drawing.Color.White;
+            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
+            this.pBbuscar.Name = "pBbuscar";
+            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
+            this.pBbuscar.TabIndex = 3;
+            this.pBbuscar.TabStop = false;
             // 
             // tBxBuscar
             // 
@@ -562,17 +573,6 @@
             this.label2.Text = "Fecha:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pBbuscar
-            // 
-            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBbuscar.BackColor = System.Drawing.Color.White;
-            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
-            this.pBbuscar.Name = "pBbuscar";
-            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
-            this.pBbuscar.TabIndex = 3;
-            this.pBbuscar.TabStop = false;
-            // 
             // Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,6 +590,7 @@
             this.flpCategorias.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.flpProductos.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -607,46 +608,45 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.ResumeLayout(false);
 
+            }
+
+            #endregion
+
+            private System.Windows.Forms.Label lbProveedor;
+            private System.Windows.Forms.Label lblNombre;
+            private System.Windows.Forms.TextBox tbNombre;
+            private System.Windows.Forms.DataGridView dgvComprasDetalles;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+            private System.Windows.Forms.Panel panel1;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+            private Custom.RJButton rjBtnPagar;
+            private System.Windows.Forms.TextBox tbTotal;
+            private System.Windows.Forms.Panel panel2;
+            private System.Windows.Forms.TextBox tbProveedor;
+            private System.Windows.Forms.Panel panel3;
+            private System.Windows.Forms.SplitContainer splitContainer1;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+            private System.Windows.Forms.FlowLayoutPanel flpCategorias;
+            private Custom.RJButton rjButton4;
+            private Custom.RJButton rjButton6;
+            private System.Windows.Forms.Panel panel4;
+            private System.Windows.Forms.PictureBox pBbuscar;
+            private System.Windows.Forms.TextBox tBxBuscar;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+            private System.Windows.Forms.FlowLayoutPanel flpProductos;
+            private System.Windows.Forms.Button button6;
+            private System.Windows.Forms.Panel panel5;
+            private Custom.RJButton rjButton2;
+            private Custom.RJButton rjButton1;
+            private System.Windows.Forms.SplitContainer spcVentas;
+            private System.Windows.Forms.Label lbTotal;
+            private System.Windows.Forms.Panel panel6;
+            private System.Windows.Forms.Label label2;
+            private System.Windows.Forms.DateTimePicker dTPFecha;
+            private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
+            private System.Windows.Forms.DataGridViewTextBoxColumn costoUnitarioProducto;
+            private System.Windows.Forms.DataGridViewTextBoxColumn precioProducto;
         }
-
-        #endregion
-
-        private System.Windows.Forms.Label lbProveedor;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.DataGridView dgvComprasDetalles;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Custom.RJButton rjBtnPagar;
-        private System.Windows.Forms.TextBox tbTotal;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbProveedor;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flpCategorias;
-        private Custom.RJButton rjButton4;
-        private Custom.RJButton rjButton6;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.PictureBox pBbuscar;
-        private System.Windows.Forms.TextBox tBxBuscar;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flpProductos;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel5;
-        private Custom.RJButton rjButton2;
-        private Custom.RJButton rjButton1;
-        private System.Windows.Forms.SplitContainer spcVentas;
-        private System.Windows.Forms.Label lbTotal;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dTPFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costoUnitarioProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioProducto;
     }
-}

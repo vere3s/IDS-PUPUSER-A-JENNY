@@ -2,30 +2,41 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using PupuseriaJenny.Forms;
 using PupuseriaJenny.Models;
 using RestauranteGestion.Core.DataAccess;
 
 namespace PupuseriaJenny.Services
 {
+    
+    /// Servicio para gestionar las compras y entradas en el sistema.
+    
     public class CompraService
     {
         private readonly DBOperacion _operacion;
 
+        
+        /// Constructor que inicializa la conexión con la base de datos.
+        
         public CompraService()
         {
             _operacion = new DBOperacion();
         }
 
-        public bool Insertar(Compra compra)
+        
+        /// Inserta una nueva entrada de compra en la tabla Entradas.
+        
+        /// <param name="compra">Objeto de tipo Compra que contiene los detalles de la compra.</param>
+        /// <returns>True si la inserción fue exitosa; de lo contrario, False.</returns>
+        public bool InsertarEntrada(Compra compra)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Compra (idEmpleado, idPedidoCompra, comentario, total, fecha) ");
+            sentencia.Append("INSERT INTO Entradas (idEmpleado, idPedidoCompra, comentario, total, fecha) ");
             sentencia.Append("VALUES (@idEmpleado, @idPedidoCompra, @comentario, @total, @fecha);");
 
             try
             {
+                // Parámetros para la consulta
                 var parametros = new Dictionary<string, object>
                 {
                     { "@idEmpleado", compra.IdEmpleado },
@@ -35,32 +46,40 @@ namespace PupuseriaJenny.Services
                     { "@fecha", compra.Fecha }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                // Ejecuta la sentencia y verifica el resultado
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) > 0)
                 {
                     resultado = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado = false;
+                Console.WriteLine("Error al insertar entrada: " + ex.Message);
             }
+
             return resultado;
         }
 
-        public bool Actualizar(Compra compra)
+        
+        /// Actualiza una entrada existente en la tabla Entradas.
+        
+        /// <param name="compra">Objeto de tipo Compra con los detalles actualizados.</param>
+        /// <returns>True si la actualización fue exitosa; de lo contrario, False.</returns>
+        public bool ActualizarEntrada(Compra compra)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("UPDATE RG_Compra SET ");
+            sentencia.Append("UPDATE Entradas SET ");
             sentencia.Append("idEmpleado = @idEmpleado, ");
             sentencia.Append("idPedidoCompra = @idPedidoCompra, ");
             sentencia.Append("comentario = @comentario, ");
             sentencia.Append("total = @total, ");
             sentencia.Append("fecha = @fecha ");
-            sentencia.Append("WHERE idCompra = @idCompra;");
+            sentencia.Append("WHERE idEntrada = @idEntrada;");
 
             try
             {
+                // Parámetros para la consulta
                 var parametros = new Dictionary<string, object>
                 {
                     { "@idEmpleado", compra.IdEmpleado },
@@ -68,68 +87,84 @@ namespace PupuseriaJenny.Services
                     { "@comentario", compra.Comentario },
                     { "@total", compra.Total },
                     { "@fecha", compra.Fecha },
-                    { "@idCompra", compra.IdCompra }
+                    { "@idEntrada", compra.IdCompra } // idCompra ahora se usa como idEntrada
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                // Ejecuta la sentencia y verifica el resultado
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) > 0)
                 {
                     resultado = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado = false;
+                Console.WriteLine("Error al actualizar entrada: " + ex.Message);
             }
+
             return resultado;
         }
 
-        public bool Eliminar(int idCompra)
+       
+        /// Elimina una entrada de la tabla Entradas.
+       
+        /// <param name="idEntrada">ID de la entrada a eliminar.</param>
+        /// <returns>True si la eliminación fue exitosa; de lo contrario, False.</returns>
+        public bool EliminarEntrada(int idEntrada)
         {
             bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("DELETE FROM RG_Compra WHERE idCompra = @idCompra;");
+            string sentencia = "DELETE FROM Entradas WHERE idEntrada = @idEntrada;";
 
             try
             {
+                // Parámetros para la consulta
                 var parametros = new Dictionary<string, object>
                 {
-                    { "@idCompra", idCompra }
+                    { "@idEntrada", idEntrada }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                // Ejecuta la sentencia y verifica el resultado
+                if (_operacion.EjecutarSentencia(sentencia, parametros) > 0)
                 {
                     resultado = true;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado = false;
+                Console.WriteLine("Error al eliminar entrada: " + ex.Message);
             }
+
             return resultado;
         }
 
-        public List<Compra> ObtenerComprasPorEmpleado(int idEmpleado)
+        
+        /// Obtiene una lista de entradas realizadas por un empleado específico.
+        
+        /// <param name="idEmpleado">ID del empleado.</param>
+        /// <returns>Lista de entradas realizadas por el empleado.</returns>
+        public List<Compra> ObtenerEntradasPorEmpleado(int idEmpleado)
         {
-            List<Compra> compras = new List<Compra>();
-            string consulta = @"SELECT idCompra, idPedidoCompra, comentario, total, fecha 
-                                FROM RG_Compra 
+            List<Compra> entradas = new List<Compra>();
+            string consulta = @"SELECT idEntrada, idPedidoCompra, comentario, total, fecha 
+                                FROM Entradas 
                                 WHERE idEmpleado = @idEmpleado
                                 ORDER BY fecha DESC;";
 
             try
             {
+                // Parámetros para la consulta
                 var parametros = new Dictionary<string, object>
                 {
                     { "@idEmpleado", idEmpleado }
                 };
 
+                // Ejecuta la consulta y convierte los resultados
                 DataTable resultado = _operacion.Consultar(consulta, parametros);
 
                 foreach (DataRow row in resultado.Rows)
                 {
-                    compras.Add(new Compra
+                    entradas.Add(new Compra
                     {
-                        IdCompra = Convert.ToInt32(row["idCompra"]),
+                        IdCompra = Convert.ToInt32(row["idEntrada"]), // idEntrada mapeado a IdCompra
                         IdPedidoCompra = Convert.ToInt32(row["idPedidoCompra"]),
                         Comentario = row["comentario"].ToString(),
                         Total = Convert.ToDecimal(row["total"]),
@@ -139,10 +174,10 @@ namespace PupuseriaJenny.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener compras: " + ex.Message);
+                Console.WriteLine("Error al obtener entradas: " + ex.Message);
             }
 
-            return compras;
+            return entradas;
         }
     }
 }

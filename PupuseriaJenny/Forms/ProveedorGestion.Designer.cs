@@ -41,14 +41,11 @@
             this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.dataGridViewP = new System.Windows.Forms.DataGridView();
-            this.IdEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdProveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccionEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaNacimientoEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewP)).BeginInit();
             this.SuspendLayout();
@@ -158,14 +155,11 @@
             this.dataGridViewP.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewP.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdEmpleado,
+            this.IdProveedor,
             this.dataGridViewTextBoxColumn2,
-            this.apellidoEmpleado,
-            this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.direccionEmpleado,
-            this.fechaNacimientoEmpleado});
+            this.direccionEmpleado});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -175,7 +169,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewP.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewP.EnableHeadersVisualStyles = false;
-            this.dataGridViewP.Location = new System.Drawing.Point(0, 40);
+            this.dataGridViewP.Location = new System.Drawing.Point(12, 40);
             this.dataGridViewP.Name = "dataGridViewP";
             this.dataGridViewP.ReadOnly = true;
             this.dataGridViewP.RowHeadersWidth = 51;
@@ -183,43 +177,27 @@
             this.dataGridViewP.Size = new System.Drawing.Size(888, 413);
             this.dataGridViewP.TabIndex = 18;
             // 
-            // IdEmpleado
+            // IdProveedor
             // 
-            this.IdEmpleado.DataPropertyName = "idEmpleado";
-            this.IdEmpleado.HeaderText = "ID";
-            this.IdEmpleado.MinimumWidth = 90;
-            this.IdEmpleado.Name = "IdEmpleado";
-            this.IdEmpleado.ReadOnly = true;
-            this.IdEmpleado.Width = 90;
+            this.IdProveedor.DataPropertyName = "idProveedor";
+            this.IdProveedor.HeaderText = "ID";
+            this.IdProveedor.MinimumWidth = 90;
+            this.IdProveedor.Name = "IdProveedor";
+            this.IdProveedor.ReadOnly = true;
+            this.IdProveedor.Width = 90;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NombreEmpleado";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NombreProveedor";
             this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 100;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // apellidoEmpleado
-            // 
-            this.apellidoEmpleado.DataPropertyName = "ApellidoEmpleado";
-            this.apellidoEmpleado.HeaderText = "Apellido";
-            this.apellidoEmpleado.Name = "apellidoEmpleado";
-            this.apellidoEmpleado.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cargo";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cargo";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 125;
-            // 
             // dataGridViewTextBoxColumn4
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "TelefonoEmpelado";
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "TelefonoProveedor";
             this.dataGridViewTextBoxColumn4.HeaderText = "Telefono";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 100;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -229,7 +207,7 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "EmailEmpleado";
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "EmailProveedor";
             this.dataGridViewTextBoxColumn5.HeaderText = "Email";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -238,17 +216,10 @@
             // 
             // direccionEmpleado
             // 
-            this.direccionEmpleado.DataPropertyName = "DireccionEmpleado";
+            this.direccionEmpleado.DataPropertyName = "DireccionPRoveedor";
             this.direccionEmpleado.HeaderText = "Direccion";
             this.direccionEmpleado.Name = "direccionEmpleado";
             this.direccionEmpleado.ReadOnly = true;
-            // 
-            // fechaNacimientoEmpleado
-            // 
-            this.fechaNacimientoEmpleado.DataPropertyName = "FechaNacimientoEmpleado";
-            this.fechaNacimientoEmpleado.HeaderText = "FechaNacimiento";
-            this.fechaNacimientoEmpleado.Name = "fechaNacimientoEmpleado";
-            this.fechaNacimientoEmpleado.ReadOnly = true;
             // 
             // ProveedorGestion
             // 
@@ -278,13 +249,10 @@
         private System.Windows.Forms.ToolStripTextBox tbFiltro;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.DataGridView dataGridViewP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProveedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccionEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaNacimientoEmpleado;
     }
 }
