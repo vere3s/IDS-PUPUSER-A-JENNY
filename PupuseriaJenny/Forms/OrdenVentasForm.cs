@@ -1,4 +1,5 @@
-﻿using PupuseriaJenny.Custom;
+﻿using PupuseriaJenny.CLS;
+using PupuseriaJenny.Custom;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using System;
@@ -175,12 +176,47 @@ namespace PupuseriaJenny.Forms
                 }
             }
         }
+        public bool HayStockDisponible(int idProducto, int cantidadSolicitada)
+        {
+            InventarioService inventarioService  = new InventarioService();
+            // Se llama al método 
+            DataTable inventario = inventarioService.ObtenerInventarioProductos();
+
+            // Verifica si el DataTable no es nulo y tiene datos
+            if (inventario != null && inventario.Rows.Count > 0)
+            {
+                // Recorre las filas del DataTable para buscar el producto con el idProducto
+                foreach (DataRow row in inventario.Rows)
+                {
+                    // Comprueba si el idProducto coincide con el de la fila actual
+                    if (Convert.ToInt32(row["id"]) == idProducto)
+                    {
+                        // Verifica si la cantidad disponible es mayor o igual a la cantidad solicitada
+                        int cantidadDisponible = Convert.ToInt32(row["cantidadDisponible"]);
+                        return cantidadDisponible >= cantidadSolicitada;
+                    }
+                }
+            }
+
+            // Si no se encuentra el producto o el inventario está vacío, devuelve false
+            return false;
+        }
+
         private void AgregarProductoAOrden(DataRow producto, int cantidad)
         {
             if (cantidad <= 0)
             {
                 MessageBox.Show("La cantidad debe ser mayor que cero.", "Error de cantidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
+            int idProducto = Convert.ToInt32(producto["idProducto"]);
+
+            // Verificar si hay suficiente stock disponible para la cantidad solicitada
+            if (!HayStockDisponible(idProducto, cantidad))
+            {
+                MessageBox.Show("No hay suficiente stock disponible para esta cantidad.", "Error de stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // No agregar el producto a la orden si no hay suficiente stock
             }
 
             if (decimal.TryParse(producto["precioProducto"].ToString(), out decimal precioProducto) && precioProducto > 0)
@@ -201,6 +237,16 @@ namespace PupuseriaJenny.Forms
                 // Inserta el detalle en la base de datos y obtener el idDetalleVenta generado
                 int idDetalleVentaGenerado = detalleVentaService.Insertar(nuevoDetalle);
 
+                // Crear el objeto Salidas para registrar la salida de producto
+                Salidas nuevaSalida = new Salidas
+                {
+                    IdProducto = idProducto,
+                    IdIngrediente = null,
+                    FechaSalida = DateTime.Now,  
+                    CantidadSalida = cantidad,
+                    CostoUnitarioSalida = precioProducto  
+                };
+
                 // Crea el objeto Ventas para guardar en la base de datos
                 Ventas nuevaVenta = new Ventas
                 {
@@ -214,21 +260,31 @@ namespace PupuseriaJenny.Forms
                 // Inserta la venta en la base de datos
                 if (idDetalleVentaGenerado > 0 && ventaService.Insertar(nuevaVenta))
                 {
-                    // Agrega el producto a la vista
-                    int rowIndex = dgvProductosDetalles.Rows.Add();
-                    DataGridViewRow newRow = dgvProductosDetalles.Rows[rowIndex];
+                    SalidaService salidaService = new SalidaService();
+                    // Llamada al método Insertar() para registrar la salida del producto
+                    if (!salidaService.Insertar(nuevaSalida))
+                    {
+                        MessageBox.Show("Hubo un problema al registrar la salida de productos del inventario.", "Error al registrar salida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        // Agrega el producto a la vista
+                        int rowIndex = dgvProductosDetalles.Rows.Add();
+                        DataGridViewRow newRow = dgvProductosDetalles.Rows[rowIndex];
 
-                    newRow.Cells["idProducto"].Value = producto["idProducto"].ToString();
-                    newRow.Cells["nombreProducto"].Value = producto["nombreProducto"].ToString();
-                    newRow.Cells["Cantidad"].Value = cantidad.ToString();
-                    newRow.Cells["precioProducto"].Value = precioProducto.ToString("0.00");
-                    newRow.Cells["totalPrecio"].Value = totalPrecio.ToString("0.00");
+                        newRow.Cells["idProducto"].Value = producto["idProducto"].ToString();
+                        newRow.Cells["nombreProducto"].Value = producto["nombreProducto"].ToString();
+                        newRow.Cells["Cantidad"].Value = cantidad.ToString();
+                        newRow.Cells["precioProducto"].Value = precioProducto.ToString("0.00");
+                        newRow.Cells["totalPrecio"].Value = totalPrecio.ToString("0.00");
 
-                    // Asigna el idDetalleVenta generado en el Tag de la fila
-                    newRow.Tag = idDetalleVentaGenerado;
+                        // Asigna el idDetalleVenta generado en el Tag de la fila
+                        newRow.Tag = idDetalleVentaGenerado;
 
-                    // Recalcula los totales de la orden después de agregar el producto
-                    CalcularTotales();
+                        // Recalcula los totales de la orden después de agregar el producto
+                        CalcularTotales();
+                    }
                 }
                 else
                 {
@@ -285,6 +341,7 @@ namespace PupuseriaJenny.Forms
         {
             CalcularTotales();
         }
+        
         private void CargarProductosOrdenPendientes()
         {
             DetalleVentaService detalleVentaService = new DetalleVentaService();
@@ -321,15 +378,28 @@ namespace PupuseriaJenny.Forms
                 {
                     foreach (DataGridViewRow row in dgvProductosDetalles.SelectedRows)
                     {
+                        // Acceder al idProducto y cantidad desde las celdas de la fila
+                        int idProducto = Convert.ToInt32(row.Cells["idProducto"].Value);
+                        int cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value);
+
                         // Acceder al idDetalleVenta desde el Tag de la fila
                         if (row.Tag is int idDetalleVenta)
                         {
                             DetalleVentaService detalleVentaService = new DetalleVentaService();
                             if (detalleVentaService.Eliminar(idDetalleVenta))
                             {
-                                dgvProductosDetalles.Rows.Remove(row);
-                                // Recalcular totales después de eliminar el producto
-                                CalcularTotales();
+                                // Eliminar la salida correspondiente del inventario
+                                SalidaService salidaService = new SalidaService();
+                                if (salidaService.RevertirSalida(idProducto, cantidadProducto))
+                                {
+                                    dgvProductosDetalles.Rows.Remove(row);
+                                    // Recalcular los totales después de eliminar el producto
+                                    CalcularTotales();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se pudo eliminar la salida del inventario.", "Eliminar Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                             else
                             {
@@ -389,6 +459,26 @@ namespace PupuseriaJenny.Forms
                     OrdenService ordenService = new OrdenService();
                     if (ordenService.EstadoOrden(_currentIdOrden, estado))
                     {
+                        // Revertir las salidas de productos
+                        SalidaService salidaService = new SalidaService();
+                        foreach (DataGridViewRow row in dgvProductosDetalles.Rows)
+                        {
+                            int idProducto = Convert.ToInt32(row.Cells["idProducto"].Value);
+                            int cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value); // Asegúrate de que esta columna exista
+
+                            // Llamar a la función RevertirSalida para revertir las salidas
+                            if (salidaService.RevertirSalida(idProducto, cantidadProducto))
+                            {
+                                // Si la salida se revertió correctamente, continuar con el siguiente producto
+                                continue;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hubo un error al revertir la salida del producto con ID: " + idProducto, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return; // Detener el proceso si hubo un error
+                            }
+                        }
+
                         MessageBox.Show("La orden ha sido cancelada con éxito.", "Orden Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
