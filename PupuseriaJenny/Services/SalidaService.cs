@@ -16,9 +16,9 @@ namespace PupuseriaJenny.Services
         }
 
         // Método para insertar una nueva salida
-        public bool Insertar(Salidas salidas)
+        public int Insertar(Salidas salidas)
         {
-            bool resultado = false;
+            int idSalida = -1;
             StringBuilder sentencia = new StringBuilder();
             sentencia.Append("INSERT INTO RG_Salida (idProducto, idIngrediente, fechaSalida, cantidadSalida, costoUnitarioSalida) ");
             sentencia.Append("VALUES (@idProducto, @idIngrediente, @fechaSalida, @cantidadSalida, @costoUnitarioSalida);");
@@ -34,16 +34,13 @@ namespace PupuseriaJenny.Services
                     { "@costoUnitarioSalida", salidas.CostoUnitarioSalida }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
+                idSalida = _operacion.EjecutarSentenciaYObtenerID(sentencia.ToString(), parametros);
             }
             catch (Exception)
             {
-                resultado = false;
+                idSalida = -1;
             }
-            return resultado;
+            return idSalida;
         }
 
         // Método para actualizar una salida existente
@@ -81,29 +78,21 @@ namespace PupuseriaJenny.Services
             }
             return resultado;
         }
-
-        // Método para revertir la salida cuando la orden se cancela
-        public bool RevertirSalida(int idProducto, int cantidadSalida)
+        public bool Eliminar(int idSalida)
         {
             bool resultado = false;
-
-            // Iniciar una transacción para asegurar que las operaciones se realicen correctamente
-            StringBuilder sentenciaEliminar = new StringBuilder();
-            sentenciaEliminar.Append("DELETE FROM RG_Salida WHERE idProducto = @idProducto AND cantidadSalida = @cantidadSalida;");
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("DELETE FROM RG_Salida WHERE idSalida = @idSalida;");
 
             try
             {
-                var parametrosEliminar = new Dictionary<string, object>
+                var parametros = new Dictionary<string, object>
                 {
-                    { "@idProducto", idProducto },
-                    { "@cantidadSalida", cantidadSalida }
+                    { "@idSalida", idSalida }
                 };
 
-                // Eliminar la salida registrada
-                if (_operacion.EjecutarSentencia(sentenciaEliminar.ToString(), parametrosEliminar) >= 0)
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
                 {
-                    // Luego, incrementar el stock del producto
-                    IncrementarStockProducto(idProducto, cantidadSalida);
                     resultado = true;
                 }
             }
@@ -114,21 +103,6 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
-
-        // Método para incrementar el stock de un producto
-        private void IncrementarStockProducto(int idProducto, int cantidad)
-        {
-            StringBuilder sentenciaActualizarStock = new StringBuilder();
-            sentenciaActualizarStock.Append("UPDATE Productos SET cantidadStock = cantidadStock + @cantidad WHERE idProducto = @idProducto;");
-
-            var parametrosActualizarStock = new Dictionary<string, object>
-            {
-                { "@idProducto", idProducto },
-                { "@cantidad", cantidad }
-            };
-
-            // Ejecutar la actualización del stock
-            _operacion.EjecutarSentencia(sentenciaActualizarStock.ToString(), parametrosActualizarStock);
-        }
+        
     }
 }
