@@ -183,6 +183,7 @@
             this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFiltro.Name = "tbFiltro";
             this.tbFiltro.Size = new System.Drawing.Size(200, 37);
+            this.tbFiltro.TextChanged += new System.EventHandler(this.tbFiltro_TextChanged);
             // 
             // toolStripLabel1
             // 

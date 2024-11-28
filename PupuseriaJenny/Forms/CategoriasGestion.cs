@@ -14,7 +14,7 @@ namespace PupuseriaJenny.Forms
 {
     public partial class CategoriasGestion : Form
     {
-        BindingSource DATOS = new BindingSource();
+        private readonly BindingSource DATOS = new BindingSource();
 
         public CategoriasGestion()
         {
@@ -111,6 +111,34 @@ namespace PupuseriaJenny.Forms
         private void CategoriasGestion_Load(object sender, EventArgs e)
         {
             Cargar();
+        }
+
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                if (tbFiltro.Text.Trim().Length <= 0)
+                {
+                    DATOS.RemoveFilter();
+                }
+                else
+                {
+                    DATOS.Filter = "categoria like '%" + tbFiltro.Text + "%'"; ;
+                }
+                dgvCategorias.AutoGenerateColumns = false;
+                dgvCategorias.DataSource = DATOS;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLocalmente();
+
         }
     }
 }

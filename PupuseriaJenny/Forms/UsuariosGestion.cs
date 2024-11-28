@@ -120,5 +120,33 @@ namespace PupuseriaJenny.Forms
             }
 
         }
+
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                if (tbFiltro.Text.Trim().Length <= 0)
+                {
+                    _datos.RemoveFilter();
+                }
+                else
+                {
+                    _datos.Filter = "usuario like '%" + tbFiltro.Text + "%'"; ;
+                }
+                dgvUsuarios.AutoGenerateColumns = false;
+                dgvUsuarios.DataSource = _datos;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace PupuseriaJenny.Models
             StringBuilder Sentencia = new StringBuilder(); // objeto para construir cadenas complejas
             Sentencia.Append("UPDATE RG_Permiso SET ");
             Sentencia.Append("idRol = '" + IDRol + "', ");
-            Sentencia.Append("idOpcion = '" + IDPermiso + "', ");
+            Sentencia.Append("idOpcion = '" + IDOpcion + "', ");
             Sentencia.Append("accesoPermiso = '" + Acceso.ToString() + "' ");
             Sentencia.Append("WHERE idPermiso = " + IDPermiso + ";");
 
@@ -108,7 +108,8 @@ namespace PupuseriaJenny.Models
         public static bool PermisoExiste(string oAcceso)
         {
             DataTable Resultado = new DataTable();
-            String Consulta = @"SELECT accesoPermiso FROM RG_Permiso WHERE accessoUsuario = '" + oAcceso + "';";
+            String Consulta = @"SELECT accesoPermiso FROM RG_Permiso WHERE accesoPermiso = '" + oAcceso + "';";
+
             DBOperacion operacion = new DBOperacion();
             try
             {

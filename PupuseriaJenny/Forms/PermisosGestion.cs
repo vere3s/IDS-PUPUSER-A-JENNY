@@ -108,9 +108,32 @@ namespace PupuseriaJenny.Forms
 
         }
 
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                if (tbFiltro.Text.Trim().Length <= 0)
+                {
+                    _datos.RemoveFilter();
+                }
+                else
+                {
+                    _datos.Filter = "accesoPermiso like '%" + tbFiltro.Text + "%'"; ;
+                }
+                dgvPermisos.AutoGenerateColumns = false;
+                dgvPermisos.DataSource = _datos;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         private void tbFiltro_TextChanged(object sender, EventArgs e)
         {
-
+            FiltrarLocalmente();
         }
 
         private void PermisosGestion_Load(object sender, EventArgs e)
