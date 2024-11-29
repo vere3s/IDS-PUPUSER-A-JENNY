@@ -10,15 +10,16 @@ namespace PupuseriaJenny.Forms
 {
     public partial class Compras : Form
     {
-       
+
         /// Constructor principal. Inicializa el formulario y sus componentes.
         public Compras()
         {
             InitializeComponent();
+            ConfigurarDataGridView();
             InicializarFormulario();
         }
 
-        
+
         /// Inicializa los elementos del formulario, incluyendo categorías y productos.
         private void InicializarFormulario()
         {
@@ -27,7 +28,7 @@ namespace PupuseriaJenny.Forms
             dgvComprasDetalles.Rows.Clear();
         }
 
-       
+
         /// Carga las categorías de productos en el FlowLayoutPanel como botones.
         private void CargarBotonesCategorias()
         {
@@ -59,7 +60,7 @@ namespace PupuseriaJenny.Forms
             }
         }
 
-        
+
         /// Evento que se ejecuta al hacer clic en un botón de categoría.
         private void BtnCategoria_Click(object sender, EventArgs e)
         {
@@ -70,10 +71,12 @@ namespace PupuseriaJenny.Forms
             }
         }
 
-        
+
         /// Carga los productos de una categoría específica en el FlowLayoutPanel.
+        /// SUMARY
         /// <param name="categoria">Nombre de la categoría seleccionada.</param>
-        
+        /// <SUMARY>
+
         private void CargarProductosPorCategoria(string categoria)
         {
             CategoriaService categoriaService = new CategoriaService();
@@ -88,7 +91,7 @@ namespace PupuseriaJenny.Forms
             }
         }
 
-       
+
         /// Crea un botón para un producto específico.
         private RJButton CrearBotonProducto(DataRow producto)
         {
@@ -125,7 +128,7 @@ namespace PupuseriaJenny.Forms
             return btnProducto;
         }
 
-        
+
         /// Redimensiona una imagen a un tamaño específico.
         private Image ResizeImage(Image img, int width, int height)
         {
@@ -138,41 +141,109 @@ namespace PupuseriaJenny.Forms
             return resizedImage;
         }
 
-      
-        /// Agrega un producto al detalle de la compra.
+
+        /// Agrega un producto al detalle de la compra, excluyendo las categorías "Apupusa de Arroz" y "Maíz",
+        /// y agrega una columna de ingredientes.
         private void AgregarProductoACompra(DataRow producto)
         {
+            // Verificar si la categoría del producto es excluida
+            if (producto.Table.Columns.Contains("categoriaProducto"))
+            {
+                string categoria = producto["categoriaProducto"].ToString();
+
+                if (categoria.Equals("Apupusa de Arroz", StringComparison.OrdinalIgnoreCase) ||
+                    categoria.Equals("Maíz", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"El producto '{producto["nombreProducto"]}' pertenece a una categoría excluida.",
+                                    "Producto no permitido",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return; // Salir del método si es una categoría excluida
+                }
+            }
+
+            // Verificar si la columna "Ingredientes" existe y obtener su valor
+            string ingredientes = producto.Table.Columns.Contains("ingredientes")
+                                  ? producto["ingredientes"].ToString()
+                                  : "No especificados";
+
+            // Agregar producto al DataGridView
             dgvComprasDetalles.Rows.Add(
                 producto["nombreProducto"].ToString(),
                 producto["cantidadProducto"].ToString(),
-                producto["precioProducto"].ToString()
+                producto["precioProducto"].ToString(),
+                ingredientes // Agregar la información de los ingredientes
             );
 
-            // Calcula el total después de agregar un producto
+            // Actualizar el total
             CalcularTotal();
         }
 
+        private void ConfigurarDataGridView()
+        {
+            dgvComprasDetalles.Columns.Clear();
+            dgvComprasDetalles.Columns.Add("nombreProducto", "Nombre del Producto");
+            dgvComprasDetalles.Columns.Add("cantidadProducto", "Cantidad");
+            dgvComprasDetalles.Columns.Add("precioProducto", "Precio");
+            dgvComprasDetalles.Columns.Add("ingredientes", "Ingredientes"); // Nueva columna para ingredientes
+        }
 
-        /// Calcula y actualiza el total de la compra.
         private void CalcularTotal()
         {
             decimal total = 0;
 
             foreach (DataGridViewRow row in dgvComprasDetalles.Rows)
             {
-                if (row.Cells["precioProducto"].Value != null)
+                if (row.Cells["precioProducto"].Value != null &&
+                    row.Cells["cantidadProducto"].Value != null &&
+                    decimal.TryParse(row.Cells["precioProducto"].Value.ToString(), out decimal precio) &&
+                    int.TryParse(row.Cells["cantidadProducto"].Value.ToString(), out int cantidad))
                 {
-                    if (decimal.TryParse(row.Cells["precioProducto"].Value.ToString(), out decimal precioProducto))
-                    {
-                        total += precioProducto;
-                    }
+                    total += precio * cantidad;
                 }
             }
 
-            // Muestra el total en el control correspondiente
             tbTotal.Text = total.ToString("C");
         }
+        // Funcionalidad para el botón "Pagar"
+        private void rjBtnPagar_Click(object sender, EventArgs e)
+        {
+            // Aquí deberías agregar la lógica de pago, por ejemplo:
+            // - Validar que la compra no esté vacía
+            // - Registrar la compra
+            // - Redirigir a una ventana de confirmación o generar factura
 
-       
+            if (dgvComprasDetalles.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay productos en el carrito para pagar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Simulando el proceso de pago y confirmación
+            MessageBox.Show("Pago realizado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LimpiarFormulario();
+        }
+
+        // Funcionalidad para el botón "Salir"
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+            // Cerrar el formulario de compras
+            this.Close();
+        }
+
+        // Funcionalidad para el botón "Eliminar Compra"
+        private void rjButton2_Click(object sender, EventArgs e)
+        {
+            // Eliminar los productos del DataGridView
+            dgvComprasDetalles.Rows.Clear();
+            tbTotal.Clear();
+            MessageBox.Show("La compra ha sido eliminada.", "Compra Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void LimpiarFormulario()
+        {
+            dgvComprasDetalles.Rows.Clear();
+            tbTotal.Clear();
+        }
+
     }
 }

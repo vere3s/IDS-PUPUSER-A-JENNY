@@ -7,164 +7,115 @@ using RestauranteGestion.Core.DataAccess;
 
 namespace PupuseriaJenny.Services
 {
-    
     /// Servicio para gestionar las compras y entradas en el sistema.
-    
     public class CompraService
     {
         private readonly DBOperacion _operacion;
 
-        
         /// Constructor que inicializa la conexión con la base de datos.
-        
         public CompraService()
         {
             _operacion = new DBOperacion();
         }
 
-        
-        /// Inserta una nueva entrada de compra en la tabla Entradas.
-        
-        /// <param name="compra">Objeto de tipo Compra que contiene los detalles de la compra.</param>
-        /// <returns>True si la inserción fue exitosa; de lo contrario, False.</returns>
-        public bool InsertarEntrada(Compra compra)
+        /// Inserta una nueva entrada de compra en la tabla RG_Entrada.
+        public bool InsertarEntrada(int idProducto, int idIngrediente, int idCompra, DateTime fechaEntrada, int cantidadEntrada, decimal costoUnitarioEntrada)
         {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO Entradas (idEmpleado, idPedidoCompra, comentario, total, fecha) ");
-            sentencia.Append("VALUES (@idEmpleado, @idPedidoCompra, @comentario, @total, @fecha);");
+            string sentencia = @"INSERT INTO RG_Entrada (idProducto, idIngrediente, idCompra, fechaEntrada, cantidadEntrada, costoUnitarioEntrada)
+                                 VALUES (@idProducto, @idIngrediente, @idCompra, @fechaEntrada, @cantidadEntrada, @costoUnitarioEntrada);";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@idProducto", idProducto },
+                { "@idIngrediente", idIngrediente },
+                { "@idCompra", idCompra },
+                { "@fechaEntrada", fechaEntrada },
+                { "@cantidadEntrada", cantidadEntrada },
+                { "@costoUnitarioEntrada", costoUnitarioEntrada }
+            };
 
             try
             {
-                // Parámetros para la consulta
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@idEmpleado", compra.IdEmpleado },
-                    { "@idPedidoCompra", compra.IdPedidoCompra },
-                    { "@comentario", compra.Comentario },
-                    { "@total", compra.Total },
-                    { "@fecha", compra.Fecha }
-                };
-
-                // Ejecuta la sentencia y verifica el resultado
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) > 0)
-                {
-                    resultado = true;
-                }
+                return _operacion.EjecutarSentencia(sentencia, parametros) > 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al insertar entrada: " + ex.Message);
+                return false;
             }
-
-            return resultado;
         }
 
-        
-        /// Actualiza una entrada existente en la tabla Entradas.
-        
-        /// <param name="compra">Objeto de tipo Compra con los detalles actualizados.</param>
-        /// <returns>True si la actualización fue exitosa; de lo contrario, False.</returns>
-        public bool ActualizarEntrada(Compra compra)
+        /// Actualiza una entrada existente en la tabla RG_Entrada.
+        public bool ActualizarEntrada(int idEntrada, int idProducto, int idIngrediente, int idCompra, DateTime fechaEntrada, int cantidadEntrada, decimal costoUnitarioEntrada)
         {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("UPDATE Entradas SET ");
-            sentencia.Append("idEmpleado = @idEmpleado, ");
-            sentencia.Append("idPedidoCompra = @idPedidoCompra, ");
-            sentencia.Append("comentario = @comentario, ");
-            sentencia.Append("total = @total, ");
-            sentencia.Append("fecha = @fecha ");
-            sentencia.Append("WHERE idEntrada = @idEntrada;");
+            string sentencia = @"UPDATE RG_Entrada 
+                                 SET idProducto = @idProducto, 
+                                     idIngrediente = @idIngrediente, 
+                                     idCompra = @idCompra, 
+                                     fechaEntrada = @fechaEntrada, 
+                                     cantidadEntrada = @cantidadEntrada, 
+                                     costoUnitarioEntrada = @costoUnitarioEntrada 
+                                 WHERE idEntrada = @idEntrada;";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@idProducto", idProducto },
+                { "@idIngrediente", idIngrediente },
+                { "@idCompra", idCompra },
+                { "@fechaEntrada", fechaEntrada },
+                { "@cantidadEntrada", cantidadEntrada },
+                { "@costoUnitarioEntrada", costoUnitarioEntrada },
+                { "@idEntrada", idEntrada }
+            };
 
             try
             {
-                // Parámetros para la consulta
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@idEmpleado", compra.IdEmpleado },
-                    { "@idPedidoCompra", compra.IdPedidoCompra },
-                    { "@comentario", compra.Comentario },
-                    { "@total", compra.Total },
-                    { "@fecha", compra.Fecha },
-                    { "@idEntrada", compra.IdCompra } // idCompra ahora se usa como idEntrada
-                };
-
-                // Ejecuta la sentencia y verifica el resultado
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) > 0)
-                {
-                    resultado = true;
-                }
+                return _operacion.EjecutarSentencia(sentencia, parametros) > 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al actualizar entrada: " + ex.Message);
+                return false;
             }
-
-            return resultado;
         }
 
-       
-        /// Elimina una entrada de la tabla Entradas.
-       
-        /// <param name="idEntrada">ID de la entrada a eliminar.</param>
-        /// <returns>True si la eliminación fue exitosa; de lo contrario, False.</returns>
+        /// Elimina una entrada de la tabla RG_Entrada.
         public bool EliminarEntrada(int idEntrada)
         {
-            bool resultado = false;
-            string sentencia = "DELETE FROM Entradas WHERE idEntrada = @idEntrada;";
+            string sentencia = "DELETE FROM RG_Entrada WHERE idEntrada = @idEntrada;";
+            var parametros = new Dictionary<string, object>
+            {
+                { "@idEntrada", idEntrada }
+            };
 
             try
             {
-                // Parámetros para la consulta
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@idEntrada", idEntrada }
-                };
-
-                // Ejecuta la sentencia y verifica el resultado
-                if (_operacion.EjecutarSentencia(sentencia, parametros) > 0)
-                {
-                    resultado = true;
-                }
+                return _operacion.EjecutarSentencia(sentencia, parametros) > 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al eliminar entrada: " + ex.Message);
+                return false;
             }
-
-            return resultado;
         }
 
-        
         /// Obtiene una lista de entradas realizadas por un empleado específico.
-        
-        /// <param name="idEmpleado">ID del empleado.</param>
-        /// <returns>Lista de entradas realizadas por el empleado.</returns>
         public List<Compra> ObtenerEntradasPorEmpleado(int idEmpleado)
         {
+            string consulta = @"SELECT e.idEntrada, e.idPedidoCompra, e.comentario, e.total, e.fecha 
+                                FROM RG_Entrada e
+                                INNER JOIN RG_Compra c ON e.idCompra = c.idCompra
+                                WHERE c.idEmpleado = @idEmpleado
+                                ORDER BY e.fechaEntrada DESC;";
+            var parametros = new Dictionary<string, object> { { "@idEmpleado", idEmpleado } };
             List<Compra> entradas = new List<Compra>();
-            string consulta = @"SELECT idEntrada, idPedidoCompra, comentario, total, fecha 
-                                FROM Entradas 
-                                WHERE idEmpleado = @idEmpleado
-                                ORDER BY fecha DESC;";
 
             try
             {
-                // Parámetros para la consulta
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@idEmpleado", idEmpleado }
-                };
-
-                // Ejecuta la consulta y convierte los resultados
                 DataTable resultado = _operacion.Consultar(consulta, parametros);
-
                 foreach (DataRow row in resultado.Rows)
                 {
                     entradas.Add(new Compra
                     {
-                        IdCompra = Convert.ToInt32(row["idEntrada"]), // idEntrada mapeado a IdCompra
+                        IdCompra = Convert.ToInt32(row["idEntrada"]),
                         IdPedidoCompra = Convert.ToInt32(row["idPedidoCompra"]),
                         Comentario = row["comentario"].ToString(),
                         Total = Convert.ToDecimal(row["total"]),
@@ -178,6 +129,25 @@ namespace PupuseriaJenny.Services
             }
 
             return entradas;
+        }
+
+        /// Obtiene las entradas para llenar el DataGridView, excluyendo ciertas categorías.
+        public DataTable ObtenerEntradasParaDataGrid()
+        {
+            string consulta = @"SELECT e.idEntrada, e.idPedidoCompra, e.comentario, e.total, e.fecha
+                                FROM RG_Entrada e
+                                INNER JOIN RG_Producto p ON e.idProducto = p.idProducto
+                                INNER JOIN RG_Categoria c ON p.idCategoria = c.idCategoria
+                                WHERE c.nombreCategoria NOT IN ('Pupusa de Arroz', 'Pupusa de Maíz');";
+            try
+            {
+                return _operacion.Consultar(consulta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener entradas para el DataGridView: " + ex.Message);
+                return null;
+            }
         }
     }
 }
