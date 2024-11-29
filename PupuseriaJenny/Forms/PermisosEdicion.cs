@@ -51,6 +51,9 @@ namespace PupuseriaJenny.Forms
             cbIDRol.ValueMember = "IdRol";
         }
 
+        
+
+
         private void CargarOpciones()
         {
             var opcion = _opcionService.ObtenerOpcions();
@@ -65,10 +68,28 @@ namespace PupuseriaJenny.Forms
             if (permiso != null)
             {
                 tbIDPermiso.Text = permiso.IDPermiso.ToString();
-                cbAcceso.SelectedValue = permiso.Acceso;
-                cbIDRol.SelectedValue = permiso.IDRol;
-                cbOpcion.SelectedValue = permiso.IDOpcion;
 
+                // Asignar Acceso (Enum)
+                cbAcceso.SelectedItem = permiso.Acceso;
+
+                // Validar existencia antes de asignar valores seleccionados
+                if (cbIDRol.Items.Cast<object>().Any(item => ((Roles)item).idRol == permiso.IDRol))
+                {
+                    cbIDRol.SelectedValue = permiso.IDRol;
+                }
+                else
+                {
+                    cbIDRol.SelectedIndex = -1;
+                }
+
+                if (cbOpcion.Items.Cast<object>().Any(item => ((Opciones)item).IdOpcion == permiso.IDOpcion))
+                {
+                    cbOpcion.SelectedValue = permiso.IDOpcion;
+                }
+                else
+                {
+                    cbOpcion.SelectedIndex = -1;
+                }
             }
         }
 

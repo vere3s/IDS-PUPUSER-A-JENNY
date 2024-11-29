@@ -254,7 +254,8 @@ namespace PupuseriaJenny.Forms
                 SalidaService salidaService = new SalidaService();
                 foreach (var salida in salidasList)
                 {
-                    if (!salidaService.Insertar(salida))
+                    int idSalidaGenerado = salidaService.Insertar(salida);
+                    if (idSalidaGenerado <= 0)
                     {
                         registroExitoso = false;
                         MessageBox.Show("Error al registrar una salida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);

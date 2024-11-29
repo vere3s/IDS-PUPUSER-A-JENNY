@@ -33,15 +33,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CategoriasGestion));
             this.dgvCategorias = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.IDCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -88,41 +88,6 @@
             this.dgvCategorias.Size = new System.Drawing.Size(720, 333);
             this.dgvCategorias.TabIndex = 22;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEliminar,
-            this.toolStripSeparator1,
-            this.btnEditar,
-            this.toolStripSeparator2,
-            this.btnAgregar,
-            this.tbFiltro,
-            this.toolStripLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(40, 40);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(720, 37);
-            this.toolStrip1.TabIndex = 21;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
-            // 
-            // tbFiltro
-            // 
-            this.tbFiltro.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tbFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFiltro.Name = "tbFiltro";
-            this.tbFiltro.Size = new System.Drawing.Size(200, 37);
-            // 
             // IDCategoria
             // 
             this.IDCategoria.DataPropertyName = "idCategoria";
@@ -141,6 +106,23 @@
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnEliminar,
+            this.toolStripSeparator1,
+            this.btnEditar,
+            this.toolStripSeparator2,
+            this.btnAgregar,
+            this.tbFiltro,
+            this.toolStripLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(40, 40);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(720, 37);
+            this.toolStrip1.TabIndex = 21;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // btnEliminar
             // 
             this.btnEliminar.AutoSize = false;
@@ -156,6 +138,11 @@
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
+            // 
             // btnEditar
             // 
             this.btnEditar.AutoSize = false;
@@ -170,6 +157,11 @@
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
+            // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.SlateGray;
@@ -183,6 +175,15 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // tbFiltro
+            // 
+            this.tbFiltro.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tbFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFiltro.Name = "tbFiltro";
+            this.tbFiltro.Size = new System.Drawing.Size(200, 37);
+            this.tbFiltro.TextChanged += new System.EventHandler(this.tbFiltro_TextChanged);
             // 
             // toolStripLabel1
             // 

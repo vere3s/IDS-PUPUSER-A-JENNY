@@ -1,4 +1,5 @@
-﻿using PupuseriaJenny.Custom;
+﻿using PupuseriaJenny.CLS;
+using PupuseriaJenny.Custom;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using System;
@@ -175,6 +176,32 @@ namespace PupuseriaJenny.Forms
                 }
             }
         }
+        public bool HayStockDisponible(int idProducto, int cantidadSolicitada)
+        {
+            InventarioService inventarioService  = new InventarioService();
+            // Se llama al método 
+            DataTable inventario = inventarioService.ObtenerInventarioProductos();
+
+            // Verifica si el DataTable no es nulo y tiene datos
+            if (inventario != null && inventario.Rows.Count > 0)
+            {
+                // Recorre las filas del DataTable para buscar el producto con el idProducto
+                foreach (DataRow row in inventario.Rows)
+                {
+                    // Comprueba si el idProducto coincide con el de la fila actual
+                    if (Convert.ToInt32(row["id"]) == idProducto)
+                    {
+                        // Verifica si la cantidad disponible es mayor o igual a la cantidad solicitada
+                        int cantidadDisponible = Convert.ToInt32(row["cantidadDisponible"]);
+                        return cantidadDisponible >= cantidadSolicitada;
+                    }
+                }
+            }
+
+            // Si no se encuentra el producto o el inventario está vacío, devuelve false
+            return false;
+        }
+
         private void AgregarProductoAOrden(DataRow producto, int cantidad)
         {
             if (cantidad <= 0)
@@ -182,62 +209,110 @@ namespace PupuseriaJenny.Forms
                 MessageBox.Show("La cantidad debe ser mayor que cero.", "Error de cantidad", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            if (decimal.TryParse(producto["precioProducto"].ToString(), out decimal precioProducto) && precioProducto > 0)
+            else
             {
-                decimal totalPrecio = precioProducto * cantidad;
+                int idProducto = Convert.ToInt32(producto["idProducto"]);
 
-                
-                // Crea el objeto DetallesVentas para guardar en la base de datos
-                DetallesVentas nuevoDetalle = new DetallesVentas
+                // Verificar si hay suficiente stock disponible para la cantidad solicitada
+                if (!HayStockDisponible(idProducto, cantidad))
                 {
-                    IdOrden = _currentIdOrden,
-                    IdProducto = Convert.ToInt32(producto["idProducto"]),
-                    CantidadDetalleVenta = cantidad,
-                    SubTotalDetalleVenta = totalPrecio
-                };
-
-                DetalleVentaService detalleVentaService = new DetalleVentaService();
-                // Inserta el detalle en la base de datos y obtener el idDetalleVenta generado
-                int idDetalleVentaGenerado = detalleVentaService.Insertar(nuevoDetalle);
-
-                // Crea el objeto Ventas para guardar en la base de datos
-                Ventas nuevaVenta = new Ventas
-                {
-                    IdEmpleado = 2,
-                    IdDetalleVenta = idDetalleVentaGenerado,
-                    TotalVenta = totalPrecio
-                };
-
-                VentaService ventaService = new VentaService();
-
-                // Inserta la venta en la base de datos
-                if (idDetalleVentaGenerado > 0 && ventaService.Insertar(nuevaVenta))
-                {
-                    // Agrega el producto a la vista
-                    int rowIndex = dgvProductosDetalles.Rows.Add();
-                    DataGridViewRow newRow = dgvProductosDetalles.Rows[rowIndex];
-
-                    newRow.Cells["idProducto"].Value = producto["idProducto"].ToString();
-                    newRow.Cells["nombreProducto"].Value = producto["nombreProducto"].ToString();
-                    newRow.Cells["Cantidad"].Value = cantidad.ToString();
-                    newRow.Cells["precioProducto"].Value = precioProducto.ToString("0.00");
-                    newRow.Cells["totalPrecio"].Value = totalPrecio.ToString("0.00");
-
-                    // Asigna el idDetalleVenta generado en el Tag de la fila
-                    newRow.Tag = idDetalleVentaGenerado;
-
-                    // Recalcula los totales de la orden después de agregar el producto
-                    CalcularTotales();
+                    MessageBox.Show("No hay suficiente stock disponible para esta cantidad.", "Error de stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // No agregar el producto a la orden si no hay suficiente stock
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un problema al agregar el producto a la orden.", "Error al agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (decimal.TryParse(producto["precioProducto"].ToString(), out decimal precioProducto) && precioProducto > 0)
+                    {
+                        decimal totalPrecio = precioProducto * cantidad;
+
+
+                        // Crea el objeto DetallesVentas para guardar en la base de datos
+                        DetallesVentas nuevoDetalle = new DetallesVentas
+                        {
+                            IdOrden = _currentIdOrden,
+                            IdProducto = Convert.ToInt32(producto["idProducto"]),
+                            CantidadDetalleVenta = cantidad,
+                            SubTotalDetalleVenta = totalPrecio
+                        };
+
+                        DetalleVentaService detalleVentaService = new DetalleVentaService();
+                        // Inserta el detalle en la base de datos y obtener el idDetalleVenta generado
+                        int idDetalleVentaGenerado = detalleVentaService.Insertar(nuevoDetalle);
+
+                        // Crear el objeto Salidas para registrar la salida de producto
+                        Salidas nuevaSalida = new Salidas
+                        {
+                            IdProducto = idProducto,
+                            IdIngrediente = null,
+                            FechaSalida = DateTime.Now,
+                            CantidadSalida = cantidad,
+                            CostoUnitarioSalida = precioProducto
+                        };
+
+                        SalidaService salidaService = new SalidaService();
+                        int idSalidaGenerado = salidaService.Insertar(nuevaSalida);
+
+                        if (idDetalleVentaGenerado > 0 && idSalidaGenerado > 0)
+                        {
+                            // Crea el objeto Ventas para guardar en la base de datos
+                            Ventas nuevaVenta = new Ventas
+                            {
+                                IdEmpleado = 2,
+                                IdDetalleVenta = idDetalleVentaGenerado,
+                                TotalVenta = totalPrecio * cantidad
+                            };
+
+                            VentaService ventaService = new VentaService();
+
+                            // Inserta la venta en la base de datos
+                            if (ventaService.Insertar(nuevaVenta))
+                            {
+                                // Agrega el producto a la vista
+                                int rowIndex = dgvProductosDetalles.Rows.Add();
+                                DataGridViewRow newRow = dgvProductosDetalles.Rows[rowIndex];
+
+                                newRow.Cells["idProducto"].Value = producto["idProducto"].ToString();
+                                newRow.Cells["nombreProducto"].Value = producto["nombreProducto"].ToString();
+                                newRow.Cells["Cantidad"].Value = cantidad.ToString();
+                                newRow.Cells["precioProducto"].Value = precioProducto.ToString("0.00");
+                                newRow.Cells["totalPrecio"].Value = totalPrecio.ToString("0.00");
+
+                                // Almacenas ambos idDetalleVenta y idSalida en el Tag de la fila
+                                var detalles = new Tuple<int, int>(idDetalleVentaGenerado, idSalidaGenerado);
+                                newRow.Tag = detalles;
+
+                                // Recalcula los totales de la orden después de agregar el producto
+                                CalcularTotales();
+                            }
+                            else
+                            {
+                                salidaService.Eliminar(nuevaSalida.IdSalida);
+                                detalleVentaService.Eliminar(idDetalleVentaGenerado);
+                                MessageBox.Show("Hubo un problema al agregar el producto a la orden.", "Error al agregar producto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            if (idDetalleVentaGenerado <= 0)
+                            {
+                                salidaService.Eliminar(nuevaSalida.IdSalida);
+                                MessageBox.Show("Hubo un problema al registrar los detalles de la venta de productos.", "Error al registrar detalles", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            if (idSalidaGenerado <= 0)
+                            {
+                                detalleVentaService.Eliminar(idDetalleVentaGenerado);
+                                MessageBox.Show("Hubo un problema al registrar la salida del inventario.", "Error al registrar salida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("El precio del producto no tiene un formato válido o es incorrecto.", "Error de formato de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("El precio del producto no tiene un formato válido o es incorrecto.", "Error de formato de precio", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void CalcularTotales()
@@ -285,6 +360,7 @@ namespace PupuseriaJenny.Forms
         {
             CalcularTotales();
         }
+        
         private void CargarProductosOrdenPendientes()
         {
             DetalleVentaService detalleVentaService = new DetalleVentaService();
@@ -321,19 +397,55 @@ namespace PupuseriaJenny.Forms
                 {
                     foreach (DataGridViewRow row in dgvProductosDetalles.SelectedRows)
                     {
-                        // Acceder al idDetalleVenta desde el Tag de la fila
-                        if (row.Tag is int idDetalleVenta)
+                        // Accede al idProducto y cantidad desde las celdas de la fila
+                        int idProducto = Convert.ToInt32(row.Cells["idProducto"].Value);
+                        int cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value);
+
+                        // Accede al idDetalleVenta desde el Tag de la fila
+                        if (row.Tag is Tuple<int, int> detalles)
                         {
-                            DetalleVentaService detalleVentaService = new DetalleVentaService();
-                            if (detalleVentaService.Eliminar(idDetalleVenta))
+                            int idDetalleVenta = detalles.Item1;
+                            int idSalida = detalles.Item2;
+
+                            // Obtiene el idVenta relacionado al idDetalleVenta
+                            VentaService ventaService = new VentaService();
+                            Console.WriteLine($"idDetalleVenta: {idDetalleVenta}");
+                            int idVenta = ventaService.ObtenerIdVentaPorDetalle(idDetalleVenta);
+                            Console.WriteLine($"idVenta: {idVenta}");
+
+                            if (idVenta > 0)
                             {
-                                dgvProductosDetalles.Rows.Remove(row);
-                                // Recalcular totales después de eliminar el producto
-                                CalcularTotales();
+                                if (ventaService.Eliminar(idVenta))
+                                {
+                                    DetalleVentaService detalleVentaService = new DetalleVentaService();
+                                    if (detalleVentaService.Eliminar(idDetalleVenta))
+                                    {
+                                        // Elimina la salida correspondiente del inventario
+                                        SalidaService salidaService = new SalidaService();
+                                        if (salidaService.Eliminar(idSalida))
+                                        {
+                                            dgvProductosDetalles.Rows.Remove(row);
+                                            // Recalcular los totales después de eliminar el producto
+                                            CalcularTotales();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("No se pudo eliminar la salida del inventario.", "Eliminar Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No se pudo eliminar el detalle de la venta.", "Eliminar Detalle Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se pudo eliminar la venta asociada al producto.", "Eliminar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("No se pudo eliminar el producto", "Eliminar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("No se encontró la venta asociada al detalle de la venta.", "Error de Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -389,6 +501,25 @@ namespace PupuseriaJenny.Forms
                     OrdenService ordenService = new OrdenService();
                     if (ordenService.EstadoOrden(_currentIdOrden, estado))
                     {
+                        // Revertir las salidas de productos
+                        SalidaService salidaService = new SalidaService();
+                        foreach (DataGridViewRow row in dgvProductosDetalles.Rows)
+                        {
+                            if (row.Tag is Tuple<int, int> detalles) // Asegúrate de que el Tag tiene el formato correcto
+                            {
+                                int idDetalleVenta = detalles.Item1;
+                                int idSalida = detalles.Item2;
+
+                                // Llamar a la función RevertirSalida solo para las salidas asociadas a esta orden
+                                bool salidaRevertida = salidaService.Eliminar(idSalida);
+                                if (!salidaRevertida)
+                                {
+                                    MessageBox.Show($"Hubo un error al revertir la salida del producto con ID: {idSalida}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return; // Detener el proceso si hubo un error
+                                }
+                            }
+                        }
+
                         MessageBox.Show("La orden ha sido cancelada con éxito.", "Orden Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }

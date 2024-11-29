@@ -36,9 +36,11 @@ namespace PupuseriaJenny.Forms
                 }
                 else
                 {
-                    DATOS.Filter = "opcion LIKE '%" + tbFiltro.Text + "%'";
-
+                    DATOS.Filter = "opcion like '%" + tbFiltro.Text + "%'"; ;
                 }
+                dgvOpciones.AutoGenerateColumns = false;
+                dgvOpciones.DataSource = DATOS;
+
             }
             catch (Exception)
             {

@@ -2,9 +2,7 @@
 using RestauranteGestion.Core.DataAccess;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PupuseriaJenny.Services
 {
@@ -16,11 +14,14 @@ namespace PupuseriaJenny.Services
         {
             _operacion = new DBOperacion();
         }
-        public bool Insertar(Salidas salidas)
+
+        // Método para insertar una nueva salida
+        public int Insertar(Salidas salidas)
         {
-            bool resultado = false;
+            int idSalida = -1;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Salida (idProducto, idIngrediente, fechaSalida, cantidadSalida, costoUnitarioSalida) VALUES (@idProducto, @idIngrediente, @fechaSalida, @cantidadSalida, @costoUnitarioSalida);");
+            sentencia.Append("INSERT INTO RG_Salida (idProducto, idIngrediente, fechaSalida, cantidadSalida, costoUnitarioSalida) ");
+            sentencia.Append("VALUES (@idProducto, @idIngrediente, @fechaSalida, @cantidadSalida, @costoUnitarioSalida);");
 
             try
             {
@@ -33,26 +34,25 @@ namespace PupuseriaJenny.Services
                     { "@costoUnitarioSalida", salidas.CostoUnitarioSalida }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
+                idSalida = _operacion.EjecutarSentenciaYObtenerID(sentencia.ToString(), parametros);
             }
             catch (Exception)
             {
-                resultado = false;
+                idSalida = -1;
             }
-            return resultado;
+            return idSalida;
         }
+
+        // Método para actualizar una salida existente
         public bool Actualizar(Salidas salidas)
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
             sentencia.Append("UPDATE RG_Salida SET ");
-            sentencia.Append("idProducto = @idProducto ");
-            sentencia.Append("idIngrediente = @idIngrediente ");
-            sentencia.Append("fechaSalida = @fechaSalida ");
-            sentencia.Append("cantidadSalida = @cantidadSalida ");
+            sentencia.Append("idProducto = @idProducto, ");
+            sentencia.Append("idIngrediente = @idIngrediente, ");
+            sentencia.Append("fechaSalida = @fechaSalida, ");
+            sentencia.Append("cantidadSalida = @cantidadSalida, ");
             sentencia.Append("costoUnitarioSalida = @costoUnitarioSalida ");
             sentencia.Append("WHERE idSalida = @idSalida;");
 
@@ -78,5 +78,31 @@ namespace PupuseriaJenny.Services
             }
             return resultado;
         }
+        public bool Eliminar(int idSalida)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("DELETE FROM RG_Salida WHERE idSalida = @idSalida;");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idSalida", idSalida }
+                };
+
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+        
     }
 }

@@ -117,6 +117,45 @@ namespace RestauranteGestion.Core.DataAccess
 
             return idGenerado;
         }
+        public object EjecutarSentenciaEscalar(string pSentencia, Dictionary<string, object> parametros)
+        {
+            object resultado = null;
+
+            using (MySqlCommand comando = new MySqlCommand())
+            {
+                try
+                {
+                    if (base.Conectar())
+                    {
+                        comando.Connection = base._CONEXION;
+                        comando.CommandType = System.Data.CommandType.Text;
+                        comando.CommandText = pSentencia;
+
+                        // Agregar parámetros
+                        if (parametros != null)
+                        {
+                            foreach (var parametro in parametros)
+                            {
+                                comando.Parameters.AddWithValue(parametro.Key, parametro.Value);
+                            }
+                        }
+
+                        // Ejecuta la consulta y devuelve el primer valor encontrado
+                        resultado = comando.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al ejecutar sentencia escalar: " + ex.Message);
+                }
+                finally
+                {
+                    Desconectar();
+                }
+            }
+
+            return resultado;
+        }
 
 
         public Int32 EjecutarSentencia(String pSentencia)

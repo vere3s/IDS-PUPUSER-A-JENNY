@@ -35,12 +35,6 @@
             this.spcVentas = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvProductosDetalles = new System.Windows.Forms.DataGridView();
-            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cbCortesia = new System.Windows.Forms.CheckBox();
@@ -77,6 +71,13 @@
             this.btnPedidosAbiertos = new PupuseriaJenny.Custom.RJButton();
             this.btnCancelarVenta = new PupuseriaJenny.Custom.RJButton();
             this.btnSalir = new PupuseriaJenny.Custom.RJButton();
+            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idSalida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.spcVentas)).BeginInit();
             this.spcVentas.Panel1.SuspendLayout();
             this.spcVentas.Panel2.SuspendLayout();
@@ -161,6 +162,7 @@
             this.dgvProductosDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductosDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDetalleVenta,
+            this.idSalida,
             this.idProducto,
             this.nombreProducto,
             this.Cantidad,
@@ -183,53 +185,6 @@
             this.dgvProductosDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductosDetalles.Size = new System.Drawing.Size(325, 286);
             this.dgvProductosDetalles.TabIndex = 4;
-            // 
-            // idDetalleVenta
-            // 
-            this.idDetalleVenta.DataPropertyName = "idDetalleVenta";
-            this.idDetalleVenta.HeaderText = "idDetalleVenta";
-            this.idDetalleVenta.Name = "idDetalleVenta";
-            this.idDetalleVenta.ReadOnly = true;
-            this.idDetalleVenta.Visible = false;
-            // 
-            // idProducto
-            // 
-            this.idProducto.DataPropertyName = "idProducto";
-            this.idProducto.HeaderText = "idProducto";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            this.idProducto.Visible = false;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.DataPropertyName = "nombreProducto";
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.DataPropertyName = "precioProducto";
-            this.precioProducto.HeaderText = "Precio";
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
-            // 
-            // totalPrecio
-            // 
-            this.totalPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.totalPrecio.DataPropertyName = "totalPrecio";
-            this.totalPrecio.HeaderText = "Total";
-            this.totalPrecio.Name = "totalPrecio";
-            this.totalPrecio.ReadOnly = true;
             // 
             // panel1
             // 
@@ -813,13 +768,68 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // idDetalleVenta
+            // 
+            this.idDetalleVenta.DataPropertyName = "idDetalleVenta";
+            this.idDetalleVenta.HeaderText = "idDetalleVenta";
+            this.idDetalleVenta.Name = "idDetalleVenta";
+            this.idDetalleVenta.ReadOnly = true;
+            this.idDetalleVenta.Visible = false;
+            // 
+            // idSalida
+            // 
+            this.idSalida.DataPropertyName = "idSalida";
+            this.idSalida.HeaderText = "idSalida";
+            this.idSalida.Name = "idSalida";
+            this.idSalida.ReadOnly = true;
+            this.idSalida.Visible = false;
+            // 
+            // idProducto
+            // 
+            this.idProducto.DataPropertyName = "idProducto";
+            this.idProducto.HeaderText = "idProducto";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Visible = false;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.DataPropertyName = "nombreProducto";
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.precioProducto.DataPropertyName = "precioProducto";
+            this.precioProducto.HeaderText = "Precio";
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            // 
+            // totalPrecio
+            // 
+            this.totalPrecio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.totalPrecio.DataPropertyName = "totalPrecio";
+            this.totalPrecio.HeaderText = "Total";
+            this.totalPrecio.Name = "totalPrecio";
+            this.totalPrecio.ReadOnly = true;
+            // 
             // OrdenVentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 585);
             this.Controls.Add(this.spcVentas);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "OrdenVentasForm";
             this.Text = "Ventas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -894,6 +904,7 @@
         private System.Windows.Forms.TextBox tbOrden;
         private Custom.RJButton btnPedidosAbiertos;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDetalleVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idSalida;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static iText.IO.Image.Jpeg2000ImageData;
 
 namespace PupuseriaJenny.Services
 {
@@ -99,5 +100,36 @@ namespace PupuseriaJenny.Services
             }
             return resultado;
         }
+        public int ObtenerIdVentaPorDetalle(int idDetalleVenta)
+        {
+            int idVenta = -1;  // Valor por defecto en caso de no encontrar la venta
+
+            // Consulta para obtener el idVenta asociado al idDetalleVenta
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("SELECT idVenta FROM RG_Venta WHERE idDetalleVenta = @idDetalleVenta");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idDetalleVenta", idDetalleVenta }
+                };
+
+                // Ejecuta la consulta
+                object resultado = _operacion.EjecutarSentenciaEscalar(sentencia.ToString(), parametros);
+
+                if (resultado != null && int.TryParse(resultado.ToString(), out int venta))
+                {
+                    idVenta = venta;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener el idVenta: {ex.Message}");
+                idVenta = -1;
+            }
+            return idVenta;
+        }
+
     }
 }
