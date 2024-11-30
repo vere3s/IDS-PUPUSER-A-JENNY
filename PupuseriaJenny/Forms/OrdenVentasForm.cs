@@ -370,6 +370,7 @@ namespace PupuseriaJenny.Forms
             {
                 int rowIndex = dgvProductosDetalles.Rows.Add(
                     row["idDetalleVenta"].ToString(),
+                    row["idSalida"].ToString(),
                     row["idProducto"].ToString(),
                     row["nombreProducto"].ToString(),
                     row["cantidadDetalleVenta"].ToString(),
@@ -385,8 +386,7 @@ namespace PupuseriaJenny.Forms
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
-        {
-            // Verifica si hay una fila seleccionada en el DataGridView
+        {// Verifica si hay una fila seleccionada en el DataGridView
             if (dgvProductosDetalles.SelectedRows.Count > 0)
             {
                 DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar el producto seleccionado?",
@@ -397,45 +397,66 @@ namespace PupuseriaJenny.Forms
                 {
                     foreach (DataGridViewRow row in dgvProductosDetalles.SelectedRows)
                     {
-                        // Accede al idProducto y cantidad desde las celdas de la fila
-                        int idProducto = Convert.ToInt32(row.Cells["idProducto"].Value);
-                        int cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value);
-
-                        // Accede al idDetalleVenta desde el Tag de la fila
-                        if (row.Tag is Tuple<int, int> detalles)
+                        try
                         {
-                            int idDetalleVenta = detalles.Item1;
-                            int idSalida = detalles.Item2;
+                            int idProducto = Convert.ToInt32(row.Cells["idProducto"].Value);
+                            int cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value);
 
-                            // Obtiene el idVenta relacionado al idDetalleVenta
-                            VentaService ventaService = new VentaService();
-                            Console.WriteLine($"idDetalleVenta: {idDetalleVenta}");
-                            int idVenta = ventaService.ObtenerIdVentaPorDetalle(idDetalleVenta);
-                            Console.WriteLine($"idVenta: {idVenta}");
+                            // Verifica si las columnas idDetalleVenta y idSalida tienen valores
+                            int? idDetalleVenta = row.Cells["idDetalleVenta"].Value != null
+                                ? Convert.ToInt32(row.Cells["idDetalleVenta"].Value)
+                                : (int?)null;
 
-                            if (idVenta > 0)
+                            int? idSalida = row.Cells["idSalida"].Value != null
+                                ? Convert.ToInt32(row.Cells["idSalida"].Value)
+                                : (int?)null;
+
+                            if (idDetalleVenta.HasValue && idSalida.HasValue)
                             {
-                                if (ventaService.Eliminar(idVenta))
+                                // Usa los valores de las columnas
+                                VentaService ventaService = new VentaService();
+                                int idVenta = ventaService.ObtenerIdVentaPorDetalle(idDetalleVenta.Value);
+
+                                if (idVenta > 0 && ventaService.Eliminar(idVenta))
                                 {
                                     DetalleVentaService detalleVentaService = new DetalleVentaService();
-                                    if (detalleVentaService.Eliminar(idDetalleVenta))
+                                    SalidaService salidaService = new SalidaService();
+                                    if (detalleVentaService.Eliminar(idDetalleVenta.Value) && salidaService.Eliminar(idSalida.Value))
                                     {
-                                        // Elimina la salida correspondiente del inventario
-                                        SalidaService salidaService = new SalidaService();
-                                        if (salidaService.Eliminar(idSalida))
-                                        {
-                                            dgvProductosDetalles.Rows.Remove(row);
-                                            // Recalcular los totales después de eliminar el producto
-                                            CalcularTotales();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("No se pudo eliminar la salida del inventario.", "Eliminar Salida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        }
+                                        dgvProductosDetalles.Rows.Remove(row);
+                                        CalcularTotales();
                                     }
                                     else
                                     {
-                                        MessageBox.Show("No se pudo eliminar el detalle de la venta.", "Eliminar Detalle Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        MessageBox.Show("No se pudo eliminar el detalle de la venta y la Salida.", "Eliminar Detalle Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se pudo eliminar la venta asociada al producto.", "Eliminar Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+                            }
+                            else if (row.Tag is Tuple<int, int> detalles)
+                            {
+                                // Usa el Tag para obtener los valores
+                                idDetalleVenta = detalles.Item1;
+                                idSalida = detalles.Item2;
+
+                                VentaService ventaService = new VentaService();
+                                int idVenta = ventaService.ObtenerIdVentaPorDetalle(idDetalleVenta.Value);
+
+                                if (idVenta > 0 && ventaService.Eliminar(idVenta))
+                                {
+                                    DetalleVentaService detalleVentaService = new DetalleVentaService();
+                                    SalidaService salidaService = new SalidaService();
+                                    if (detalleVentaService.Eliminar(idDetalleVenta.Value) && salidaService.Eliminar(idSalida.Value))
+                                    {
+                                        dgvProductosDetalles.Rows.Remove(row);
+                                        CalcularTotales();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No se pudo eliminar el detalle de la venta y la Salida.", "Eliminar Detalle Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     }
                                 }
                                 else
@@ -445,15 +466,18 @@ namespace PupuseriaJenny.Forms
                             }
                             else
                             {
-                                MessageBox.Show("No se encontró la venta asociada al detalle de la venta.", "Error de Venta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("No se encontraron datos para eliminar.", "Error de Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Ocurrió un error al eliminar el producto: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             else
             {
-                // Muestra un mensaje si no se seleccionó ninguna fila
                 MessageBox.Show("Seleccione un producto para eliminar", "Eliminar Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -502,7 +526,7 @@ namespace PupuseriaJenny.Forms
                     if (ordenService.EstadoOrden(_currentIdOrden, estado))
                     {
                         // Revertir las salidas de productos
-                        SalidaService salidaService = new SalidaService();
+                        /* SalidaService salidaService = new SalidaService();
                         foreach (DataGridViewRow row in dgvProductosDetalles.Rows)
                         {
                             if (row.Tag is Tuple<int, int> detalles) // Asegúrate de que el Tag tiene el formato correcto
@@ -518,8 +542,7 @@ namespace PupuseriaJenny.Forms
                                     return; // Detener el proceso si hubo un error
                                 }
                             }
-                        }
-
+                        } */
                         MessageBox.Show("La orden ha sido cancelada con éxito.", "Orden Cancelada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }

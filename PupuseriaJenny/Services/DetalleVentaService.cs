@@ -109,9 +109,10 @@ namespace PupuseriaJenny.Services
         public DataTable ObtenerDetallesPorOrdenPendiente(int idOrden)
         {
             DataTable resultado = new DataTable();
-            string consulta = @"SELECT dv.idDetalleVenta, dv.idProducto, p.nombreProducto, dv.cantidadDetalleVenta, p.precioProducto, dv.subTotalDetalleVenta
+            string consulta = @"SELECT dv.idDetalleVenta, s.idSalida, dv.idProducto, p.nombreProducto, dv.cantidadDetalleVenta, p.precioProducto, dv.subTotalDetalleVenta
                             FROM RG_DetalleVenta dv
                             JOIN RG_Producto p ON p.idProducto = dv.idProducto
+                            JOIN RG_Salida s ON s.idSalida = dv.idDetalleVenta
                             WHERE dv.idOrden = @idOrden;";
 
             try
