@@ -13,6 +13,7 @@ namespace PupuseriaJenny.Forms
 {
     public partial class Home : Form
     {
+        SesionManager.Sesion oSesion = SesionManager.Sesion.ObtenerInstancia();
         public Home()
         {
             InitializeComponent();
@@ -59,6 +60,21 @@ namespace PupuseriaJenny.Forms
             IngredienteGestion formIngrediente = new IngredienteGestion();
             formIngrediente.Show();
 
+        }
+
+        private void cerrarSesionTsmi_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void editarTsmi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            usuarioTsmi.Text = oSesion.Usuario;
         }
     }
 }

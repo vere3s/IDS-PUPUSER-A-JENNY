@@ -21,18 +21,21 @@ namespace PupuseriaJenny.Services
         public DataTable AutenticarUsuario(string usuario, string contraseña)
         {
             string query = @"
-    SELECT 
-      u.IDUsuario, u.Usuario, 
-      e.IDEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.emailEmpleado,r.rol
-  FROM 
-      rg_usuario u
-  INNER JOIN 
-      rg_empleado e ON u.IDEmpleado = e.IDEmpleado
-        INNER JOIN 
-      rg_rol r ON u.idRol =  r.idRol
-    WHERE 
-        u.Usuario = @Usuario AND 
-        u.contraseniaUsuario = @Contraseña;";
+                SELECT 
+                  u.IDUsuario, u.Usuario, 
+                  e.IDEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpleado, e.direccionEmpleado, e.fechaNacimientoEmpleado, e.emailEmpleado, e.idCargo,
+                  r.rol, r.idRol
+              FROM 
+                  rg_usuario u
+              INNER JOIN 
+                  rg_empleado e ON u.IDEmpleado = e.IDEmpleado
+              INNER JOIN 
+                  rg_cargo c ON c.idCargo = e.idCargo
+              INNER JOIN 
+                  rg_rol r ON u.idRol =  r.idRol
+                WHERE 
+                    u.Usuario = @Usuario AND 
+                    u.contraseniaUsuario = @Contraseña;";
 
 
             var oOperacion = new DBOperacion();

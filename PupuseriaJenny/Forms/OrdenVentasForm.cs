@@ -18,6 +18,7 @@ namespace PupuseriaJenny.Forms
     public partial class OrdenVentasForm : Form
     {
         private int _currentIdOrden;
+        SesionManager.Sesion oSesion = SesionManager.Sesion.ObtenerInstancia();
         public string NumeroMesa { get; set; }
         private List<DetallesVentas> detallesDeOrden = new List<DetallesVentas>();
         // Diccionario para almacenar los identificadores por fila
@@ -257,7 +258,7 @@ namespace PupuseriaJenny.Forms
                             // Crea el objeto Ventas para guardar en la base de datos
                             Ventas nuevaVenta = new Ventas
                             {
-                                IdEmpleado = 2,
+                                IdEmpleado = oSesion.empleado.IdEmpleado,
                                 IdDetalleVenta = idDetalleVentaGenerado,
                                 TotalVenta = totalPrecio * cantidad
                             };
@@ -561,6 +562,7 @@ namespace PupuseriaJenny.Forms
         private void OrdenVentasForm_Load(object sender, EventArgs e)
         {
             tbMesa.Text = NumeroMesa;
+            tbNombre.Text = oSesion.empleado.NombreEmpleado;
         }
         private void btnCobrar_Click(object sender, EventArgs e)
         {

@@ -50,7 +50,7 @@ namespace PupuseriaJenny.Forms
                 tbIdEmpleado.Text = empleado.IdEmpleado.ToString();
                 tbNombre.Text = empleado.NombreEmpleado;
                 tbApellido.Text = empleado.ApellidoEmpleado;
-                tbTelefono.Text = empleado.TelefonoEmpelado;
+                tbTelefono.Text = empleado.TelefonoEmpleado;
                 tbDireccion.Text = empleado.DireccionEmpleado;
                 tbEmail.Text = empleado.EmailEmpleado;
                 dtpFechaNacimiento.Value = empleado.FechaNacimientoEmpleado;
@@ -65,7 +65,7 @@ namespace PupuseriaJenny.Forms
             {
                 NombreEmpleado = tbNombre.Text,
                 ApellidoEmpleado = tbApellido.Text,
-                TelefonoEmpelado = tbTelefono.Text,
+                TelefonoEmpleado = tbTelefono.Text,
                 DireccionEmpleado = tbDireccion.Text,
                 EmailEmpleado = tbEmail.Text,
                 FechaNacimientoEmpleado = dtpFechaNacimiento.Value,

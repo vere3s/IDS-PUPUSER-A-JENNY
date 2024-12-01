@@ -44,6 +44,11 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.usuarioTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarTsmi = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionTsmi = new System.Windows.Forms.ToolStripMenuItem();
             this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
             this.btnGtPersonal = new PupuseriaJenny.Custom.RJButton();
             this.rjButton3 = new PupuseriaJenny.Custom.RJButton();
@@ -77,6 +82,8 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -157,6 +164,7 @@
             this.tableLayoutPanel2.Controls.Add(this.panel8, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.panel9, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.panel10, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -262,6 +270,72 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(328, 36);
             this.panel10.TabIndex = 15;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.Controls.Add(this.menuStrip1, 1, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(337, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(218, 79);
+            this.tableLayoutPanel3.TabIndex = 17;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuarioTsmi});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(21, 25);
+            this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(174, 29);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // usuarioTsmi
+            // 
+            this.usuarioTsmi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.usuarioTsmi.AutoSize = false;
+            this.usuarioTsmi.AutoToolTip = true;
+            this.usuarioTsmi.BackColor = System.Drawing.Color.White;
+            this.usuarioTsmi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarTsmi,
+            this.cerrarSesionTsmi});
+            this.usuarioTsmi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioTsmi.ForeColor = System.Drawing.Color.White;
+            this.usuarioTsmi.Image = ((System.Drawing.Image)(resources.GetObject("usuarioTsmi.Image")));
+            this.usuarioTsmi.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.usuarioTsmi.Name = "usuarioTsmi";
+            this.usuarioTsmi.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.usuarioTsmi.Size = new System.Drawing.Size(168, 25);
+            this.usuarioTsmi.Text = "Usuario";
+            // 
+            // editarTsmi
+            // 
+            this.editarTsmi.Image = ((System.Drawing.Image)(resources.GetObject("editarTsmi.Image")));
+            this.editarTsmi.Name = "editarTsmi";
+            this.editarTsmi.Size = new System.Drawing.Size(180, 26);
+            this.editarTsmi.Text = "Editar";
+            this.editarTsmi.Click += new System.EventHandler(this.editarTsmi_Click);
+            // 
+            // cerrarSesionTsmi
+            // 
+            this.cerrarSesionTsmi.Image = ((System.Drawing.Image)(resources.GetObject("cerrarSesionTsmi.Image")));
+            this.cerrarSesionTsmi.Name = "cerrarSesionTsmi";
+            this.cerrarSesionTsmi.Size = new System.Drawing.Size(180, 26);
+            this.cerrarSesionTsmi.Text = "Cerrar Sesion";
+            this.cerrarSesionTsmi.Click += new System.EventHandler(this.cerrarSesionTsmi_Click);
             // 
             // rjButton4
             // 
@@ -637,6 +711,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Home_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -655,6 +730,10 @@
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -692,5 +771,10 @@
         private Custom.RJButton rjButton7;
         private Custom.RJButton rjButton8;
         private Custom.RJButton rjButton9;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem usuarioTsmi;
+        private System.Windows.Forms.ToolStripMenuItem editarTsmi;
+        private System.Windows.Forms.ToolStripMenuItem cerrarSesionTsmi;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

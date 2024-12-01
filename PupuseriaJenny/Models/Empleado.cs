@@ -19,7 +19,7 @@ namespace PupuseriaJenny.Models
 
         [StringLength(15, ErrorMessage = "El teléfono no puede superar los 15 caracteres.")]
         [Phone(ErrorMessage = "El teléfono no es válido.")]
-        public string TelefonoEmpelado { get; set; }  // Cambio a 'TelefonoEmpelado' para coincidir con la columna
+        public string TelefonoEmpleado { get; set; }  // Cambio a 'TelefonoEmpelado' para coincidir con la columna
 
         [StringLength(100, ErrorMessage = "La dirección no puede superar los 100 caracteres.")]
         public string DireccionEmpleado { get; set; }  // Cambio a 'DireccionEmpleado' para coincidir con la columna

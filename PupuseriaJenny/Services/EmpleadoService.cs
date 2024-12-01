@@ -21,8 +21,8 @@ namespace PupuseriaJenny.Services
         {
             bool resultado = false;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Empleado(nombreEmpleado, apellidoEmpleado, telefonoEmpelado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo) ");
-            sentencia.Append("VALUES(@nombreEmpleado, @apellidoEmpleado, @telefonoEmpelado, @direccionEmpleado, @emailEmpleado, @fechaNacimientoEmpleado, @idCargo);");
+            sentencia.Append("INSERT INTO RG_Empleado(nombreEmpleado, apellidoEmpleado, telefonoEmpleado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo) ");
+            sentencia.Append("VALUES(@nombreEmpleado, @apellidoEmpleado, @telefonoEmpleado, @direccionEmpleado, @emailEmpleado, @fechaNacimientoEmpleado, @idCargo);");
 
             try
             {
@@ -30,7 +30,7 @@ namespace PupuseriaJenny.Services
                 {
                     { "@nombreEmpleado", empleado.NombreEmpleado },
                     { "@apellidoEmpleado", empleado.ApellidoEmpleado },
-                    { "@telefonoEmpelado", empleado.TelefonoEmpelado },
+                    { "@telefonoEmpelado", empleado.TelefonoEmpleado },
                     { "@direccionEmpleado", empleado.DireccionEmpleado },
                     { "@emailEmpleado", empleado.EmailEmpleado },
                     { "@fechaNacimientoEmpleado", empleado.FechaNacimientoEmpleado.ToString("yyyy-MM-dd") },
@@ -57,7 +57,7 @@ namespace PupuseriaJenny.Services
             sentencia.Append("UPDATE RG_Empleado SET ");
             sentencia.Append("nombreEmpleado = @nombreEmpleado, ");
             sentencia.Append("apellidoEmpleado = @apellidoEmpleado, ");
-            sentencia.Append("telefonoEmpelado = @telefonoEmpelado, ");
+            sentencia.Append("telefonoEmpleado = @telefonoEmpleado, ");
             sentencia.Append("direccionEmpleado = @direccionEmpleado, ");
             sentencia.Append("emailEmpleado = @emailEmpleado, ");
             sentencia.Append("fechaNacimientoEmpleado = @fechaNacimientoEmpleado, ");
@@ -70,7 +70,7 @@ namespace PupuseriaJenny.Services
                 {
                     { "@nombreEmpleado", empleado.NombreEmpleado },
                     { "@apellidoEmpleado", empleado.ApellidoEmpleado },
-                    { "@telefonoEmpelado", empleado.TelefonoEmpelado },
+                    { "@telefonoEmpleado", empleado.TelefonoEmpleado },
                     { "@direccionEmpleado", empleado.DireccionEmpleado },
                     { "@emailEmpleado", empleado.EmailEmpleado },
                     { "@fechaNacimientoEmpleado", empleado.FechaNacimientoEmpleado.ToString("yyyy-MM-dd") },
@@ -95,7 +95,7 @@ namespace PupuseriaJenny.Services
         {
             Empleado empleado = null;
             StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpelado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo ");
+            sentencia.Append("SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpleado, direccionEmpleado, emailEmpleado, fechaNacimientoEmpleado, idCargo ");
             sentencia.Append("FROM RG_Empleado ");
             sentencia.Append("WHERE idEmpleado = @idEmpleado;");
 
@@ -115,7 +115,7 @@ namespace PupuseriaJenny.Services
                         IdEmpleado = Convert.ToInt32(fila["idEmpleado"]),
                         NombreEmpleado = fila["nombreEmpleado"].ToString(),
                         ApellidoEmpleado = fila["apellidoEmpleado"].ToString(),
-                        TelefonoEmpelado = fila["telefonoEmpelado"].ToString(),
+                        TelefonoEmpleado = fila["telefonoEmpleado"].ToString(),
                         DireccionEmpleado = fila["direccionEmpleado"].ToString(),
                         EmailEmpleado = fila["emailEmpleado"].ToString(),
                         FechaNacimientoEmpleado = Convert.ToDateTime(fila["fechaNacimientoEmpleado"]),
@@ -136,7 +136,7 @@ namespace PupuseriaJenny.Services
         public DataTable ObtenerTodos()
         {
             // Construcción de la sentencia SQL
-            string sentencia = "SELECT e.idEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpelado,e.direccionEmpleado, e.emailEmpleado, e.fechaNacimientoEmpleado,e.idCargo, c.cargo FROM RG_Empleado e JOIN RG_Cargo c ON e.idCargo = c.idCargo"; 
+            string sentencia = "SELECT e.idEmpleado, e.nombreEmpleado, e.apellidoEmpleado, e.telefonoEmpleado,e.direccionEmpleado, e.emailEmpleado, e.fechaNacimientoEmpleado,e.idCargo, c.cargo FROM RG_Empleado e JOIN RG_Cargo c ON e.idCargo = c.idCargo"; 
             try
             {
                 // Consulta a la base de datos
