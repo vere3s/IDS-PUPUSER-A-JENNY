@@ -19,6 +19,7 @@ namespace PupuseriaJenny.SesionManager
         public Empleado empleado;
         String _Usuario;
         String _Contraseña;
+        public List<Permiso> Permisos = new List<Permiso>();
 
         public string Usuario
         {

@@ -77,6 +77,9 @@ namespace PupuseriaJenny.Forms
                 IdCargo = Convert.ToInt32(row["idCargo"]),
                 TelefonoEmpleado = row["telefonoEmpleado"].ToString()
             };
+            // Obtener permisos asociados al rol
+            int idRol = Convert.ToInt32(row["idRol"]);
+            oSesion.Permisos = usuarioService.ObtenerPermisosPorRol(idRol);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using PupuseriaJenny.Models;
@@ -122,9 +123,9 @@ namespace PupuseriaJenny.Services
             try
             {
                 var parametros = new Dictionary<string, object>
-        {
-            { "@idUsuario", idUsuario }
-        };
+                {
+                    { "@idUsuario", idUsuario }
+                };
 
                 DataTable tabla = _operacion.Consultar(sentencia.ToString(), parametros);
                 if (tabla.Rows.Count > 0)
@@ -148,11 +149,42 @@ namespace PupuseriaJenny.Services
 
             return usuario;
         }
+        public List<Permiso> ObtenerPermisosPorRol(int idRol)
+        {
+            List<Permiso> permisos = new List<Permiso>();
+            string consulta = @"SELECT o.idOpcion, o.opcion, p.accesoPermiso 
+                        FROM RG_Permiso p
+                        JOIN RG_Opcion o ON p.idOpcion = o.idOpcion
+                        WHERE p.idRol = @idRol";
 
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idRol", idRol }
+                };
 
+                DataTable tabla = _operacion.Consultar(consulta, parametros);
 
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    permisos.Add(new Permiso
+                    {
+                        IDOpcion = Convert.ToInt32(fila["idOpcion"]),
+                        Opcion = fila["opcion"].ToString(),
+                        Acceso = Enum.TryParse(fila["accesoPermiso"].ToString(), out AccesoPermiso accesoPermiso)
+                                    ? accesoPermiso
+                                    : AccesoPermiso.lectura
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener permisos: {ex.Message}");
+            }
 
-
+            return permisos;
+        }
 
         public bool Eliminar(int idUsuario)
         {
@@ -179,10 +211,5 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
-
-
-
-
-
     }
 }

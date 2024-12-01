@@ -15,7 +15,7 @@ namespace PupuseriaJenny.Models
         modificacion,
         eliminacion
     }
-    internal class Permiso
+    public class Permiso
     {
         public int IDPermiso { get; set; }
         public int IDRol {  get; set; }
