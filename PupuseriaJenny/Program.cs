@@ -17,7 +17,14 @@ namespace PupuseriaJenny
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+            using (LoginForm loginForm = new LoginForm())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Si el login fue exitoso, abrir el formulario principal
+                    Application.Run(new Home());
+                }
+            }
         }
     }
 }

@@ -40,6 +40,7 @@ namespace PupuseriaJenny.Forms
 
                     if (dt.Rows.Count == 1)
                     {
+                        this.DialogResult = DialogResult.OK;
                         ConfigurarSesion(dt.Rows[0]);
                         Autorizado = true;
                         Close();
@@ -68,14 +69,14 @@ namespace PupuseriaJenny.Forms
             oSesion.Contraseña = txtContraseña.Text.ToString();
             oSesion.empleado = new Empleado
             {
-                IdEmpleado= Convert.ToInt32(row["idEmpleados"]),
-                NombreEmpleado = row["nombresEmpleado"].ToString(),
-                ApellidoEmpleado= row["apellidosEmpleado"].ToString(),
-                DireccionEmpleado= row["direccion"].ToString(),
-                EmailEmpleado= row["email"].ToString(),
-            FechaNacimientoEmpleado = Convert.ToDateTime(row["fechaNacimiento"]),
-                IdCargo = Convert.ToInt32(row["idCargo"]),
-                TelefonoEmpelado = row["telefono"].ToString()
+                IdEmpleado= Convert.ToInt32(row["idEmpleado"]),
+                NombreEmpleado = row["nombreEmpleado"].ToString(),
+                ApellidoEmpleado= row["apellidoEmpleado"].ToString(),
+                //DireccionEmpleado= row["direccionEmpleado"].ToString(),
+                EmailEmpleado= row["emailEmpleado"].ToString(),
+            //FechaNacimientoEmpleado = Convert.ToDateTime(row["fechaNacimiento"]),
+             //   IdCargo = Convert.ToInt32(row["idCargo"]),
+             //   TelefonoEmpelado = row["telefono"].ToString()
             };
         }
     }
