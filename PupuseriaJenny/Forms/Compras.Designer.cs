@@ -1,33 +1,33 @@
-﻿namespace PupuseriaJenny.Forms
-{
-    partial class Compras
+﻿    namespace PupuseriaJenny.Forms
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        partial class Compras
         {
-            if (disposing && (components != null))
+            
+            /// Required designer variable.
+            
+            private System.ComponentModel.IContainer components = null;
+
+            
+            /// Clean up any resources being used.
+            /// </summary>
+            /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+            protected override void Dispose(bool disposing)
             {
-                components.Dispose();
+                if (disposing && (components != null))
+                {
+                    components.Dispose();
+                }
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
-        }
 
-        #region Windows Form Designer generated code
+            #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+            /// <summary>
+            /// Required method for Designer support - do not modify
+            /// the contents of this method with the code editor.
+            /// </summary>
+            private void InitializeComponent()
+            {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -35,36 +35,33 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.dgvComprasDetalles = new System.Windows.Forms.DataGridView();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costoUnitarioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flpCategorias = new System.Windows.Forms.FlowLayoutPanel();
-            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
-            this.rjButton6 = new PupuseriaJenny.Custom.RJButton();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pBbuscar = new System.Windows.Forms.PictureBox();
             this.tBxBuscar = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.flpProductos = new System.Windows.Forms.FlowLayoutPanel();
             this.button6 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.rjButton2 = new PupuseriaJenny.Custom.RJButton();
-            this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbProveedor = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbTotal = new System.Windows.Forms.Label();
-            this.rjBtnPagar = new PupuseriaJenny.Custom.RJButton();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.spcVentas = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.dTPFecha = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pBbuscar = new System.Windows.Forms.PictureBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rjBtnPagar = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton4 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton6 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton2 = new PupuseriaJenny.Custom.RJButton();
+            this.rjButton1 = new PupuseriaJenny.Custom.RJButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComprasDetalles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -73,6 +70,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flpCategorias.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.flpProductos.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -86,7 +84,6 @@
             this.spcVentas.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).BeginInit();
             this.SuspendLayout();
             // 
             // lbProveedor
@@ -141,10 +138,6 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvComprasDetalles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvComprasDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvComprasDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombreProducto,
-            this.costoUnitarioProducto,
-            this.precioProducto});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvComprasDetalles, 2);
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -156,36 +149,12 @@
             this.dgvComprasDetalles.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvComprasDetalles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvComprasDetalles.EnableHeadersVisualStyles = false;
-            this.dgvComprasDetalles.Location = new System.Drawing.Point(3, 119);
+            this.dgvComprasDetalles.Location = new System.Drawing.Point(3, 118);
             this.dgvComprasDetalles.Name = "dgvComprasDetalles";
             this.dgvComprasDetalles.ReadOnly = true;
             this.dgvComprasDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComprasDetalles.Size = new System.Drawing.Size(325, 345);
+            this.dgvComprasDetalles.Size = new System.Drawing.Size(325, 346);
             this.dgvComprasDetalles.TabIndex = 4;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.DataPropertyName = "nombreProducto";
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // costoUnitarioProducto
-            // 
-            this.costoUnitarioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.costoUnitarioProducto.DataPropertyName = "Cantidad";
-            this.costoUnitarioProducto.HeaderText = "Cantidad";
-            this.costoUnitarioProducto.Name = "costoUnitarioProducto";
-            this.costoUnitarioProducto.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.DataPropertyName = "precioProducto";
-            this.precioProducto.HeaderText = "Precio";
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
             // 
             // splitContainer1
             // 
@@ -232,44 +201,6 @@
             this.flpCategorias.Size = new System.Drawing.Size(319, 58);
             this.flpCategorias.TabIndex = 33;
             // 
-            // rjButton4
-            // 
-            this.rjButton4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton4.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton4.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton4.BorderRadius = 5;
-            this.rjButton4.BorderSize = 0;
-            this.rjButton4.FlatAppearance.BorderSize = 0;
-            this.rjButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton4.ForeColor = System.Drawing.Color.White;
-            this.rjButton4.Location = new System.Drawing.Point(3, 3);
-            this.rjButton4.Name = "rjButton4";
-            this.rjButton4.Size = new System.Drawing.Size(104, 46);
-            this.rjButton4.TabIndex = 8;
-            this.rjButton4.Text = "Categorias";
-            this.rjButton4.TextColor = System.Drawing.Color.White;
-            this.rjButton4.UseVisualStyleBackColor = false;
-            // 
-            // rjButton6
-            // 
-            this.rjButton6.BackColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton6.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.rjButton6.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton6.BorderRadius = 5;
-            this.rjButton6.BorderSize = 0;
-            this.rjButton6.FlatAppearance.BorderSize = 0;
-            this.rjButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton6.ForeColor = System.Drawing.Color.White;
-            this.rjButton6.Location = new System.Drawing.Point(113, 3);
-            this.rjButton6.Name = "rjButton6";
-            this.rjButton6.Size = new System.Drawing.Size(104, 46);
-            this.rjButton6.TabIndex = 9;
-            this.rjButton6.Text = "Categorias";
-            this.rjButton6.TextColor = System.Drawing.Color.White;
-            this.rjButton6.UseVisualStyleBackColor = false;
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.pBbuscar);
@@ -279,6 +210,19 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(134, 58);
             this.panel4.TabIndex = 34;
+            // 
+            // pBbuscar
+            // 
+            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBbuscar.BackColor = System.Drawing.Color.White;
+            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pBbuscar.Image = global::PupuseriaJenny.Properties.Resources.imagenPredeterminada;
+            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
+            this.pBbuscar.Name = "pBbuscar";
+            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
+            this.pBbuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBbuscar.TabIndex = 3;
+            this.pBbuscar.TabStop = false;
             // 
             // tBxBuscar
             // 
@@ -338,47 +282,6 @@
             this.panel5.Size = new System.Drawing.Size(459, 57);
             this.panel5.TabIndex = 1;
             // 
-            // rjButton2
-            // 
-            this.rjButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rjButton2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rjButton2.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rjButton2.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton2.BorderRadius = 5;
-            this.rjButton2.BorderSize = 0;
-            this.rjButton2.FlatAppearance.BorderSize = 0;
-            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton2.ForeColor = System.Drawing.Color.White;
-            this.rjButton2.Location = new System.Drawing.Point(236, 9);
-            this.rjButton2.Name = "rjButton2";
-            this.rjButton2.Size = new System.Drawing.Size(104, 46);
-            this.rjButton2.TabIndex = 3;
-            this.rjButton2.Text = "Eliminar Compra";
-            this.rjButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.rjButton2.TextColor = System.Drawing.Color.White;
-            this.rjButton2.UseVisualStyleBackColor = false;
-            // 
-            // rjButton1
-            // 
-            this.rjButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rjButton1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rjButton1.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButton1.BorderRadius = 5;
-            this.rjButton1.BorderSize = 0;
-            this.rjButton1.FlatAppearance.BorderSize = 0;
-            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjButton1.ForeColor = System.Drawing.Color.White;
-            this.rjButton1.Location = new System.Drawing.Point(346, 9);
-            this.rjButton1.Name = "rjButton1";
-            this.rjButton1.Size = new System.Drawing.Size(104, 46);
-            this.rjButton1.TabIndex = 2;
-            this.rjButton1.Text = "Salir";
-            this.rjButton1.TextColor = System.Drawing.Color.White;
-            this.rjButton1.UseVisualStyleBackColor = false;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.lblNombre);
@@ -386,7 +289,7 @@
             this.panel3.Location = new System.Drawing.Point(6, 6);
             this.panel3.Margin = new System.Windows.Forms.Padding(6);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(153, 46);
+            this.panel3.Size = new System.Drawing.Size(153, 41);
             this.panel3.TabIndex = 7;
             // 
             // panel2
@@ -394,10 +297,10 @@
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.lbProveedor);
             this.panel2.Controls.Add(this.tbProveedor);
-            this.panel2.Location = new System.Drawing.Point(171, 6);
+            this.panel2.Location = new System.Drawing.Point(171, 8);
             this.panel2.Margin = new System.Windows.Forms.Padding(6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(153, 46);
+            this.panel2.Size = new System.Drawing.Size(153, 41);
             this.panel2.TabIndex = 6;
             // 
             // tbProveedor
@@ -454,28 +357,6 @@
             this.lbTotal.TabIndex = 3;
             this.lbTotal.Text = "Total:";
             // 
-            // rjBtnPagar
-            // 
-            this.rjBtnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rjBtnPagar.BackColor = System.Drawing.Color.OrangeRed;
-            this.rjBtnPagar.BackgroundColor = System.Drawing.Color.OrangeRed;
-            this.rjBtnPagar.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjBtnPagar.BorderRadius = 5;
-            this.rjBtnPagar.BorderSize = 0;
-            this.rjBtnPagar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.rjBtnPagar.FlatAppearance.BorderSize = 0;
-            this.rjBtnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjBtnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjBtnPagar.ForeColor = System.Drawing.Color.White;
-            this.rjBtnPagar.Location = new System.Drawing.Point(276, 3);
-            this.rjBtnPagar.MinimumSize = new System.Drawing.Size(100, 40);
-            this.rjBtnPagar.Name = "rjBtnPagar";
-            this.rjBtnPagar.Size = new System.Drawing.Size(100, 40);
-            this.rjBtnPagar.TabIndex = 4;
-            this.rjBtnPagar.Text = "Pagar";
-            this.rjBtnPagar.TextColor = System.Drawing.Color.White;
-            this.rjBtnPagar.UseVisualStyleBackColor = false;
-            // 
             // tbTotal
             // 
             this.tbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -525,53 +406,147 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 585);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel6
             // 
             this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel6.Controls.Add(this.dTPFecha);
-            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.dateTimePicker1);
+            this.panel6.Controls.Add(this.label1);
             this.panel6.Location = new System.Drawing.Point(6, 64);
             this.panel6.Margin = new System.Windows.Forms.Padding(6);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(153, 46);
+            this.panel6.Size = new System.Drawing.Size(153, 45);
             this.panel6.TabIndex = 8;
             // 
-            // dTPFecha
+            // dateTimePicker1
             // 
-            this.dTPFecha.Location = new System.Drawing.Point(86, 9);
-            this.dTPFecha.Name = "dTPFecha";
-            this.dTPFecha.Size = new System.Drawing.Size(232, 20);
-            this.dTPFecha.TabIndex = 1;
+            this.dateTimePicker1.Location = new System.Drawing.Point(73, 18);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(77, 20);
+            this.dateTimePicker1.TabIndex = 3;
             // 
-            // label2
+            // label1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 9);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Fecha:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 19);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Fecha:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pBbuscar
+            // rjBtnPagar
             // 
-            this.pBbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBbuscar.BackColor = System.Drawing.Color.White;
-            this.pBbuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pBbuscar.Location = new System.Drawing.Point(103, 9);
-            this.pBbuscar.Name = "pBbuscar";
-            this.pBbuscar.Size = new System.Drawing.Size(31, 26);
-            this.pBbuscar.TabIndex = 3;
-            this.pBbuscar.TabStop = false;
+            this.rjBtnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rjBtnPagar.BackColor = System.Drawing.Color.OrangeRed;
+            this.rjBtnPagar.BackgroundColor = System.Drawing.Color.OrangeRed;
+            this.rjBtnPagar.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjBtnPagar.BorderRadius = 5;
+            this.rjBtnPagar.BorderSize = 0;
+            this.rjBtnPagar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.rjBtnPagar.FlatAppearance.BorderSize = 0;
+            this.rjBtnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjBtnPagar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjBtnPagar.ForeColor = System.Drawing.Color.White;
+            this.rjBtnPagar.Location = new System.Drawing.Point(276, 3);
+            this.rjBtnPagar.MinimumSize = new System.Drawing.Size(100, 40);
+            this.rjBtnPagar.Name = "rjBtnPagar";
+            this.rjBtnPagar.Size = new System.Drawing.Size(100, 40);
+            this.rjBtnPagar.TabIndex = 4;
+            this.rjBtnPagar.Text = "Pagar";
+            this.rjBtnPagar.TextColor = System.Drawing.Color.White;
+            this.rjBtnPagar.UseVisualStyleBackColor = false;
+            this.rjBtnPagar.Click += new System.EventHandler(this.rjBtnPagar_Click);
+            // 
+            // rjButton4
+            // 
+            this.rjButton4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton4.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton4.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton4.BorderRadius = 5;
+            this.rjButton4.BorderSize = 0;
+            this.rjButton4.FlatAppearance.BorderSize = 0;
+            this.rjButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton4.ForeColor = System.Drawing.Color.White;
+            this.rjButton4.Location = new System.Drawing.Point(3, 3);
+            this.rjButton4.Name = "rjButton4";
+            this.rjButton4.Size = new System.Drawing.Size(104, 46);
+            this.rjButton4.TabIndex = 8;
+            this.rjButton4.Text = "Categorias";
+            this.rjButton4.TextColor = System.Drawing.Color.White;
+            this.rjButton4.UseVisualStyleBackColor = false;
+            // 
+            // rjButton6
+            // 
+            this.rjButton6.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton6.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.rjButton6.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton6.BorderRadius = 5;
+            this.rjButton6.BorderSize = 0;
+            this.rjButton6.FlatAppearance.BorderSize = 0;
+            this.rjButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton6.ForeColor = System.Drawing.Color.White;
+            this.rjButton6.Location = new System.Drawing.Point(113, 3);
+            this.rjButton6.Name = "rjButton6";
+            this.rjButton6.Size = new System.Drawing.Size(104, 46);
+            this.rjButton6.TabIndex = 9;
+            this.rjButton6.Text = "Categorias";
+            this.rjButton6.TextColor = System.Drawing.Color.White;
+            this.rjButton6.UseVisualStyleBackColor = false;
+            // 
+            // rjButton2
+            // 
+            this.rjButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rjButton2.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rjButton2.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rjButton2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton2.BorderRadius = 5;
+            this.rjButton2.BorderSize = 0;
+            this.rjButton2.FlatAppearance.BorderSize = 0;
+            this.rjButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton2.ForeColor = System.Drawing.Color.White;
+            this.rjButton2.Location = new System.Drawing.Point(236, 9);
+            this.rjButton2.Name = "rjButton2";
+            this.rjButton2.Size = new System.Drawing.Size(104, 46);
+            this.rjButton2.TabIndex = 3;
+            this.rjButton2.Text = "Eliminar Compra";
+            this.rjButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.rjButton2.TextColor = System.Drawing.Color.White;
+            this.rjButton2.UseVisualStyleBackColor = false;
+            this.rjButton2.Click += new System.EventHandler(this.rjButton2_Click);
+            // 
+            // rjButton1
+            // 
+            this.rjButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rjButton1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rjButton1.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rjButton1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButton1.BorderRadius = 5;
+            this.rjButton1.BorderSize = 0;
+            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjButton1.ForeColor = System.Drawing.Color.White;
+            this.rjButton1.Location = new System.Drawing.Point(346, 9);
+            this.rjButton1.Name = "rjButton1";
+            this.rjButton1.Size = new System.Drawing.Size(104, 46);
+            this.rjButton1.TabIndex = 2;
+            this.rjButton1.Text = "Salir";
+            this.rjButton1.TextColor = System.Drawing.Color.White;
+            this.rjButton1.UseVisualStyleBackColor = false;
+            this.rjButton1.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // Compras
             // 
@@ -590,6 +565,7 @@
             this.flpCategorias.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.flpProductos.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -607,46 +583,42 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBbuscar)).EndInit();
             this.ResumeLayout(false);
 
-        }
+            }
 
-        #endregion
+            #endregion
 
-        private System.Windows.Forms.Label lbProveedor;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.DataGridView dgvComprasDetalles;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Custom.RJButton rjBtnPagar;
-        private System.Windows.Forms.TextBox tbTotal;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbProveedor;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flpCategorias;
-        private Custom.RJButton rjButton4;
-        private Custom.RJButton rjButton6;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.PictureBox pBbuscar;
-        private System.Windows.Forms.TextBox tBxBuscar;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flpProductos;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel5;
-        private Custom.RJButton rjButton2;
-        private Custom.RJButton rjButton1;
-        private System.Windows.Forms.SplitContainer spcVentas;
-        private System.Windows.Forms.Label lbTotal;
+            private System.Windows.Forms.Label lbProveedor;
+            private System.Windows.Forms.Label lblNombre;
+            private System.Windows.Forms.TextBox tbNombre;
+            private System.Windows.Forms.DataGridView dgvComprasDetalles;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+            private System.Windows.Forms.Panel panel1;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+            private Custom.RJButton rjBtnPagar;
+            private System.Windows.Forms.TextBox tbTotal;
+            private System.Windows.Forms.Panel panel2;
+            private System.Windows.Forms.TextBox tbProveedor;
+            private System.Windows.Forms.Panel panel3;
+            private System.Windows.Forms.SplitContainer splitContainer1;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+            private System.Windows.Forms.FlowLayoutPanel flpCategorias;
+            private Custom.RJButton rjButton4;
+            private Custom.RJButton rjButton6;
+            private System.Windows.Forms.Panel panel4;
+            private System.Windows.Forms.PictureBox pBbuscar;
+            private System.Windows.Forms.TextBox tBxBuscar;
+            private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+            private System.Windows.Forms.FlowLayoutPanel flpProductos;
+            private System.Windows.Forms.Button button6;
+            private System.Windows.Forms.Panel panel5;
+            private Custom.RJButton rjButton2;
+            private Custom.RJButton rjButton1;
+            private System.Windows.Forms.SplitContainer spcVentas;
+            private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dTPFecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costoUnitarioProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioProducto;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
     }
-}
+    }

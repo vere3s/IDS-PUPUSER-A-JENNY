@@ -112,5 +112,32 @@ namespace PupuseriaJenny.Forms
             CargosGestion formCargos = new CargosGestion();
             formCargos.Show();
         }
+
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                if (tbFiltro.Text.Trim().Length <= 0)
+                {
+                    _datos.RemoveFilter();
+                }
+                else
+                {
+                    _datos.Filter = "nombreEmpleado like '%" + tbFiltro.Text + "%'"; ;
+                }
+                dataGridView1.AutoGenerateColumns = false;
+                dataGridView1.DataSource = _datos;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLocalmente();
+        }
     }
 }

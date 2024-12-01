@@ -15,7 +15,7 @@ namespace PupuseriaJenny.Forms
     public partial class CargosGestion : Form
     {
 
-        BindingSource DATOS = new BindingSource();
+       private readonly BindingSource DATOS = new BindingSource();
 
         public CargosGestion()
         {
@@ -115,6 +115,46 @@ namespace PupuseriaJenny.Forms
         private void CargosGestion_Load(object sender, EventArgs e)
         {
             Cargar();
+        }
+
+        private void FiltrarLocalmente()
+        {
+            try
+            {
+                if (DATOS.DataSource is DataTable dt)
+                {
+                    // Verificar si la columna 'cargo' existe en el DataTable
+                    if (!dt.Columns.Contains("cargo"))
+                    {
+                        MessageBox.Show("La columna 'cargo' no existe.");
+                        return;
+                    }
+                }
+
+                // Aplicar el filtro
+                if (tbFiltro.Text.Trim().Length <= 0)
+                {
+                    DATOS.RemoveFilter();
+                }
+                else
+                {
+                    DATOS.Filter = "cargo LIKE '%" + tbFiltro.Text + "%'";
+                }
+
+                // Actualizar el DataGridView
+                dgvCargos.AutoGenerateColumns = false;
+                dgvCargos.DataSource = DATOS;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar: " + ex.Message);
+            }
+        }
+
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLocalmente();    
+           
         }
     }
 }

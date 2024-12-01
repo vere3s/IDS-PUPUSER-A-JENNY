@@ -34,6 +34,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PermisosGestion));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dgvPermisos = new System.Windows.Forms.DataGridView();
+            this.IDPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.opcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accesoPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idOpcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnEliminar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,12 +48,6 @@
             this.btnAgregar = new System.Windows.Forms.ToolStripButton();
             this.tbFiltro = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.IDPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.opcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accesoPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idOpcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -119,6 +119,59 @@
             this.dgvPermisos.Size = new System.Drawing.Size(800, 413);
             this.dgvPermisos.TabIndex = 8;
             // 
+            // IDPermiso
+            // 
+            this.IDPermiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.IDPermiso.DataPropertyName = "IDPermiso";
+            this.IDPermiso.HeaderText = "ID";
+            this.IDPermiso.MinimumWidth = 90;
+            this.IDPermiso.Name = "IDPermiso";
+            this.IDPermiso.ReadOnly = true;
+            this.IDPermiso.Width = 90;
+            // 
+            // Rol
+            // 
+            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Rol.DataPropertyName = "Rol";
+            this.Rol.HeaderText = "Rol";
+            this.Rol.MinimumWidth = 100;
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            // 
+            // opcion
+            // 
+            this.opcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.opcion.DataPropertyName = "opcion";
+            this.opcion.HeaderText = "Opcion";
+            this.opcion.MinimumWidth = 6;
+            this.opcion.Name = "opcion";
+            this.opcion.ReadOnly = true;
+            // 
+            // accesoPermiso
+            // 
+            this.accesoPermiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.accesoPermiso.DataPropertyName = "accesoPermiso";
+            this.accesoPermiso.HeaderText = "Accesos";
+            this.accesoPermiso.MinimumWidth = 50;
+            this.accesoPermiso.Name = "accesoPermiso";
+            this.accesoPermiso.ReadOnly = true;
+            // 
+            // idRol
+            // 
+            this.idRol.DataPropertyName = "idRol";
+            this.idRol.HeaderText = "IDRol";
+            this.idRol.Name = "idRol";
+            this.idRol.ReadOnly = true;
+            this.idRol.Visible = false;
+            // 
+            // idOpcion
+            // 
+            this.idOpcion.DataPropertyName = "idOpcion";
+            this.idOpcion.HeaderText = "IDOPcion";
+            this.idOpcion.Name = "idOpcion";
+            this.idOpcion.ReadOnly = true;
+            this.idOpcion.Visible = false;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -129,8 +182,8 @@
             this.btnEditar,
             this.toolStripSeparator2,
             this.btnAgregar,
-            this.tbFiltro,
-            this.toolStripLabel1});
+            this.toolStripLabel1,
+            this.tbFiltro});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
@@ -198,7 +251,7 @@
             this.tbFiltro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFiltro.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.tbFiltro.Name = "tbFiltro";
-            this.tbFiltro.Size = new System.Drawing.Size(200, 37);
+            this.tbFiltro.Size = new System.Drawing.Size(200, 25);
             this.tbFiltro.TextChanged += new System.EventHandler(this.tbFiltro_TextChanged);
             // 
             // toolStripLabel1
@@ -206,64 +259,10 @@
             this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
-            this.toolStripLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripLabel1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(280, 1, 0, 2);
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(61, 20);
-            this.toolStripLabel1.Text = "Filtrar";
-            // 
-            // IDPermiso
-            // 
-            this.IDPermiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.IDPermiso.DataPropertyName = "IDPermiso";
-            this.IDPermiso.HeaderText = "ID";
-            this.IDPermiso.MinimumWidth = 90;
-            this.IDPermiso.Name = "IDPermiso";
-            this.IDPermiso.ReadOnly = true;
-            this.IDPermiso.Width = 90;
-            // 
-            // Rol
-            // 
-            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Rol.DataPropertyName = "Rol";
-            this.Rol.HeaderText = "Rol";
-            this.Rol.MinimumWidth = 100;
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            // 
-            // opcion
-            // 
-            this.opcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.opcion.DataPropertyName = "opcion";
-            this.opcion.HeaderText = "Opcion";
-            this.opcion.MinimumWidth = 6;
-            this.opcion.Name = "opcion";
-            this.opcion.ReadOnly = true;
-            // 
-            // accesoPermiso
-            // 
-            this.accesoPermiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.accesoPermiso.DataPropertyName = "accesoPermiso";
-            this.accesoPermiso.HeaderText = "Accesos";
-            this.accesoPermiso.MinimumWidth = 50;
-            this.accesoPermiso.Name = "accesoPermiso";
-            this.accesoPermiso.ReadOnly = true;
-            // 
-            // idRol
-            // 
-            this.idRol.DataPropertyName = "idRol";
-            this.idRol.HeaderText = "IDRol";
-            this.idRol.Name = "idRol";
-            this.idRol.ReadOnly = true;
-            this.idRol.Visible = false;
-            // 
-            // idOpcion
-            // 
-            this.idOpcion.DataPropertyName = "idOpcion";
-            this.idOpcion.HeaderText = "IDOPcion";
-            this.idOpcion.Name = "idOpcion";
-            this.idOpcion.ReadOnly = true;
-            this.idOpcion.Visible = false;
+            this.toolStripLabel1.Size = new System.Drawing.Size(20, 34);
             // 
             // PermisosGestion
             // 

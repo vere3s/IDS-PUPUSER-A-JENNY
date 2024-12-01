@@ -3,27 +3,36 @@ using RestauranteGestion.Core.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PupuseriaJenny.Services
 {
+    
+    /// Servicio para gestionar las operaciones relacionadas con los proveedores.
+    
     internal class ProveedorService
     {
         private readonly DBOperacion _operacion;
 
+        
+        /// Constructor que inicializa la conexión a la base de datos.
+        
         public ProveedorService()
         {
             _operacion = new DBOperacion();
         }
 
+        
+        /// Inserta un nuevo proveedor en la base de datos.
+        
+        /// <param name="proveedor">Objeto de tipo Proveedor con los datos a insertar.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool Insertar(Proveedor proveedor)
         {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Proveedor (nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor) ");
-            sentencia.Append("VALUES (@nombreProveedor, @telefonoProveedor, @direccionProveedor, @emailProveedor);");
+            string sentencia = @"
+                INSERT INTO RG_Proveedor 
+                (nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor) 
+                VALUES 
+                (@nombreProveedor, @telefonoProveedor, @direccionProveedor, @emailProveedor);";
 
             try
             {
@@ -35,28 +44,29 @@ namespace PupuseriaJenny.Services
                     { "@emailProveedor", proveedor.Email ?? (object)DBNull.Value }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
+                return _operacion.EjecutarSentencia(sentencia, parametros) >= 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado = false;
+                Console.WriteLine("Error al insertar proveedor: " + ex.Message);
+                return false;
             }
-            return resultado;
         }
 
+        
+        /// Actualiza un proveedor existente en la base de datos.
+       
+        /// <param name="proveedor">Objeto de tipo Proveedor con los datos actualizados.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool Actualizar(Proveedor proveedor)
         {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("UPDATE RG_Proveedor SET ");
-            sentencia.Append("nombreProveedor = @nombreProveedor, ");
-            sentencia.Append("telefonoProveedor = @telefonoProveedor, ");
-            sentencia.Append("direccionProveedor = @direccionProveedor, ");
-            sentencia.Append("emailProveedor = @emailProveedor ");
-            sentencia.Append("WHERE idProveedor = @idProveedor;");
+            string sentencia = @"
+                UPDATE RG_Proveedor 
+                SET nombreProveedor = @nombreProveedor, 
+                    telefonoProveedor = @telefonoProveedor, 
+                    direccionProveedor = @direccionProveedor, 
+                    emailProveedor = @emailProveedor 
+                WHERE idProveedor = @idProveedor;";
 
             try
             {
@@ -69,23 +79,74 @@ namespace PupuseriaJenny.Services
                     { "@idProveedor", proveedor.IdProveedor }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
+                return _operacion.EjecutarSentencia(sentencia, parametros) >= 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado = false;
+                Console.WriteLine("Error al actualizar proveedor: " + ex.Message);
+                return false;
             }
-            return resultado;
         }
 
+        
+        /// Elimina un proveedor de la base de datos según su ID.
+        
+        /// <param name="idProveedor">ID del proveedor a eliminar.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool Eliminar(int idProveedor)
         {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("DELETE FROM RG_Proveedor WHERE idProveedor = @idProveedor;");
+            string sentencia = "DELETE FROM RG_Proveedor WHERE idProveedor = @idProveedor;";
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idProveedor", idProveedor }
+                };
+
+                return _operacion.EjecutarSentencia(sentencia, parametros) >= 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar proveedor: " + ex.Message);
+                return false;
+            }
+        }
+
+        
+        /// Obtiene la lista de todos los proveedores de la base de datos.
+        
+        /// <returns>Lista de objetos Proveedor.</returns>
+        public DataTable ObtenerProveedoresAsDataTable()
+        {
+            string consulta = @"
+        SELECT idProveedor, nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor 
+        FROM RG_Proveedor 
+        ORDER BY nombreProveedor ASC;";
+
+            try
+            {
+                // Devolver directamente el DataTable obtenido de la consulta
+                return _operacion.Consultar(consulta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener proveedores como DataTable: " + ex.Message);
+                return null;
+            }
+        }
+
+
+      
+        /// Obtiene un proveedor específico por su ID.
+        
+        /// <param name="idProveedor">ID del proveedor a buscar.</param>
+        /// <returns>Objeto Proveedor si se encuentra; null en caso contrario.</returns>
+        public Proveedor ObtenerPorId(int idProveedor)
+        {
+            string sentencia = @"
+                SELECT idProveedor, nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor 
+                FROM RG_Proveedor 
+                WHERE idProveedor = @idProveedor;";
 
             try
             {
@@ -94,154 +155,26 @@ namespace PupuseriaJenny.Services
                     { "@idProveedor", idProveedor }
                 };
 
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
-            }
-            catch (Exception)
-            {
-                resultado = false;
-            }
-            return resultado;
-        }
-        // obtener lista
-        public List<Proveedor> ObtenerProveedores()
-        {
-            List<Proveedor> proveedores = new List<Proveedor>();
-            string consulta = @"SELECT idProveedor, nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor 
-                                FROM RG_Proveedor 
-                                ORDER BY nombreProveedor ASC;";
-
-            try
-            {
-                DataTable resultado = _operacion.Consultar(consulta);
-
-                foreach (DataRow row in resultado.Rows)
-                {
-                    proveedores.Add(new Proveedor
-                    {
-                        IdProveedor = Convert.ToInt32(row["idProveedor"]),
-                        Nombre = row["nombreProveedor"].ToString(),
-                        Telefono = row["telefonoProveedor"] == DBNull.Value ? null : row["telefonoProveedor"].ToString(),
-                        Direccion = row["direccionProveedor"] == DBNull.Value ? null : row["direccionProveedor"].ToString(),
-                        Email = row["emailProveedor"] == DBNull.Value ? null : row["emailProveedor"].ToString()
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al obtener proveedores: " + ex.Message);
-            }
-
-            return proveedores;
-        }
-        //obtener por ID
-        public virtual Proveedor ObtenerPorId(int IdProveedor)
-        {
-            Proveedor proveedor = null;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("SELECT idProveedor, nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor");
-            sentencia.Append("FROM  RG_Proveedor ");
-            sentencia.Append("WHERE idProveedor = @idProveedor;");
-
-            try
-            {
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@idProveedor", IdProveedor }
-                };
-
-                DataTable tabla = _operacion.Consultar(sentencia.ToString(), parametros);
+                DataTable tabla = _operacion.Consultar(sentencia, parametros);
                 if (tabla.Rows.Count > 0)
                 {
                     DataRow fila = tabla.Rows[0];
-                    proveedor = new Proveedor
+                    return new Proveedor
                     {
-                        IdProveedor = Convert.ToInt32(fila["IdProveedor"]),
+                        IdProveedor = Convert.ToInt32(fila["idProveedor"]),
                         Nombre = fila["nombreProveedor"].ToString(),
-                        Telefono = fila["telefonoProveedor"].ToString(),
-                        Direccion = fila["direccionProveedor"].ToString(),
-                        Email = fila["emailProveedor"].ToString()
+                        Telefono = fila["telefonoProveedor"]?.ToString(),
+                        Direccion = fila["direccionProveedor"]?.ToString(),
+                        Email = fila["emailProveedor"]?.ToString()
                     };
                 }
             }
             catch (Exception ex)
             {
-                proveedor = null;
-
-                Console.WriteLine("Eliminar error es" + ex.Message);
+                Console.WriteLine("Error al obtener proveedor por ID: " + ex.Message);
             }
 
-            return proveedor;
+            return null;
         }
-
-        //Siguinete metodo
-        public DataTable ObtenerTodos()
-        {
-            // Construcción de la sentencia SQL
-            string sentencia = @"
-        SELECT 
-            e.idProveedor AS IdProveedor,
-            e.nombreProveedor AS NombreProveedor,
-            COALESCE(e.telefonoProveedor, 'No especificado') AS TelefonoProveedor,
-            COALESCE(e.emailProveedor, 'No especificado') AS EmailProveedor,
-        FROM 
-            RG_Proveedor e  
-        ORDER BY 
-            e.nombreProveedor ASC;";
-            try
-            {
-                // Consulta a la base de datos
-                DataTable tabla = _operacion.Consultar(sentencia);
-
-                // Verifica si la consulta devolvió datos
-                if (tabla == null || tabla.Rows.Count == 0)
-                {
-                    Console.WriteLine("No se encontraron registros en la tabla de Proveedores.");
-                    return null;
-                }
-
-                return tabla;
-            }
-            catch (Exception ex)
-            {
-                // Manejo de errores y log de la excepción
-                Console.WriteLine("Error al obtener Proveedores: " + ex.Message);
-                return null;
-            }
-        }
-
-
-        public bool EliminarProveedor(int idProveedor)
-        {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("DELETE FROM RG_Proveedor WHERE idProveedor = @idProveedor;");
-
-            try
-            {
-                // Define los parámetros para la consulta
-                var parametros = new Dictionary<string, object>
-        {
-            { "@idProveedor", idProveedor }
-        };
-
-                // Ejecuta la sentencia y verifica el resultado
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Manejo de errores, registra la excepción si es necesario
-                Console.WriteLine("Error al eliminar el proveedor: " + ex.Message);
-                resultado = false;
-            }
-
-            return resultado;
-        }
-
     }
 }

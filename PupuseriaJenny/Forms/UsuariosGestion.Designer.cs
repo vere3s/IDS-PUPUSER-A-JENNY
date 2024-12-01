@@ -34,6 +34,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsuariosGestion));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.IDUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnRoles = new System.Windows.Forms.ToolStripButton();
             this.btnEmpleados = new System.Windows.Forms.ToolStripButton();
@@ -48,13 +55,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbRegistros = new System.Windows.Forms.ToolStripStatusLabel();
-            this.IDUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contraseña = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDRol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.RightToolStripPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -133,6 +133,74 @@
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(550, 311);
             this.dgvUsuarios.TabIndex = 8;
+            // 
+            // IDUsuario
+            // 
+            this.IDUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.IDUsuario.DataPropertyName = "IDUsuario";
+            this.IDUsuario.HeaderText = "ID";
+            this.IDUsuario.MinimumWidth = 90;
+            this.IDUsuario.Name = "IDUsuario";
+            this.IDUsuario.ReadOnly = true;
+            this.IDUsuario.Width = 90;
+            // 
+            // Usuario
+            // 
+            this.Usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Usuario.DataPropertyName = "Usuario";
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.MinimumWidth = 100;
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            // 
+            // Empleado
+            // 
+            this.Empleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Empleado.DataPropertyName = "nombreEmpleado";
+            this.Empleado.HeaderText = "Empleado";
+            this.Empleado.MinimumWidth = 6;
+            this.Empleado.Name = "Empleado";
+            this.Empleado.ReadOnly = true;
+            this.Empleado.Width = 114;
+            // 
+            // Rol
+            // 
+            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Rol.DataPropertyName = "Rol";
+            this.Rol.HeaderText = "Rol";
+            this.Rol.MinimumWidth = 6;
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            this.Rol.Width = 61;
+            // 
+            // Contraseña
+            // 
+            this.Contraseña.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Contraseña.DataPropertyName = "contraseniaUsuario";
+            this.Contraseña.HeaderText = "Contraseña";
+            this.Contraseña.MinimumWidth = 50;
+            this.Contraseña.Name = "Contraseña";
+            this.Contraseña.ReadOnly = true;
+            // 
+            // IDEmpleado
+            // 
+            this.IDEmpleado.DataPropertyName = "IDEmpleado";
+            this.IDEmpleado.HeaderText = "IDEmpleado";
+            this.IDEmpleado.MinimumWidth = 100;
+            this.IDEmpleado.Name = "IDEmpleado";
+            this.IDEmpleado.ReadOnly = true;
+            this.IDEmpleado.Visible = false;
+            this.IDEmpleado.Width = 125;
+            // 
+            // IDRol
+            // 
+            this.IDRol.DataPropertyName = "IDRol";
+            this.IDRol.HeaderText = "IDRol";
+            this.IDRol.MinimumWidth = 80;
+            this.IDRol.Name = "IDRol";
+            this.IDRol.ReadOnly = true;
+            this.IDRol.Visible = false;
+            this.IDRol.Width = 80;
             // 
             // toolStrip2
             // 
@@ -264,6 +332,7 @@
             this.tbFiltro.Margin = new System.Windows.Forms.Padding(0, 0, 1, 0);
             this.tbFiltro.Name = "tbFiltro";
             this.tbFiltro.Size = new System.Drawing.Size(200, 37);
+            this.tbFiltro.TextChanged += new System.EventHandler(this.tbFiltro_TextChanged);
             // 
             // toolStripLabel1
             // 
@@ -302,74 +371,6 @@
             this.lbRegistros.Name = "lbRegistros";
             this.lbRegistros.Size = new System.Drawing.Size(15, 17);
             this.lbRegistros.Text = "0";
-            // 
-            // IDUsuario
-            // 
-            this.IDUsuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.IDUsuario.DataPropertyName = "IDUsuario";
-            this.IDUsuario.HeaderText = "ID";
-            this.IDUsuario.MinimumWidth = 90;
-            this.IDUsuario.Name = "IDUsuario";
-            this.IDUsuario.ReadOnly = true;
-            this.IDUsuario.Width = 90;
-            // 
-            // Usuario
-            // 
-            this.Usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Usuario.DataPropertyName = "Usuario";
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.MinimumWidth = 100;
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            // 
-            // Empleado
-            // 
-            this.Empleado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Empleado.DataPropertyName = "nombreEmpleado";
-            this.Empleado.HeaderText = "Empleado";
-            this.Empleado.MinimumWidth = 6;
-            this.Empleado.Name = "Empleado";
-            this.Empleado.ReadOnly = true;
-            this.Empleado.Width = 114;
-            // 
-            // Rol
-            // 
-            this.Rol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Rol.DataPropertyName = "Rol";
-            this.Rol.HeaderText = "Rol";
-            this.Rol.MinimumWidth = 6;
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            this.Rol.Width = 61;
-            // 
-            // Contraseña
-            // 
-            this.Contraseña.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Contraseña.DataPropertyName = "contraseniaUsuario";
-            this.Contraseña.HeaderText = "Contraseña";
-            this.Contraseña.MinimumWidth = 50;
-            this.Contraseña.Name = "Contraseña";
-            this.Contraseña.ReadOnly = true;
-            // 
-            // IDEmpleado
-            // 
-            this.IDEmpleado.DataPropertyName = "IDEmpleado";
-            this.IDEmpleado.HeaderText = "IDEmpleado";
-            this.IDEmpleado.MinimumWidth = 100;
-            this.IDEmpleado.Name = "IDEmpleado";
-            this.IDEmpleado.ReadOnly = true;
-            this.IDEmpleado.Visible = false;
-            this.IDEmpleado.Width = 125;
-            // 
-            // IDRol
-            // 
-            this.IDRol.DataPropertyName = "IDRol";
-            this.IDRol.HeaderText = "IDRol";
-            this.IDRol.MinimumWidth = 80;
-            this.IDRol.Name = "IDRol";
-            this.IDRol.ReadOnly = true;
-            this.IDRol.Visible = false;
-            this.IDRol.Width = 80;
             // 
             // UsuariosGestion
             // 

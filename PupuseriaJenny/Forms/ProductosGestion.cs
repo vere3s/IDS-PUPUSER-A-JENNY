@@ -134,5 +134,10 @@ namespace PupuseriaJenny.Forms
         {
             FiltrarLocalmente();
         }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

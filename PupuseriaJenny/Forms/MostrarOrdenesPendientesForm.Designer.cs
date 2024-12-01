@@ -195,7 +195,6 @@
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MostrarOrdenesPendientesForm";
             this.Text = "Ordenes Pendientes";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

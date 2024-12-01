@@ -15,7 +15,7 @@ namespace PupuseriaJenny.Forms
     public partial class RolesGestion : Form
     {
        
-        BindingSource DATOS = new BindingSource();
+       private readonly BindingSource DATOS = new BindingSource();
         public RolesGestion()
         {
             InitializeComponent();
@@ -38,9 +38,11 @@ namespace PupuseriaJenny.Forms
                 }
                 else
                 {
-                    DATOS.Filter = "Rol LIKE '%" + tbFiltro.Text + "%'";
-
+                    DATOS.Filter = "rol like '%" + tbFiltro.Text + "%'"; ;
                 }
+                dgvRoles.AutoGenerateColumns = false;
+                dgvRoles.DataSource = DATOS;
+
             }
             catch (Exception)
             {

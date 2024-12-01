@@ -1,11 +1,6 @@
-﻿
-
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 using System;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PupuseriaJenny.Models
 {
@@ -34,6 +29,6 @@ namespace PupuseriaJenny.Models
 
         // Propiedades de navegación para las claves foráneas
         public virtual Empleado Empleado { get; set; }
-        public virtual PedidoCompra pedidoCompra { get; set; }
+        public virtual PedidoCompra PedidoCompra { get; set; }
     }
 }
