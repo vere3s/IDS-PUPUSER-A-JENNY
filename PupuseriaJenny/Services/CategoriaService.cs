@@ -171,22 +171,38 @@ namespace PupuseriaJenny.Services
         public DataTable ObtenerIngredientesPorCategoria(string categoria)
         {
             DataTable resultado = new DataTable();
-            string consulta = @"SELECT i.idIngrediente, i.nombreIngrediente, dp.precioDetallePedidoIngrediente, i.imagenProducto
-                            FROM RG_Ingrediente i
-                            JOIN RG_Categoria c ON i.idCategoria = c.idCategoria
-                            JOIN RG_DetallePedidoIngrediente dp ON i.idIngrediente = dp.idIngrediente
-                            WHERE c.categoria = @categoria
-                            ORDER BY i.nombreIngrediente ASC";
+            string consulta = @"SELECT i.idIngrediente, i.nombreIngrediente, i.precioIngrediente, i.imagenIngrediente
+                         FROM RG_Ingrediente i
+                         JOIN RG_Categoria c ON i.idCategoria = c.idCategoria
+                         WHERE c.categoria = @categoria
+                         ORDER BY i.nombreIngrediente ASC;";
 
             try
             {
-                // Agregar parámetro
-                Dictionary<string, object> parametros = new Dictionary<string, object>
+                if (string.IsNullOrEmpty(categoria))
                 {
-                    { "@categoria", categoria }
-                };
+                    throw new ArgumentException("La categoría no puede ser nula o vacía.");
+                }
+
+                // Depuración de la consulta y los parámetros
+                Console.WriteLine("Consulta SQL: " + consulta);
+                Console.WriteLine("Parámetro categoría: " + categoria);
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+        {
+            { "@categoria", categoria }
+        };
 
                 resultado = _operacion.Consultar(consulta, parametros);
+
+                if (resultado.Rows.Count == 0)
+                {
+                    Console.WriteLine("No se encontraron ingredientes para la categoría: " + categoria);
+                }
+                else
+                {
+                    Console.WriteLine("Ingredientes encontrados: " + resultado.Rows.Count);
+                }
             }
             catch (Exception ex)
             {
@@ -195,6 +211,7 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
+
         public CategoriaService(DBOperacion operacion = null)
         {
             _operacion = operacion ?? new DBOperacion();

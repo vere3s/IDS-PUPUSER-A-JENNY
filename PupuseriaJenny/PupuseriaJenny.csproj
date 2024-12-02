@@ -196,6 +196,7 @@
     <Compile Include="Forms\DescargarInventarioForm.Designer.cs">
       <DependentUpon>DescargarInventarioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DetallePedidoCompra.cs" />
     <Compile Include="Forms\DetallesOrdenLlevarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,8 +350,13 @@
     <Compile Include="Models\Cargos.cs" />
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\Compra.cs" />
+    <Compile Include="Models\DetalleCompras.cs" />
+    <Compile Include="Models\DetallePedidoCompra.cs" />
+    <Compile Include="Models\DetallePedidoIngrediente.cs" />
+    <Compile Include="Models\DetallePedidoProducto.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\Ingredientes.cs" />
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\Mesas.cs" />
@@ -369,8 +375,10 @@
     <Compile Include="Services\CargoService.cs" />
     <Compile Include="Services\CategoriaService.cs" />
     <Compile Include="Services\CompraService.cs" />
+    <Compile Include="Services\DetallePedidoCompraService.cs" />
     <Compile Include="Services\DetalleVentaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
+    <Compile Include="Services\EntradaService.cs" />
     <Compile Include="Services\IngredienteService.cs" />
     <Compile Include="Services\InventarioService.cs" />
     <Compile Include="Services\MesaService.cs" />
