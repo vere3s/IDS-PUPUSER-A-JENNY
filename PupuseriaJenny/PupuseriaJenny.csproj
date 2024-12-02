@@ -37,6 +37,10 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="itext.barcodes, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext.9.0.0\lib\net461\itext.barcodes.dll</HintPath>
     </Reference>
@@ -128,6 +132,8 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,6 +153,24 @@
     </Compile>
     <Compile Include="Custom\RJTextBox.Designer.cs">
       <DependentUpon>RJTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DATReports\dtsReporteCompras.cs">
+      <DependentUpon>dtsReporteCompras.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DATReports\dtsReporteCompras.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteCompras.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DATReports\dtsReporteInventario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteInventario.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DATReports\dtsReporteVentas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsReporteVentas.xsd</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -196,7 +220,6 @@
     <Compile Include="Forms\DescargarInventarioForm.Designer.cs">
       <DependentUpon>DescargarInventarioForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DetallePedidoCompra.cs" />
     <Compile Include="Forms\DetallesOrdenLlevarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +340,30 @@
     <Compile Include="Forms\ProveerdorEdicion.Designer.cs">
       <DependentUpon>ProveerdorEdicion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SeleccionarReporteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeleccionarReporteForm.Designer.cs">
+      <DependentUpon>SeleccionarReporteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\visorCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\visorCompras.Designer.cs">
+      <DependentUpon>visorCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\visorInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\visorInventario.Designer.cs">
+      <DependentUpon>visorInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\visorVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\visorVentas.Designer.cs">
+      <DependentUpon>visorVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RolesEdicion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,13 +397,8 @@
     <Compile Include="Models\Cargos.cs" />
     <Compile Include="Models\Categorias.cs" />
     <Compile Include="Models\Compra.cs" />
-    <Compile Include="Models\DetalleCompras.cs" />
-    <Compile Include="Models\DetallePedidoCompra.cs" />
-    <Compile Include="Models\DetallePedidoIngrediente.cs" />
-    <Compile Include="Models\DetallePedidoProducto.cs" />
     <Compile Include="Models\DetallesVentas.cs" />
     <Compile Include="Models\Empleado.cs" />
-    <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\Ingredientes.cs" />
     <Compile Include="Models\Kardex.cs" />
     <Compile Include="Models\Mesas.cs" />
@@ -372,13 +414,35 @@
     <Compile Include="Models\Ventas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ComprasIngredientes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprasIngredientes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ComprasProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComprasProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\InventarioIngrediente.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioIngrediente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Ventas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ventas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\CargoService.cs" />
     <Compile Include="Services\CategoriaService.cs" />
     <Compile Include="Services\CompraService.cs" />
-    <Compile Include="Services\DetallePedidoCompraService.cs" />
     <Compile Include="Services\DetalleVentaService.cs" />
     <Compile Include="Services\EmpleadoService.cs" />
-    <Compile Include="Services\EntradaService.cs" />
     <Compile Include="Services\IngredienteService.cs" />
     <Compile Include="Services\InventarioService.cs" />
     <Compile Include="Services\MesaService.cs" />
@@ -478,6 +542,18 @@
     <EmbeddedResource Include="Forms\ProveerdorEdicion.resx">
       <DependentUpon>ProveerdorEdicion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeleccionarReporteForm.resx">
+      <DependentUpon>SeleccionarReporteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\visorCompras.resx">
+      <DependentUpon>visorCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\visorInventario.resx">
+      <DependentUpon>visorInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\visorVentas.resx">
+      <DependentUpon>visorVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RolesEdicion.resx">
       <DependentUpon>RolesEdicion.cs</DependentUpon>
     </EmbeddedResource>
@@ -503,6 +579,55 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\ComprasIngredientes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ComprasIngredientes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ComprasProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ComprasProductos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventarioIngrediente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InventarioIngrediente.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Ventas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Ventas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="DATReports\dtsReporteCompras.xsc">
+      <DependentUpon>dtsReporteCompras.xsd</DependentUpon>
+    </None>
+    <None Include="DATReports\dtsReporteCompras.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteCompras.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DATReports\dtsReporteCompras.xss">
+      <DependentUpon>dtsReporteCompras.xsd</DependentUpon>
+    </None>
+    <None Include="DATReports\dtsReporteInventario.xsc">
+      <DependentUpon>dtsReporteInventario.xsd</DependentUpon>
+    </None>
+    <None Include="DATReports\dtsReporteInventario.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteInventario.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DATReports\dtsReporteInventario.xss">
+      <DependentUpon>dtsReporteInventario.xsd</DependentUpon>
+    </None>
+    <None Include="DATReports\dtsReporteVentas.xsc">
+      <DependentUpon>dtsReporteVentas.xsd</DependentUpon>
+    </None>
+    <None Include="DATReports\dtsReporteVentas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsReporteVentas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DATReports\dtsReporteVentas.xss">
+      <DependentUpon>dtsReporteVentas.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -536,6 +661,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

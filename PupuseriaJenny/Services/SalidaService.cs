@@ -2,6 +2,7 @@
 using RestauranteGestion.Core.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace PupuseriaJenny.Services
@@ -103,6 +104,56 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
-        
+        public static DataTable SEGUN_PERIODO_INVENTARIO_INGREDIENTES(string pFechaInicio, string pFechaFinal)
+        {
+            DataTable Resultado = new DataTable();
+            String Consulta = @"SELECT i.nombreIngrediente, c.categoria,
+	                                  COALESCE(SUM(DISTINCT e.cantidadEntrada), 0) - COALESCE(SUM( s.cantidadSalida), 0) AS cantidadDisponible
+                                FROM RG_Ingrediente i
+                                LEFT JOIN RG_Categoria c ON i.idCategoria = c.idCategoria
+                                LEFT JOIN RG_Entrada e ON i.idIngrediente = e.idIngrediente
+                                LEFT JOIN RG_Salida s ON i.idIngrediente = s.idIngrediente
+                                WHERE CAST(e.fechaEntrada AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"'
+                                AND CAST(e.fechaEntrada AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"'
+                                GROUP BY i.idIngrediente, i.nombreIngrediente, c.categoria
+                                ORDER BY i.idIngrediente
+                                LIMIT 0, 300;";
+            DBOperacion operacion = new DBOperacion();
+            try
+            {
+                Resultado = operacion.Consultar(Consulta);
+            }
+            catch (Exception)
+            {
+
+            }
+            return Resultado;
+        }
+        public static DataTable SEGUN_PERIODO_INVENTARIO_PRODUCTOS(string pFechaInicio, string pFechaFinal)
+        {
+            DataTable Resultado = new DataTable();
+            String Consulta = @"SELECT p.nombreProducto, c.categoria,
+	                                  COALESCE(SUM(DISTINCT e.cantidadEntrada), 0) - COALESCE(SUM( s.cantidadSalida), 0) AS cantidadDisponible
+                                FROM RG_Producto p
+                                LEFT JOIN RG_Categoria c ON p.idCategoria = c.idCategoria
+                                LEFT JOIN RG_Entrada e ON p.idProducto = e.idProducto
+                                LEFT JOIN RG_Salida s ON p.idProducto = s.idProducto
+                                WHERE CAST(e.fechaEntrada AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"'
+                                AND CAST(e.fechaEntrada AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"'
+                                GGROUP BY p.idProducto, p.nombreProducto, c.categoria
+                                ORDER BY p.idProducto
+                                LIMIT 0, 300;";
+            DBOperacion operacion = new DBOperacion();
+            try
+            {
+                Resultado = operacion.Consultar(Consulta);
+            }
+            catch (Exception)
+            {
+
+            }
+            return Resultado;
+        }
+
     }
 }

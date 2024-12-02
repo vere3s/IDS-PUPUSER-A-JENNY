@@ -414,7 +414,49 @@ namespace PupuseriaJenny.Services
                 return null;
             }
         }
+        public static DataTable SEGUN_PERIODO_COMPRAS_INGREDIENTES(string pFechaInicio, string pFechaFinal)
+        {
+            DataTable Resultado = new DataTable();
+            String Consulta = @"SELECT c.fechaCompra, e.nombreEmpleado, i.nombreIngrediente, c.totalCompra
+                                FROM RG_Compra c
+                                JOIN RG_DetallePedidoIngrediente dpi ON dpi.idDetallePedidoIngrediente = c.idDetallePedidoIngrediente
+                                JOIN RG_Empleado e ON e.idEmpleado = c.idEmpleado
+                                JOIN RG_Ingrediente i ON i.idIngrediente = dpi.idIngrediente
+                                JOIN RG_PedidoCompra pc ON pc.idPedidoCompra = dpi.idPedidoCompra
+                                WHERE CAST(c.fechaCompra AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"';";
+            DBOperacion operacion = new DBOperacion();
+            try
+            {
+                Resultado = operacion.Consultar(Consulta);
+            }
+            catch (Exception)
+            {
 
-       
+            }
+            return Resultado;
+        }
+        public static DataTable SEGUN_PERIODO_COMPRAS_PRODUCTOS(string pFechaInicio, string pFechaFinal)
+        {
+            DataTable Resultado = new DataTable();
+            String Consulta = @"SELECT c.fechaCompra, e.nombreEmpleado, p.nombreProducto, c.totalCompra
+                                FROM RG_Compra c
+                                JOIN RG_DetallePedidoProducto dpp ON dpp.idDetallePedidoProducto = c.idDetallePedidoProducto
+                                JOIN RG_Empleado e ON e.idEmpleado = c.idEmpleado
+                                JOIN RG_Producto p ON p.idProducto = dpp.idProducto
+                                JOIN RG_PedidoCompra pc ON pc.idPedidoCompra = dpp.idPedidoCompra
+                                WHERE CAST(c.fechaCompra AS DATE) between '" + pFechaInicio + "' AND '" + pFechaFinal + @"';";
+            DBOperacion operacion = new DBOperacion();
+            try
+            {
+                Resultado = operacion.Consultar(Consulta);
+            }
+            catch (Exception)
+            {
+
+            }
+            return Resultado;
+        }
+
+
     }
 }
