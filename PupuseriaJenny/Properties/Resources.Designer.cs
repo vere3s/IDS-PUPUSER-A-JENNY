@@ -63,6 +63,16 @@ namespace PupuseriaJenny.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_type_light_config_icon_130470 {
+            get {
+                object obj = ResourceManager.GetObject("file_type_light_config_icon_130470", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imagenPredeterminada {
             get {
                 object obj = ResourceManager.GetObject("imagenPredeterminada", resourceCulture);

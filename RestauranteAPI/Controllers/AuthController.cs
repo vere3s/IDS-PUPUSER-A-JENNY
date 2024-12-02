@@ -7,7 +7,8 @@ using System.Text;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
 using RestauranteAPI.DTOs;
-using System.Data;  // Asegúrate de incluir tu modelo de usuario
+using System.Data;
+using System.Linq;
 
 namespace RestauranteAPI.Controllers
 {
@@ -42,24 +43,23 @@ namespace RestauranteAPI.Controllers
             string apellidoEmpleado = dt.Rows[0]["apellidoEmpleado"].ToString(); // Apellido del empleado
             int idEmpleado = Convert.ToInt32(dt.Rows[0]["IDEmpleado"]);  // ID del empleado
             string rol = dt.Rows[0]["rol"].ToString();
-            var token = GenerateJwtToken(username, nombreEmpleado, apellidoEmpleado, idEmpleado,rol);
+            var token = GenerateJwtToken(username, nombreEmpleado, apellidoEmpleado, idEmpleado, rol);
 
             return Ok(new { token });
         }
 
-        private string GenerateJwtToken(string username, string nombreEmpleado, string apellidoEmpleado, int idEmpleado,string rol)
+        private string GenerateJwtToken(string username, string nombreEmpleado, string apellidoEmpleado, int idEmpleado, string rol)
         {
             // Definir las claims (reclamaciones) para el token
             var claims = new[]
             {
-        new Claim(ClaimTypes.Name, username),
-        new Claim(ClaimTypes.NameIdentifier, username),
-         new Claim(ClaimTypes.Role, rol),
-        new Claim("nombreEmpleado", nombreEmpleado),
-        new Claim("apellidoEmpleado", apellidoEmpleado),
-        new Claim("idEmpleado", idEmpleado.ToString()),  // Convertir el ID a cadena
-        // Puedes agregar más claims como roles o permisos si es necesario
-    };
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.NameIdentifier, username),
+                new Claim(ClaimTypes.Role, rol),
+                new Claim("nombreEmpleado", nombreEmpleado),
+                new Claim("apellidoEmpleado", apellidoEmpleado),
+                new Claim("idEmpleado", idEmpleado.ToString())  // Convertir el ID a cadena
+            };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"])); // Se usa la clave secreta desde el archivo de configuración
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -75,5 +75,49 @@ namespace RestauranteAPI.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);  // Retorna el token en formato string
         }
 
+        // Nuevo método para renovar el token
+        [HttpPost("renew-token")]
+        public IActionResult RenewToken([FromHeader] string authorization)
+        {
+            if (string.IsNullOrEmpty(authorization) || !authorization.StartsWith("Bearer "))
+            {
+                return Unauthorized(new { message = "Token no proporcionado o inválido." });
+            }
+
+            var tokenString = authorization.Substring("Bearer ".Length);  // Extraemos el token de la cabecera
+
+            try
+            {
+                // Validamos el token recibido
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]);
+                tokenHandler.ValidateToken(tokenString, new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = _configuration["Jwt:Issuer"],
+                    ValidAudience = _configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                }, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+
+                // Si el token es válido, lo renovamos
+                string username = jwtToken.Claims.First(x => x.Type == ClaimTypes.Name).Value;
+                string nombreEmpleado = jwtToken.Claims.First(x => x.Type == "nombreEmpleado").Value;
+                string apellidoEmpleado = jwtToken.Claims.First(x => x.Type == "apellidoEmpleado").Value;
+                int idEmpleado = int.Parse(jwtToken.Claims.First(x => x.Type == "idEmpleado").Value);
+                string rol = jwtToken.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+
+                var newToken = GenerateJwtToken(username, nombreEmpleado, apellidoEmpleado, idEmpleado, rol);
+
+                return Ok(new { token = newToken });  // Retornamos el nuevo token
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = "El token no es válido o ha expirado." });
+            }
+        }
     }
 }
