@@ -151,9 +151,6 @@ namespace PupuseriaJenny.Forms
         }
 
 
-        private void tbFiltro_TextChanged(object sender, EventArgs e)
-        {
-            FiltrarLocalmente();
-        }
+        
     }
 }
