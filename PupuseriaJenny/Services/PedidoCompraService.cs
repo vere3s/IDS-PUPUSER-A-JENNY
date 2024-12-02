@@ -154,6 +154,43 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
+        public bool InsertarKardexEntrada(int? idProducto, int? idIngrediente, int cantidadEntrada, decimal costoUnitario, DateTime fechaEntrada)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("EXEC InsertarKardexEntrada ");
+            sentencia.Append("@p_idProducto = @idProducto, ");
+            sentencia.Append("@p_idIngrediente = @idIngrediente, ");
+            sentencia.Append("@p_cantidadEntrada = @cantidadEntrada, ");
+            sentencia.Append("@p_costoUnitario = @costoUnitario, ");
+            sentencia.Append("@p_fechaEntrada = @fechaEntrada;");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idProducto", idProducto.HasValue ? (object)idProducto.Value : DBNull.Value },
+                    { "@idIngrediente", idIngrediente.HasValue ? (object)idIngrediente.Value : DBNull.Value },
+                    { "@cantidadEntrada", cantidadEntrada },
+                    { "@costoUnitario", costoUnitario },
+                    { "@fechaEntrada", fechaEntrada }
+                };
+
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) > 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show($"Error al insertar en el Kardex: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
     }
 }
 

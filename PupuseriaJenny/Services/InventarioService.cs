@@ -261,13 +261,20 @@ LIMIT 300;
             StringBuilder sentencia = new StringBuilder();
 
             // Consulta SQL para obtener id, nombre y cantidad disponible de productos
-            sentencia.Append(@"FROM RG_Producto p
+            sentencia.Append(@"SELECT p.idProducto AS id, 
+                                p.nombreProducto AS nombre, 
+                                (COALESCE(SUM(DISTINCT e.cantidadEntrada), 0) - COALESCE(SUM(s.cantidadSalida), 0)) AS cantidadDisponible,
+                                c.categoria
+                            FROM RG_Producto p
                             LEFT JOIN RG_Categoria c ON p.idCategoria = c.idCategoria
                             LEFT JOIN RG_Entrada e ON p.idProducto = e.idProducto
                             LEFT JOIN RG_Salida s ON p.idProducto = s.idProducto
                             LEFT JOIN RG_DetalleVenta dv ON dv.idProducto = p.idProducto
                             LEFT JOIN RG_Orden o ON o.idOrden = dv.idOrden
-                            WHERE o.EstadoOrden = 'Pagada'
+                            LEFT JOIN RG_DetallePedidoProducto dpp ON dpp.idProducto = p.idProducto
+                            LEFT JOIN RG_PedidoCompra pc ON pc.idPedidoCompra = dpp.idPedidoCompra
+                            WHERE o.EstadoOrden = 'Pendiente' OR o.EstadoOrden = 'Pagada'
+                            OR pc.estadoPedidoCompra = 'Pendiente' OR pc.estadoPedidoCompra = 'Pagada'
                             GROUP BY p.idProducto, p.nombreProducto, c.categoria
                             ORDER BY p.idProducto
                             LIMIT 0, 300;");

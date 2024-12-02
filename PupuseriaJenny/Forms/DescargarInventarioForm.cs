@@ -78,7 +78,7 @@ namespace PupuseriaJenny.Forms
         {
             CategoriaService categoriaService = new CategoriaService();
             // Obtiene los ingredientes de la categoría seleccionada
-            DataTable ingredientes = categoriaService.ObtenerIngredientesPorCategoria(categoria);
+            DataTable ingredientes = categoriaService.ObtenerIngredientesPorCategorias(categoria);
             // Limpia ingredientes previos en el FlowLayoutPanel
             flpIngredientes.Controls.Clear();
 
@@ -267,6 +267,7 @@ namespace PupuseriaJenny.Forms
             {
                 MessageBox.Show("Todos los ingredientes se descargaron correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dgvIngredientesDetalles.Rows.Clear();
+                Close();
             }
             else
             {

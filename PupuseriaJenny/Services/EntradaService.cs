@@ -77,33 +77,6 @@ namespace PupuseriaJenny.Services
             return resultado;
         }
 
-        public bool InsertarEntradaProducto(int idProducto, decimal cantidad)
-        {
-            bool resultado = false;
-            StringBuilder sentencia = new StringBuilder();
-            sentencia.Append("INSERT INTO RG_Entrada (IdProducto, CantidadEntrada) VALUES (@IdProducto, @Cantidad)");
-
-            try
-            {
-                var parametros = new Dictionary<string, object>
-                {
-                    { "@IdProducto", idProducto },
-                    { "@Cantidad", cantidad }
-                };
-
-                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
-                {
-                    resultado = true;
-                }
-            }
-            catch (Exception)
-            {
-                resultado = false;
-            }
-
-            return resultado;
-        }
-
         // Insertar entrada de ingrediente
         public bool InsertarEntradaIngrediente(int idIngrediente, decimal cantidad)
         {

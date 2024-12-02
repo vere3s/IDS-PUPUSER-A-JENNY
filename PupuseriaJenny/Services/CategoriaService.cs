@@ -225,6 +225,57 @@ namespace PupuseriaJenny.Services
 
             return resultado;
         }
+        public DataTable ObtenerIngredientesPorCategorias(string categoria)
+        {
+            DataTable resultado = new DataTable();
+            string consulta = @"SELECT i.idIngrediente, i.nombreIngrediente, dp.precioDetallePedidoIngrediente, i.imagenIngrediente
+                            FROM RG_Ingrediente i
+                            JOIN RG_Categoria c ON i.idCategoria = c.idCategoria
+                            JOIN RG_DetallePedidoIngrediente dp ON i.idIngrediente = dp.idIngrediente
+                            WHERE c.categoria = @categoria
+                            ORDER BY i.nombreIngrediente ASC;";
+
+            try
+            {
+                if (string.IsNullOrEmpty(categoria))
+                {
+                    throw new ArgumentException("La categoría no puede ser nula o vacía.");
+                }
+
+                // Depuración de la consulta y los parámetros
+                Console.WriteLine("Consulta SQL: " + consulta);
+                Console.WriteLine("Parámetro categoría: " + categoria);
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>
+                {
+                    { "@categoria", categoria }
+                };
+
+                resultado = _operacion.Consultar(consulta, parametros);
+
+                if (resultado.Rows.Count == 0)
+                {
+                    Console.WriteLine("No se encontraron ingredientes para la categoría: " + categoria);
+                }
+                else
+                {
+                    Console.WriteLine("Ingredientes encontrados: " + resultado.Rows.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener ingredientes: " + ex.Message);
+            }
+            Console.WriteLine("Columnas obtenidas para productos:");
+            foreach (DataColumn columna in resultado.Columns)
+            {
+                Console.WriteLine($"- {columna.ColumnName}");
+            }
+
+            Console.WriteLine("Número de filas obtenidas: " + resultado.Rows.Count);
+
+            return resultado;
+        }
 
         public CategoriaService(DBOperacion operacion = null)
         {
