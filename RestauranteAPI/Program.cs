@@ -38,7 +38,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<VentaService>();
 builder.Services.AddScoped<CategoriaService>();
-
+builder.Services.AddScoped<OrdenService>();
 // Configuración de Swagger (opcional para probar la API)
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

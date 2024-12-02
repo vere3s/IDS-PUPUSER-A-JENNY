@@ -148,6 +148,7 @@
     <Compile Include="Custom\RJTextBox.Designer.cs">
       <DependentUpon>RJTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\OrdenDTO.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -510,7 +511,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
     <Folder Include="Enums\" />
     <Folder Include="NewFolder1\" />
   </ItemGroup>

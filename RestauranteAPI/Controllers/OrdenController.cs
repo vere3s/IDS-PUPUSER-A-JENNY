@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PupuseriaJenny.Models;
 using PupuseriaJenny.Services;
+using System.Collections.Generic;
 using System.Data;
 
 namespace RestauranteAPI.Controllers
@@ -16,7 +17,6 @@ namespace RestauranteAPI.Controllers
             _ordenService = new OrdenService();
         }
 
-        // POST: api/orden
         [HttpPost]
         public IActionResult InsertarOrden([FromBody] Ordenes orden)
         {
@@ -32,10 +32,9 @@ namespace RestauranteAPI.Controllers
                 return StatusCode(500, "Ocurrió un error al insertar la orden.");
             }
 
-            return CreatedAtAction(nameof(ObtenerOrden), new { id = idOrden }, idOrden);
+            return CreatedAtAction("creado", new { id = idOrden }, idOrden);
         }
 
-        // PUT: api/orden/5
         [HttpPut("{id}")]
         public IActionResult ActualizarOrden(int id, [FromBody] Ordenes orden)
         {
@@ -48,13 +47,12 @@ namespace RestauranteAPI.Controllers
 
             if (resultado)
             {
-                return NoContent(); // 204 No Content (éxito, pero no se devuelve contenido)
+                return NoContent(); 
             }
 
             return StatusCode(500, "Ocurrió un error al actualizar la orden.");
         }
 
-        // DELETE: api/orden/5
         [HttpDelete("{id}")]
         public IActionResult EliminarOrden(int id)
         {
@@ -68,41 +66,45 @@ namespace RestauranteAPI.Controllers
             return StatusCode(500, "Ocurrió un error al eliminar la orden.");
         }
 
-        // GET: api/ordenes/pendientes/sin-mesa
         [HttpGet("pendientes/sin-mesa")]
         public IActionResult ObtenerOrdenesPendientesSinMesa()
         {
             DataTable ordenesPendientes = _ordenService.ObtenerOrdenesPendientesSinMesa();
+            var ordenesDTO = _ordenService.ConvertirDataTableALista(ordenesPendientes);
 
-            if (ordenesPendientes.Rows.Count == 0)
+            if (ordenesDTO.Count == 0)
             {
                 return NotFound("No se encontraron órdenes pendientes sin mesa.");
             }
 
-            return Ok(ordenesPendientes); // Devuelve las órdenes pendientes sin mesa
+            return Ok(ordenesDTO);
         }
 
-        // GET: api/ordenes/pendientes/con-mesa
         [HttpGet("pendientes/con-mesa")]
         public IActionResult ObtenerOrdenesPendientesConMesa()
         {
             DataTable ordenesPendientes = _ordenService.ObtenerOrdenesPendientesConMesa();
+            var ordenesDTO = _ordenService.ConvertirDataTableALista(ordenesPendientes);
 
-            if (ordenesPendientes.Rows.Count == 0)
+            if (ordenesDTO.Count == 0)
             {
                 return NotFound("No se encontraron órdenes pendientes con mesa.");
             }
 
-            return Ok(ordenesPendientes); // Devuelve las órdenes pendientes con mesa
+            return Ok(ordenesDTO);
         }
 
-        // GET: api/ordenes/5
-        [HttpGet("{id}")]
+       /* [HttpGet("{id}")]
         public IActionResult ObtenerOrden(int id)
         {
-            // Aquí podrías implementar la lógica para obtener una orden por su ID
-            // Por ejemplo, crear un método en el servicio OrdenService que retorne un objeto Orden
-            return Ok();
-        }
+            var orden = _ordenService.ObtenerPorId(id);
+
+            if (orden == null)
+            {
+                return NotFound($"No se encontró la orden con ID {id}.");
+            }
+
+            return Ok(orden);
+        }*/
     }
 }

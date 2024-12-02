@@ -1,4 +1,5 @@
 ﻿using PupuseriaJenny.Models;
+using RestauranteAPI.DTOs;
 using RestauranteGestion.Core.DataAccess;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,40 @@ namespace PupuseriaJenny.Services
     {
         private readonly DBOperacion _operacion;
 
+        // Convertir DataTable a Lista de Ordenes
+        public List<Ordenes> ConvertirDataTableALista(DataTable dt)
+        {
+            var listaOrdenes = new List<Ordenes>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                listaOrdenes.Add(new Ordenes
+                {
+                    // Convertir IdOrden de manera segura, y manejar valores nulos.
+                    IdOrden = row["idOrden"] != DBNull.Value ? Convert.ToInt32(row["idOrden"]) : 0,
+
+                    // Manejar el estado de la orden, asignando un valor predeterminado si es nulo.
+                    EstadoOrden = row["estadoOrden"] != DBNull.Value ? row["estadoOrden"].ToString() : string.Empty,
+
+                    // Manejar el idMesa como un int? (nullable int).
+                    IdMesa = Convert.ToInt32(row["idMesa"]),
+
+                    // Manejar ClienteOrden de manera segura.
+                    ClienteOrden = row["clienteOrden"] != DBNull.Value ? row["clienteOrden"].ToString() : string.Empty,
+
+                    // Manejar la fecha de la orden de manera segura.
+                    FechaOrden = row["fechaOrden"] != DBNull.Value ? Convert.ToDateTime(row["fechaOrden"]) : DateTime.MinValue,
+
+                    // Manejar TipoOrden de manera segura.
+                    TipoOrden = row["tipoOrden"] != DBNull.Value ? row["tipoOrden"].ToString() : string.Empty,
+
+                    // Manejar ComentarioOrden de manera segura.
+                    ComentarioOrden = row["comentarioOrden"] != DBNull.Value ? row["comentarioOrden"].ToString() : string.Empty
+                });
+            }
+
+            return listaOrdenes;
+        }
         public OrdenService()
         {
             _operacion = new DBOperacion();
@@ -143,6 +178,8 @@ namespace PupuseriaJenny.Services
 
             return ordenPendiente;
         }
+
+
         public DataTable ObtenerOrdenesPendientesConMesa()
         {
             DataTable ordenPendiente = new DataTable();
