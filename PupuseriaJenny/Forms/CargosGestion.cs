@@ -129,21 +129,28 @@ namespace PupuseriaJenny.Forms
                         MessageBox.Show("La columna 'cargo' no existe.");
                         return;
                     }
-                }
 
-                // Aplicar el filtro
-                if (tbFiltro.Text.Trim().Length <= 0)
-                {
-                    DATOS.RemoveFilter();
+                    // Aplicar el filtro sobre el DataTable
+                    if (tbFiltro.Text.Trim().Length > 0)
+                    {
+                        string filterExpression = "cargo LIKE '%" + tbFiltro.Text + "%'";
+                        // Filtrar los datos
+                        dt.DefaultView.RowFilter = filterExpression;
+                    }
+                    else
+                    {
+                        // Eliminar el filtro
+                        dt.DefaultView.RowFilter = string.Empty;
+                    }
+
+                    // Actualizar el DataGridView
+                    dgvCargos.AutoGenerateColumns = false;
+                    dgvCargos.DataSource = DATOS;
                 }
                 else
                 {
-                    DATOS.Filter = "cargo LIKE '%" + tbFiltro.Text + "%'";
+                    MessageBox.Show("El origen de datos no es un DataTable.");
                 }
-
-                // Actualizar el DataGridView
-                dgvCargos.AutoGenerateColumns = false;
-                dgvCargos.DataSource = DATOS;
             }
             catch (Exception ex)
             {

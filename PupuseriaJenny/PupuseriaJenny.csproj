@@ -432,6 +432,12 @@
       <DependentUpon>InventarioIngrediente.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\InventarioProductos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventarioProductos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Ventas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -590,6 +596,10 @@
     <EmbeddedResource Include="Reports\InventarioIngrediente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InventarioIngrediente.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InventarioProductos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InventarioProductos.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Ventas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

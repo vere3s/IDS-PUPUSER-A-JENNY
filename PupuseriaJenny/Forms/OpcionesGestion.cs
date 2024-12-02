@@ -30,24 +30,27 @@ namespace PupuseriaJenny.Forms
         {
             try
             {
-                if (tbFiltro.Text.Trim().Length <= 0)
+                if (string.IsNullOrWhiteSpace(tbFiltro.Text))
                 {
-                    DATOS.RemoveFilter();
+                    // Si el filtro está vacío, eliminamos el filtro
+                    DATOS.Filter = string.Empty;
                 }
                 else
                 {
-                    DATOS.Filter = "opcion like '%" + tbFiltro.Text + "%'"; ;
+                    // Aplicamos el filtro con el texto introducido en el TextBox
+                    DATOS.Filter = "opcion LIKE '%" + tbFiltro.Text + "%'";
                 }
+
+                // Actualizamos el DataGridView con el BindingSource filtrado
                 dgvOpciones.AutoGenerateColumns = false;
                 dgvOpciones.DataSource = DATOS;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Error al aplicar el filtro: " + ex.Message);
             }
         }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try

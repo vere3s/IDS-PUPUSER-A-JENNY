@@ -125,28 +125,35 @@ namespace PupuseriaJenny.Forms
         {
             try
             {
-                if (tbFiltro.Text.Trim().Length <= 0)
+                if (string.IsNullOrWhiteSpace(tbFiltro.Text))
                 {
-                    _datos.RemoveFilter();
+                    // Si el filtro está vacío, eliminamos el filtro
+                    _datos.Filter = string.Empty;
                 }
                 else
                 {
-                    _datos.Filter = "usuario like '%" + tbFiltro.Text + "%'"; ;
+                    // Aplicamos el filtro con el texto introducido en el TextBox
+                    _datos.Filter = "usuario LIKE '%" + tbFiltro.Text + "%'";
                 }
+                // El DataGridView se actualizará automáticamente debido a que el BindingSource se actualiza.
                 dgvUsuarios.AutoGenerateColumns = false;
-                dgvUsuarios.DataSource = _datos;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show($"Error al aplicar el filtro: {ex.Message}");
             }
         }
 
+        // Llamar a FiltrarLocalmente en el evento TextChanged del TextBox (tbFiltro)
         private void tbFiltro_TextChanged(object sender, EventArgs e)
         {
+            FiltrarLocalmente();
+        }
 
+
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            FiltrarLocalmente();
         }
     }
 }

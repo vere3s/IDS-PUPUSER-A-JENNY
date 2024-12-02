@@ -32,24 +32,26 @@ namespace PupuseriaJenny.Forms
         {
             try
             {
-                if (tbFiltro.Text.Trim().Length <= 0)
+                if (string.IsNullOrWhiteSpace(tbFiltro.Text))
                 {
-                    DATOS.RemoveFilter();
+                    // Si el filtro está vacío, eliminamos el filtro
+                    DATOS.Filter = string.Empty;
                 }
                 else
                 {
-                    DATOS.Filter = "rol like '%" + tbFiltro.Text + "%'"; ;
+                    // Aplicamos el filtro con el texto introducido en el TextBox
+                    DATOS.Filter = "rol LIKE '%" + tbFiltro.Text + "%'";
                 }
+
+                // El DataGridView se actualizará automáticamente debido a que el BindingSource se actualiza.
                 dgvRoles.AutoGenerateColumns = false;
-                dgvRoles.DataSource = DATOS;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("Error al aplicar el filtro: " + ex.Message);
             }
         }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
