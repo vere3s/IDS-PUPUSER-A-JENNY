@@ -130,6 +130,27 @@ namespace PupuseriaJenny.Services
             }
             return idVenta;
         }
+        public static DataTable SEGUN_PERIODO_VENTAS(string pFechaInicio, string pFechaFinal)
+        {
+            DataTable Resultado = new DataTable();
+            String Consulta = @"SELECT o.fechaOrden, o.tipoOrden, e.nombreEmpleado, p.nombreProducto, v.totalVenta
+                                FROM RG_Venta v
+                                JOIN RG_DetalleVenta dv ON dv.idDetalleVenta = v.idDetalleVenta
+                                JOIN RG_Orden o ON o.idOrden = dv.idOrden
+                                JOIN RG_Empleado e ON e.idEmpleado = v.idEmpleado
+                                JOIN RG_Producto p ON p.idProducto = dv.idProducto
+                                WHERE CAST(o.fechaOrden AS DATE) between '"+ pFechaInicio + "' AND '" + pFechaFinal + @"';";
+            DBOperacion operacion = new DBOperacion();
+            try
+            {
+                Resultado = operacion.Consultar(Consulta);
+            }
+            catch (Exception)
+            {
+
+            }
+            return Resultado;
+        }
 
     }
 }

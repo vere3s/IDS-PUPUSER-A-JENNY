@@ -176,5 +176,35 @@ namespace PupuseriaJenny.Services
 
             return null;
         }
+
+
+        public DataTable ObtenerProveedor()
+        {
+            // Sentencia SQL corregida
+            string sentencia = "SELECT idProveedor, nombreProveedor, telefonoProveedor, direccionProveedor, emailProveedor FROM RG_Proveedor";
+            try
+            {
+                // Consulta a la base de datos
+                DataTable tabla = _operacion.Consultar(sentencia);
+
+                // Verifica si la consulta devolvió datos
+                if (tabla == null || tabla.Rows.Count == 0)
+                {
+                    Console.WriteLine("No se encontraron registros en la tabla de proveedores.");
+                    return null;
+                }
+
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                Console.WriteLine("Error al obtener proveedores: " + ex.Message);
+                return null;
+            }
+        }
+
+
+
     }
 }

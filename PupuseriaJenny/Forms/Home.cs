@@ -88,7 +88,8 @@ namespace PupuseriaJenny.Forms
         {
             if (oSesion.Permisos.Any(p => p.Opcion == "Ver Reportes" && p.Acceso.ToString() == "lectura"))
             {
-                
+                SeleccionarReporteForm formReporte = new SeleccionarReporteForm();
+                formReporte.Show();
             }
             else
             {
