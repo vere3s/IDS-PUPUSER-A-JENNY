@@ -79,11 +79,6 @@ namespace PupuseriaJenny.Services
             return permiso;
         }
 
-
-
-
-
-
         public bool Eliminar(int idPermiso)
         {
             bool resultado = false;

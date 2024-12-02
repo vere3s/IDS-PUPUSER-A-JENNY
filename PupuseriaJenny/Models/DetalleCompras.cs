@@ -16,32 +16,32 @@ namespace PupuseriaJenny.Models
         public int? idDetallePedidoCompra { get; set; }
 
       
-            public string Tipo { get; set; } // Puede ser "Producto" o "Ingrediente"
+        public string Tipo { get; set; } // Puede ser "Producto" o "Ingrediente"
         
-            public decimal CostoUnitario { get; set; }
+        public decimal CostoUnitario { get; set; }
        
 
             // Constructor para productos
-            public DetalleCompras(int idProducto, decimal costoUnitario, int cantidad, int idIngrediente)
-            {
-            if (Tipo == "Producto")
-            {
+        public DetalleCompras(int idProducto, decimal costoUnitario, int cantidad, int idIngrediente)
+        {
+        if (Tipo == "Producto")
+        {
 
-                IdProducto = idProducto;
-                CostoUnitario = costoUnitario;
-                Cantidad = cantidad;
+            IdProducto = idProducto;
+            CostoUnitario = costoUnitario;
+            Cantidad = cantidad;
 
-            }else if( Tipo == "Ingrediente")
-            {
-                IdIngrediente = idIngrediente;
-                CostoUnitario = costoUnitario;
-                Cantidad = cantidad;
-            }
+        }else if( Tipo == "Ingrediente")
+        {
+            IdIngrediente = idIngrediente;
+            CostoUnitario = costoUnitario;
+            Cantidad = cantidad;
+        }
 
                
-            }
+        }
 
-            // Constructor para ingredientes
+        // Constructor para ingredientes
             
         }
 

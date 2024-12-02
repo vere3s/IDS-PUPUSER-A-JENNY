@@ -18,9 +18,6 @@ namespace PupuseriaJenny.Services
         {
             _operacion = new DBOperacion();
         }
-
-
-
         public bool Insertar(Opciones opcion)
         {
             bool resultado = false;

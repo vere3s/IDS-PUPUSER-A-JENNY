@@ -165,6 +165,13 @@ namespace PupuseriaJenny.Services
             {
                 Console.WriteLine("Error al obtener productos: " + ex.Message);
             }
+            Console.WriteLine("Columnas obtenidas para productos:");
+            foreach (DataColumn columna in resultado.Columns)
+            {
+                Console.WriteLine($"- {columna.ColumnName}");
+            }
+
+            Console.WriteLine("Número de filas obtenidas: " + resultado.Rows.Count);
 
             return resultado;
         }
@@ -189,9 +196,9 @@ namespace PupuseriaJenny.Services
                 Console.WriteLine("Parámetro categoría: " + categoria);
 
                 Dictionary<string, object> parametros = new Dictionary<string, object>
-        {
-            { "@categoria", categoria }
-        };
+                {
+                    { "@categoria", categoria }
+                };
 
                 resultado = _operacion.Consultar(consulta, parametros);
 
@@ -208,6 +215,13 @@ namespace PupuseriaJenny.Services
             {
                 Console.WriteLine("Error al obtener ingredientes: " + ex.Message);
             }
+            Console.WriteLine("Columnas obtenidas para productos:");
+            foreach (DataColumn columna in resultado.Columns)
+            {
+                Console.WriteLine($"- {columna.ColumnName}");
+            }
+
+            Console.WriteLine("Número de filas obtenidas: " + resultado.Rows.Count);
 
             return resultado;
         }

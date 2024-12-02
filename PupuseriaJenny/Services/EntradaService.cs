@@ -2,86 +2,209 @@
 using RestauranteGestion.Core.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PupuseriaJenny.Services
 {
     internal class EntradaService
     {
-        private DBOperacion db;
+        private readonly DBOperacion _operacion;
 
         public EntradaService()
         {
-            db = new DBOperacion();
+            _operacion = new DBOperacion();
         }
 
         public int InsertarEntrada(Entrada entrada)
         {
-            string query = "INSERT INTO RG_Entrada (idProducto, cantidadEntrada, costoUnitarioEntrada, fechaEntrada) " +
-                           "VALUES (@idProducto, @cantidadEntrada, @costoUnitarioEntrada, @fechaEntrada); " +
-                           "SELECT LAST_INSERT_ID();";
+            int idEntrada = -1;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("INSERT INTO RG_Entrada (idProducto, idIngrediente, idCompra, cantidadEntrada, costoUnitarioEntrada, fechaEntrada) ");
+            sentencia.Append("VALUES (@idProducto, @idIngrediente, @idCompra, @cantidadEntrada, @costoUnitarioEntrada, @fechaEntrada); ");
+            sentencia.Append("SELECT LAST_INSERT_ID();");
 
-            var parameters = new Dictionary<string, object>
-    {
-        { "@idProducto", entrada.idProducto },
-        { "@cantidadEntrada", entrada.cantidadEntrada },
-        { "@costoUnitarioEntrada", entrada.costoUnitarioEntrada },
-        { "@fechaEntrada", entrada.fechaEntrada }
-    };
-
-            // Ejecutar la consulta y obtener el ID de la entrada insertada
-            var result = db.Consultar(query, parameters);
-            if (result.Rows.Count > 0)
+            try
             {
-                return Convert.ToInt32(result.Rows[0][0]); // Retornar el ID insertado
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idProducto", entrada.idProducto ?? (object)DBNull.Value },
+                    { "@idIngrediente", entrada.idIngrediente ?? (object)DBNull.Value },
+                    { "@idCompra", entrada.idCompra },
+                    { "@cantidadEntrada", entrada.cantidadEntrada },
+                    { "@costoUnitarioEntrada", entrada.costoUnitarioEntrada },
+                    { "@fechaEntrada", entrada.fechaEntrada }
+                };
+                // Ejecutar la sentencia y capturar el ID insertado
+                idEntrada = _operacion.EjecutarSentenciaYObtenerID(sentencia.ToString(), parametros);
+            }
+            catch (Exception)
+            {
+                idEntrada = -1;
             }
 
-            return 0; // Si no se obtiene el ID, retornar 0
+            return idEntrada;
         }
 
-        public void EliminarEntrada(int idEntrada)
+        public bool EliminarEntrada(int idEntrada)
         {
-            string query = "DELETE FROM RG_Entrada WHERE idEntrada = @idEntrada";
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("DELETE FROM RG_Entrada WHERE idEntrada = @idEntrada");
 
-            var parameters = new Dictionary<string, object>
-    {
-        { "@idEntrada", idEntrada }
-    };
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idEntrada", idEntrada }
+                };
 
-            // Ejecutar la sentencia de eliminación
-            db.EjecutarSentencia(query, parameters);
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
         }
 
-        public void InsertarEntradaProducto(int idProducto, decimal cantidad)
+        public bool InsertarEntradaProducto(int idProducto, decimal cantidad)
         {
-            string sentencia = "INSERT INTO RG_Entrada (IdProducto, CantidadEntrada) VALUES (@IdProducto, @Cantidad)";
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("INSERT INTO RG_Entrada (IdProducto, CantidadEntrada) VALUES (@IdProducto, @Cantidad)");
 
-            var parametros = new Dictionary<string, object>
-        {
-            { "@IdProducto", idProducto },
-            { "@Cantidad", cantidad }
-        };
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@IdProducto", idProducto },
+                    { "@Cantidad", cantidad }
+                };
 
-            db.EjecutarSentencia(sentencia, parametros);
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
         }
 
         // Insertar entrada de ingrediente
-        public void InsertarEntradaIngrediente(int idIngrediente, decimal cantidad)
+        public bool InsertarEntradaIngrediente(int idIngrediente, decimal cantidad)
         {
-            string sentencia = "INSERT INTO RG_Entrada (IdIngrediente, CantidadEntrada) VALUES (@IdIngrediente, @Cantidad)";
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append("INSERT INTO RG_Entrada (IdIngrediente, CantidadEntrada) VALUES (@IdIngrediente, @Cantidad)");
 
-            var parametros = new Dictionary<string, object>
-        {
-            { "@IdIngrediente", idIngrediente },
-            { "@Cantidad", cantidad }
-        };
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@IdIngrediente", idIngrediente },
+                    { "@Cantidad", cantidad }
+                };
 
-            db.EjecutarSentencia(sentencia, parametros);
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
         }
+        public bool ActualizarEntrada(int idEntrada, int idProducto, int idIngrediente, int idCompra, DateTime fechaEntrada, int cantidadEntrada, decimal costoUnitarioEntrada)
+        {
+            bool resultado = false;
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append(@"UPDATE RG_Entrada SET ");
+            sentencia.Append("idProducto = @idProducto, ");
+            sentencia.Append("idIngrediente = @idIngrediente, ");
+            sentencia.Append("idCompra = @idCompra, ");
+            sentencia.Append("fechaEntrada = @fechaEntrada, ");
+            sentencia.Append("cantidadEntrada = @cantidadEntrada, ");
+            sentencia.Append("costoUnitarioEntrada = @costoUnitarioEntrada ");
+            sentencia.Append("WHERE idEntrada = @idEntrada;");
 
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idProducto", idProducto },
+                    { "@idIngrediente", idIngrediente },
+                    { "@idCompra", idCompra },
+                    { "@fechaEntrada", fechaEntrada },
+                    { "@cantidadEntrada", cantidadEntrada },
+                    { "@costoUnitarioEntrada", costoUnitarioEntrada },
+                    { "@idEntrada", idEntrada }
+                };
 
+                if (_operacion.EjecutarSentencia(sentencia.ToString(), parametros) >= 0)
+                {
+                    resultado = true;
+                }
+            }
+            catch (Exception)
+            {
+                resultado = false;
+            }
+
+            return resultado;
+        }
+        public List<Compra> ObtenerEntradasPorEmpleado(int idEmpleado)
+        {
+            List<Compra> lista = new List<Compra>();
+            StringBuilder sentencia = new StringBuilder();
+            sentencia.Append(@"SELECT e.idEntrada, e.cantidadEntrada, c.totalCompra, c.fechaCompra");
+            sentencia.Append("FROM RG_Entrada e ");
+            sentencia.Append("INNER JOIN RG_Compra c ON e.idCompra = c.idCompra ");
+            sentencia.Append("WHERE c.idEmpleado = @idEmpleado ");
+            sentencia.Append("ORDER BY e.fechaEntrada DESC;");
+
+            try
+            {
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@idEmpleado", idEmpleado }
+                };
+
+                // Llama a Consultar en DBOperacion
+                DataTable resultado = _operacion.Consultar(sentencia.ToString(), new Dictionary<string, object>());
+
+                foreach (DataRow row in resultado.Rows)
+                {
+                    lista.Add(new Compra
+                    {
+                        IdCompra = Convert.ToInt32(row["idEntrada"]),
+                        TotalCompra = Convert.ToDecimal(row["totalCompra"]),
+                        FechaCompra = Convert.ToDateTime(row["fechaCompra"])
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener roles: " + ex.Message);
+            }
+
+            return lista;
+        }
     }
 }

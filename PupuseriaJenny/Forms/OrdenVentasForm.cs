@@ -507,7 +507,7 @@ namespace PupuseriaJenny.Forms
                     }
                     else
                     {
-                        MessageBox.Show("Hubieron problema al eliminar la orden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Hubo problemas al eliminar la orden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     
                 }
@@ -530,7 +530,7 @@ namespace PupuseriaJenny.Forms
                         /* SalidaService salidaService = new SalidaService();
                         foreach (DataGridViewRow row in dgvProductosDetalles.Rows)
                         {
-                            if (row.Tag is Tuple<int, int> detalles) // Asegúrate de que el Tag tiene el formato correcto
+                            if (row.Tag is Tuple<int, int> detalles) 
                             {
                                 int idDetalleVenta = detalles.Item1;
                                 int idSalida = detalles.Item2;
@@ -566,17 +566,31 @@ namespace PupuseriaJenny.Forms
         }
         private void btnCobrar_Click(object sender, EventArgs e)
         {
-            string estado = "Pagada";
-
-            OrdenService ordenService = new OrdenService();
-            if (ordenService.EstadoOrden(_currentIdOrden, estado))
+            if (dgvProductosDetalles.Rows.Count == 0)
             {
-                MessageBox.Show("La orden ha sido pagada exitosamente.", "Orden Pagada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                DialogResult result = MessageBox.Show("¡No hay productos seleccionados!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
-                MessageBox.Show("Hubo un problema al actualizar la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show("¿Está seguro que desea cobrar la orden?", "Cobrar Orden", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.OK)
+                {
+                    string estado = "Pagada";
+
+                    OrdenService ordenService = new OrdenService();
+                    if (ordenService.EstadoOrden(_currentIdOrden, estado))
+                    {
+                        MessageBox.Show("La orden ha sido pagada exitosamente.", "Orden Pagada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un problema al actualizar la orden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
             }
         }
 

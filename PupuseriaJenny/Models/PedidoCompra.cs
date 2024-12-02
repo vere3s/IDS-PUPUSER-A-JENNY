@@ -12,12 +12,9 @@ namespace PupuseriaJenny.Models
 {
     public class PedidoCompra
     {
+        public int IdProveedor { get; set; }
+        public DateTime FechaPedidoCompra { get; set; }
+        public string EstadoPedidoCompra { get; set; }
         
-        
-            public int IdProveedor { get; set; }
-            public DateTime FechaPedidoCompra { get; set; }
-            public string EstadoPedidoCompra { get; set; }
-        
-
     }
 }
