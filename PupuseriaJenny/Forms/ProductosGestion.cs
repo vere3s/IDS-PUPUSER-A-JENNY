@@ -138,6 +138,9 @@ namespace PupuseriaJenny.Forms
         private void btnCategorias_Click(object sender, EventArgs e)
         {
 
+            CategoriasGestion formCategoria = new CategoriasGestion();
+            formCategoria.Show();
         }
+    }
     }
 }
